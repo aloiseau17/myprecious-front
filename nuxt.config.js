@@ -20,9 +20,7 @@ module.exports = {
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
 			{ hid: 'description', name: 'description', content: pkg.description }
 		],
-		link: [
-			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-		]
+		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
 	},
 
 	/*
@@ -33,14 +31,12 @@ module.exports = {
 	/*
 	** Global CSS
 	*/
-	css: [
-	],
+	css: [],
 
 	/*
 	** Plugins to load before mounting the App
 	*/
-	plugins: [
-	],
+	plugins: [],
 
 	/*
 	** Nuxt.js modules
@@ -48,15 +44,18 @@ module.exports = {
 	modules: [
 		// Doc: https://github.com/nuxt-community/axios-module#usage
 		'@nuxtjs/axios',
-		['@nuxtjs/dotenv', {
-			filename: dotEnvFilename
-		}],
+		[
+			'@nuxtjs/dotenv',
+			{
+				filename: dotEnvFilename
+			}
+		]
 	],
 	/*
 	** Axios module configuration
 	*/
 	axios: {
-	// See https://github.com/nuxt-community/axios-module#options
+		// See https://github.com/nuxt-community/axios-module#options
 	},
 
 	/*
@@ -67,18 +66,15 @@ module.exports = {
 		** You can extend webpack config here
 		*/
 		extend(config, ctx) {
-		// Run ESLint on save
+			// Run ESLint on save
 			if (ctx.isDev && ctx.isClient) {
 				config.module.rules.push({
 					enforce: 'pre',
 					test: /\.(js|vue)$/,
 					loader: 'eslint-loader',
-					exclude: [
-						path.resolve(__dirname, 'www'),
-						/(node_modules)/
-					]
+					exclude: [path.resolve(__dirname, 'www'), /(node_modules)/]
 				})
 			}
 		}
-	},
+	}
 }

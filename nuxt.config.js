@@ -1,5 +1,9 @@
+// Environement config
+const dotEnvFilename = '.env.dev'
+
 const pkg = require('./package')
 const path = require('path')
+require('dotenv').config({ path: dotEnvFilename }) // make .env available in nuxt-config.js
 
 module.exports = {
 	mode: 'spa',
@@ -44,6 +48,9 @@ module.exports = {
 	modules: [
 		// Doc: https://github.com/nuxt-community/axios-module#usage
 		'@nuxtjs/axios',
+		['@nuxtjs/dotenv', {
+			filename: dotEnvFilename
+		}],
 	],
 	/*
 	** Axios module configuration

@@ -44,6 +44,7 @@ module.exports = {
 	modules: [
 		// Doc: https://github.com/nuxt-community/axios-module#usage
 		'@nuxtjs/axios',
+		'@nuxtjs/auth',
 		[
 			'@nuxtjs/dotenv',
 			{
@@ -56,6 +57,36 @@ module.exports = {
 	*/
 	axios: {
 		// See https://github.com/nuxt-community/axios-module#options
+		baseURL: process.env.API_URL, // TODO env
+		debug: true
+	},
+
+	/*
+	** Authentification module configuration
+	*/
+	auth: {
+		cookie: false,
+		redirect: {
+			login: '/login',
+			logout: '/',
+			callback: '/login',
+			home: '/'
+		},
+		defaultStrategy: 'myprecious',
+		strategies: {
+			local: false,
+			resetOnError: true,
+			myprecious: {
+				_scheme: '~/plugins/mypreciousAuth/mypreciousScheme.js'
+			}
+		}
+	},
+
+	/*
+	** Router configuration
+	*/
+	router: {
+		middleware: ['auth']
 	},
 
 	/*
@@ -76,5 +107,8 @@ module.exports = {
 				})
 			}
 		}
+	},
+	env: {
+		API_URL: process.env.API_URL
 	}
 }

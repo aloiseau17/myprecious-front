@@ -39,7 +39,7 @@ export default class MyLocalScheme {
 
 	manageToken(result) {
 		// if expire_in is define set timeout before refresh token
-		if(result[this.options.expireInKey])
+		if (result[this.options.expireInKey])
 			this.setRefreshInterval(result[this.options.expireInKey] * 1000) // convert second in ms
 
 		if (this.options.tokenRequired) {
@@ -61,11 +61,9 @@ export default class MyLocalScheme {
 
 	// duration should be in ms
 	setRefreshInterval($duration) {
-		if($duration <= 0)
-			return
+		if ($duration <= 0) return
 
-		if(this.refreshInterval)
-			clearTimeout(this.refreshInterval)
+		if (this.refreshInterval) clearTimeout(this.refreshInterval)
 
 		// Set interval
 		this.refreshInterval = setTimeout(() => {
@@ -92,9 +90,6 @@ export default class MyLocalScheme {
 	}
 
 	async fetchUser(endpoint) {
-		// Set timeout before refresh token
-		await this.refresh()
-
 		// User endpoint is disabled.
 		if (!this.options.endpoints.user) {
 			this.$auth.setUser({})
@@ -139,8 +134,7 @@ export default class MyLocalScheme {
 		let refreshToken = this.$auth.getRefreshToken(this.name)
 
 		// Token is required but refreshToken not available
-		if (this.options.tokenRequired && !refreshToken)
-			return
+		if (this.options.tokenRequired && !refreshToken) return
 
 		const result = await this.$auth.request(
 			{

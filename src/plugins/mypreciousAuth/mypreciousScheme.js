@@ -34,6 +34,12 @@ export default class MyLocalScheme {
 			this._setToken(token)
 		}
 
+		if (this.options.refreshToken) {
+			const refreshToken = this.$auth.syncRefreshToken(this.name)
+			if(refreshToken)
+				this.refresh() // 
+		}
+
 		return this.$auth.fetchUserOnce()
 	}
 
@@ -60,15 +66,15 @@ export default class MyLocalScheme {
 	}
 
 	// duration should be in ms
-	setRefreshInterval($duration) {
-		if ($duration <= 0) return
+	setRefreshInterval(duration) {
+		if (duration <= 0) return
 
 		if (this.refreshInterval) clearTimeout(this.refreshInterval)
 
 		// Set interval
 		this.refreshInterval = setTimeout(() => {
 			this.refresh()
-		}, $duration)
+		}, duration)
 	}
 
 	async login(endpoint) {

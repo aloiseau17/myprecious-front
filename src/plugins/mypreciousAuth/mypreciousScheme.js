@@ -23,7 +23,7 @@ export default class MyLocalScheme {
 		}
 	}
 
-	mounted() {
+	async mounted() {
 		// Logout on error
 		this.$auth.onError(() => {
 			this._logoutLocally()
@@ -37,7 +37,7 @@ export default class MyLocalScheme {
 		if (this.options.refreshToken) {
 			const refreshToken = this.$auth.syncRefreshToken(this.name)
 			if(refreshToken)
-				this.refresh() // 
+				await this.refresh() // require on reload to set interval
 		}
 
 		return this.$auth.fetchUserOnce()
@@ -140,7 +140,7 @@ export default class MyLocalScheme {
 		let refreshToken = this.$auth.getRefreshToken(this.name)
 
 		// Token is required but refreshToken not available
-		if (this.options.tokenRequired && !refreshToken) return
+		if (this.options.tokenRequired && !refreshToken) return Promise.reject()
 
 		const result = await this.$auth.request(
 			{

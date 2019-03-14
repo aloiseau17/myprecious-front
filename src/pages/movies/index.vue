@@ -3,6 +3,9 @@
 		<h1>Movies seen</h1>
 		
 		<ul v-if="movies.length">
+			<li v-if="firstRewatch">
+				<movie-item :movie="firstRewatch" />
+			</li>
 			<li
 				v-for="movie in movies"
 				:key="movie.id">
@@ -23,17 +26,19 @@
 <script>
 import MovieItem from '~/components/Movies/MovieItem'
 import Filters from '~/components/Movies/Filters'
+import { mapState } from 'vuex'
 
 export default {
 	components: { MovieItem, Filters },
 	data() {
 		return {
-			movies: [],
-			currentPage: 1,
 			defaultParams: {}
 		}
 	},
-	asyncData({ $axios }) {
+	computed: {
+		...mapState('movies', ['movies', 'firstRewatch', 'currentPage', 'lastPage'])
+	},
+	async asyncData({ store, $axios }) {
 		// Define parameters use for first movie catch
 		// and then pagination and filter
 		const defaultParams = {
@@ -41,33 +46,31 @@ export default {
 			seen: 1
 		}
 
-		return $axios
-			.$get('/api/movies/search', {
-				params: defaultParams
-			})
-			.then(res => {
-				return {
-					currentPage: res.current_page,
-					movies: res.data ? res.data : [],
-					defaultParams
-				}
-			})
-			.catch(error => console.log(error))
+		// Require one fantastic movie
+		await store.dispatch('movies/fetchFirstRandomFantasticMovies')
+
+		await store.dispatch('movies/fetchMovies', {
+			params: defaultParams,
+			partial: true
+		})
+
+		return {
+			defaultParams
+		}
 	},
 	methods: {
-		filterMovies(data) {
+		async filterMovies(data) {
 			// Combine default and filter parameters
 			const params = Object.assign({}, this.defaultParams, data)
+			const resetFirstRewatch = Object.keys(data).length === 0
 
-			return this.$axios
-				.$get('/api/movies/search', {
-					params: params
-				})
-				.then(res => {
-					this.currentPage = res.current_page
-					this.movies = res.data ? res.data : []
-				})
-				.catch(error => console.log(error))
+			if (resetFirstRewatch)
+				await this.$store.dispatch('movies/fetchFirstRandomFantasticMovies')
+
+			this.$store.dispatch('movies/fetchMovies', {
+				params,
+				partial: resetFirstRewatch
+			})
 		}
 	}
 }

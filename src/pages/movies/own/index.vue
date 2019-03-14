@@ -23,51 +23,42 @@
 <script>
 import MovieItem from '~/components/Movies/MovieItem'
 import Filters from '~/components/Movies/Filters'
+import { mapState } from 'vuex'
 
 export default {
 	components: { MovieItem, Filters },
 	data() {
 		return {
-			movies: [],
-			currentPage: 1,
 			defaultParams: {}
 		}
 	},
-	asyncData({ $axios }) {
+	computed: {
+		...mapState('movies', ['movies', 'firstRewatch', 'currentPage', 'lastPage'])
+	},
+	async asyncData({ store, $axios }) {
 		// Define parameters use for first movie catch
 		// and then pagination and filter
 		const defaultParams = {
 			number: 10,
-			possession_state: 'own'
+			possession_state: 'to_own'
 		}
 
-		return $axios
-			.$get('/api/movies/search', {
-				params: defaultParams
-			})
-			.then(res => {
-				return {
-					currentPage: res.current_page,
-					movies: res.data ? res.data : [],
-					defaultParams
-				}
-			})
-			.catch(error => console.log(error))
+		await store.dispatch('movies/fetchMovies', {
+			params: defaultParams
+		})
+
+		return {
+			defaultParams
+		}
 	},
 	methods: {
 		filterMovies(data) {
 			// Combine default and filter parameters
 			const params = Object.assign({}, this.defaultParams, data)
 
-			return this.$axios
-				.$get('/api/movies/search', {
-					params: params
-				})
-				.then(res => {
-					this.currentPage = res.current_page
-					this.movies = res.data ? res.data : []
-				})
-				.catch(error => console.log(error))
+			this.$store.dispatch('movies/fetchMovies', {
+				params
+			})
 		}
 	}
 }

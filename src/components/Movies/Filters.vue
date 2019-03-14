@@ -59,7 +59,7 @@
 				</label>
 				<input
 					id="firstLetter"
-					v-model="filters.firstLetter"
+					v-model="filters.first_letter"
 					name="firstLetter"
 					type="text">
 			</div>
@@ -82,7 +82,7 @@ export default {
 				rating: null,
 				types: null,
 				director: null,
-				firstLetter: null
+				first_letter: null
 			},
 			errors: null
 		}
@@ -90,8 +90,16 @@ export default {
 	methods: {
 		filter() {
 			// todo emit params
-			console.log('filter')
-			this.$emit('filter-movies', this.filters)
+			let dataSent = Object.keys(this.filters)
+				.filter(key => {
+					return this.filters[key]
+				})
+				.reduce((obj, key) => {
+					obj[key] = this.filters[key]
+					return obj
+				}, {})
+
+			this.$emit('filter-movies', dataSent)
 		}
 	}
 }

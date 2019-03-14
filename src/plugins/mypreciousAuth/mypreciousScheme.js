@@ -36,8 +36,7 @@ export default class MyLocalScheme {
 
 		if (this.options.refreshToken) {
 			const refreshToken = this.$auth.syncRefreshToken(this.name)
-			if(refreshToken)
-				await this.refresh() // require on reload to set interval
+			if (refreshToken) await this.refresh() // require on reload to set interval
 		}
 
 		return this.$auth.fetchUserOnce()

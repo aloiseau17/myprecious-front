@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="item">
 		<p>Title: {{ movie.title }}</p>
 		<p v-if="movie.seen">Seen</p>
 		<p v-if="movie.possession_state">Possession: {{ movie.possession_state }}</p>
@@ -18,3 +18,11 @@ export default {
 	}
 }
 </script>
+
+<style>
+.item {
+	height: 250px;
+	border: 1px solid red;
+	margin-bottom: 25px;
+}
+</style>

@@ -2,6 +2,9 @@
 	<div>
 		<h1>Movies to buy</h1>
 		
+		<!-- Filters -->
+		<filters @filter-movies="filterMovies"/>
+		
 		<ul v-if="movies.length">
 			<li
 				v-for="movie in movies"
@@ -14,9 +17,6 @@
 		<p v-if="!movies.length">
 			No movies found.
 		</p>
-		
-		<!-- Filters -->
-		<filters @filter-movies="filterMovies"/>
 	</div>
 </template>
 
@@ -24,9 +24,11 @@
 import MovieItem from '~/components/Movies/MovieItem'
 import Filters from '~/components/Movies/Filters'
 import { mapState } from 'vuex'
+import ManageMovieList from '~/mixins/manageMovieList'
 
 export default {
 	components: { MovieItem, Filters },
+	mixins: [ManageMovieList],
 	data() {
 		return {
 			defaultParams: {}
@@ -49,16 +51,6 @@ export default {
 
 		return {
 			defaultParams
-		}
-	},
-	methods: {
-		filterMovies(data) {
-			// Combine default and filter parameters
-			const params = Object.assign({}, this.defaultParams, data)
-
-			this.$store.dispatch('movies/fetchMovies', {
-				params
-			})
 		}
 	}
 }

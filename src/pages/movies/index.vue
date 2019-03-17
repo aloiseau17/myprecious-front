@@ -2,6 +2,9 @@
 	<div>
 		<h1>Movies seen</h1>
 		
+		<!-- Filters -->
+		<filters @filter-movies="beforeFilterMovies"/>
+		
 		<ul v-if="movies.length">
 			<li v-if="firstRewatch">
 				<movie-item :movie="firstRewatch" />
@@ -17,9 +20,6 @@
 		<p v-if="!movies.length">
 			No movies found.
 		</p>
-		
-		<!-- Filters -->
-		<filters @filter-movies="filterMovies"/>
 	</div>
 </template>
 
@@ -27,9 +27,11 @@
 import MovieItem from '~/components/Movies/MovieItem'
 import Filters from '~/components/Movies/Filters'
 import { mapState } from 'vuex'
+import ManageMovieList from '~/mixins/manageMovieList'
 
 export default {
 	components: { MovieItem, Filters },
+	mixins: [ManageMovieList],
 	data() {
 		return {
 			defaultParams: {}
@@ -49,28 +51,28 @@ export default {
 		// Require one fantastic movie
 		await store.dispatch('movies/fetchFirstRandomFantasticMovies')
 
-		await store.dispatch('movies/fetchMovies', {
+		let movies = await store.dispatch('movies/fetchMovies', {
 			params: defaultParams,
 			partial: true
 		})
+
+		store.dispatch('movies/syncNotIn', movies)
 
 		return {
 			defaultParams
 		}
 	},
 	methods: {
-		async filterMovies(data) {
-			// Combine default and filter parameters
-			const params = Object.assign({}, this.defaultParams, data)
+		async beforeFilterMovies(data) {
 			const resetFirstRewatch = Object.keys(data).length === 0
 
 			if (resetFirstRewatch)
 				await this.$store.dispatch('movies/fetchFirstRandomFantasticMovies')
 
-			this.$store.dispatch('movies/fetchMovies', {
-				params,
-				partial: resetFirstRewatch
-			})
+			let movies = await this.filterMovies(data, resetFirstRewatch)
+
+			if (resetFirstRewatch && movies)
+				this.$store.dispatch('movies/syncNotIn', movies)
 		}
 	}
 }

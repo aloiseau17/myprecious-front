@@ -133,6 +133,19 @@
 			</div>
 
 			<div>
+				<p>See state</p>
+				<input
+					id="seen"
+					v-model="seen"
+					name="seen"
+					value="seen"
+					type="checkbox">
+				<label for="seen">
+					Seen
+				</label>
+			</div>
+
+			<div>
 				<input
 					type="submit"
 					value="Add movie">
@@ -152,6 +165,7 @@ export default {
 			duration: '',
 			image: '',
 			rating: 'empty',
+			seen: false,
 			possessionState: 'empty',
 			errors: null
 		}
@@ -166,6 +180,7 @@ export default {
 					image: this.image,
 					actors: this.actors,
 					duration: this.duration,
+					seen: this.seen,
 					rating: this.rating,
 					possession_state: this.possessionState
 				})

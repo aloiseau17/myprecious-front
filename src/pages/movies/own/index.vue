@@ -42,7 +42,7 @@ export default {
 		// and then pagination and filter
 		const defaultParams = {
 			number: 10,
-			possession_state: 'to_own'
+			possession_state: 'own'
 		}
 
 		await store.dispatch('movies/fetchMovies', {

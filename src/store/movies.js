@@ -55,14 +55,17 @@ export const actions = {
 			})
 			.catch(error => console.log(error))
 	},
-	async fetchMovies({ commit, state }, data) {
+	async fetchMovies({ commit, dispatch, state }, data) {
 		let params = Object.assign({}, data.params)
 
 		if (data.partial) params.number = params.number - 1
 		// if partial include firstRewatch in total
 		else commit('setFirstRewatch', null) // reset
 
-		params = Object.assign({}, state.defaultParams, params)
+		params = await dispatch('setDefaultParams', { 
+			params,
+			defaultParams: state.defaultParams
+		})
 
 		return await this.$axios
 			.$get('/api/movies/search', {
@@ -89,9 +92,12 @@ export const actions = {
 			})
 			.catch(error => console.log(error))
 	},
-	async fetchNextPage({ commit, state }, data) {
+	async fetchNextPage({ commit, dispatch, state }, data) {
 		let params = Object.assign({}, data.params)
-		params = Object.assign({}, state.defaultParams, params)
+		params = await dispatch('setDefaultParams', { 
+			params,
+			defaultParams: state.defaultParams
+		})
 
 		if (state.currentPage >= state.lastPage) return
 
@@ -125,6 +131,16 @@ export const actions = {
 				commit('setMovies', res.data)
 			})
 			.catch(error => console.log(error))
+	},
+	setDefaultParams(context, data) {
+		data.params = Object.assign({}, data.defaultParams, data.params)
+
+		if(!data.params.order)
+			data.params.order = this.$auth.$state.user.user_options.list_order
+		if(!data.params.order_by)
+			data.params.order_by = this.$auth.$state.user.user_options.list_order_by
+
+		return data.params
 	}
 }
 

@@ -1,5 +1,6 @@
 <template>
 	<nav>
+		<settings-menu />
 		<ul>
 			<li>
 				<nuxt-link to="/movies/to-buy">To Buy</nuxt-link>
@@ -18,7 +19,9 @@
 </template>
 
 <script>
+import SettingsMenu from '~/components/Navigation/SettingsMenu'
 export default {
-	name: 'MainMenu'
+	name: 'MainMenu',
+	components: { SettingsMenu }
 }
 </script>

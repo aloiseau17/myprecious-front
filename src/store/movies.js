@@ -62,7 +62,7 @@ export const actions = {
 		// if partial include firstRewatch in total
 		else commit('setFirstRewatch', null) // reset
 
-		params = await dispatch('setDefaultParams', { 
+		params = await dispatch('setDefaultParams', {
 			params,
 			defaultParams: state.defaultParams
 		})
@@ -94,7 +94,7 @@ export const actions = {
 	},
 	async fetchNextPage({ commit, dispatch, state }, data) {
 		let params = Object.assign({}, data.params)
-		params = await dispatch('setDefaultParams', { 
+		params = await dispatch('setDefaultParams', {
 			params,
 			defaultParams: state.defaultParams
 		})
@@ -135,9 +135,9 @@ export const actions = {
 	setDefaultParams(context, data) {
 		data.params = Object.assign({}, data.defaultParams, data.params)
 
-		if(!data.params.order)
+		if (!data.params.order)
 			data.params.order = this.$auth.$state.user.user_options.list_order
-		if(!data.params.order_by)
+		if (!data.params.order_by)
 			data.params.order_by = this.$auth.$state.user.user_options.list_order_by
 
 		return data.params

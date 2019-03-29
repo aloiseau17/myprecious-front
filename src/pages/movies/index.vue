@@ -40,7 +40,10 @@ export default {
 	computed: {
 		...mapState('movies', ['movies', 'firstRewatch', 'currentPage', 'lastPage'])
 	},
-	async asyncData({ store, $axios }) {
+	async asyncData({ store, $axios, route }) {
+		// get previous page data
+		let savedPage = store.getters['navigation/getSavedPage']
+
 		// Define parameters use for first movie catch
 		// and then pagination and filter
 		const defaultParams = {
@@ -48,15 +51,25 @@ export default {
 			seen: 1
 		}
 
-		// Require one fantastic movie
-		await store.dispatch('movies/fetchFirstRandomFantasticMovies')
+		let hasMovies = false
 
-		let movies = await store.dispatch('movies/fetchMovies', {
-			params: defaultParams,
-			partial: true
-		})
+		// If last page is the current one
+		// Then get existing movies to avoid new requests
+		if (route.path === savedPage.path)
+			hasMovies = store.getters['movies/hasMovies']
 
-		store.dispatch('movies/syncNotIn', movies)
+		// If there isn't movies, proceed fresh request
+		if (!hasMovies) {
+			// Require one fantastic movie
+			await store.dispatch('movies/fetchFirstRandomFantasticMovies')
+
+			let movies = await store.dispatch('movies/fetchMovies', {
+				params: defaultParams,
+				partial: true
+			})
+
+			store.dispatch('movies/syncNotIn', movies)
+		}
 
 		return {
 			defaultParams

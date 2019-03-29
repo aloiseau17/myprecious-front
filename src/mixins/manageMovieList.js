@@ -1,12 +1,8 @@
 export default {
-	data() {
-		lastQueryParams: null
-	},
 	methods: {
 		async filterMovies(data, partial = false) {
 			// Combine default and filter parameters
 			const params = Object.assign({}, this.defaultParams, data)
-			this.lastQueryParams = params
 
 			let movies = await this.$store.dispatch('movies/fetchMovies', {
 				params,
@@ -23,10 +19,8 @@ export default {
 
 				if (!bottomOfWindow) return
 
-				let params = this.lastQueryParams
-				if (!this.lastQueryParams) {
-					params = this.lastQueryParams = this.defaultParams
-				}
+				let filterValues = this.$store.getters['filters/getValues']
+				let params = Object.assign({}, this.defaultParams, filterValues)
 
 				this.$store.dispatch('movies/fetchNextPage', {
 					params
@@ -36,5 +30,15 @@ export default {
 	},
 	mounted() {
 		this.scroll()
+	},
+	beforeRouteLeave(to, from, next) {
+		// called when the route that renders this component is about to
+		// be navigated away from.
+		// has access to `this` component instance.
+		this.$store.dispatch('navigation/savePage', {
+			path: from.path,
+			query: this.lastQueryParams
+		})
+		next()
 	}
 }

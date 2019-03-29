@@ -37,7 +37,10 @@ export default {
 	computed: {
 		...mapState('movies', ['movies', 'firstRewatch', 'currentPage', 'lastPage'])
 	},
-	async asyncData({ store, $axios }) {
+	async asyncData({ store, $axios, route }) {
+		// get previous page data
+		let savedPage = store.getters['navigation/getSavedPage']
+
 		// Define parameters use for first movie catch
 		// and then pagination and filter
 		const defaultParams = {
@@ -45,9 +48,18 @@ export default {
 			possession_state: 'to_own'
 		}
 
-		await store.dispatch('movies/fetchMovies', {
-			params: defaultParams
-		})
+		let hasMovies = false
+
+		// If last page is the current one
+		// Then get existing movies to avoid new requests
+		if (route.path === savedPage.path)
+			hasMovies = store.getters['movies/hasMovies']
+
+		// If there isn't movies, proceed fresh request
+		if (!hasMovies)
+			await store.dispatch('movies/fetchMovies', {
+				params: defaultParams
+			})
 
 		return {
 			defaultParams

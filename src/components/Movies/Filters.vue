@@ -87,18 +87,30 @@ export default {
 			errors: null
 		}
 	},
+	created() {
+		// get previous page data
+		let savedPage = this.$store.getters['navigation/getSavedPage']
+
+		// Assign store value
+		if (this.$route.path === savedPage.path) {
+			let filterValues = this.$store.getters['filters/getValues']
+			for (let value in filterValues) this.filters[value] = filterValues[value]
+		}
+	},
 	methods: {
 		filter() {
-			// todo emit params
 			let dataSent = Object.keys(this.filters)
 				.filter(key => {
+					// remove null
 					return this.filters[key]
 				})
 				.reduce((obj, key) => {
+					// assign this.filter values to dataSent object
 					obj[key] = this.filters[key]
 					return obj
 				}, {})
 
+			this.$store.dispatch('filters/saveValues', dataSent)
 			this.$emit('filter-movies', dataSent)
 		}
 	}

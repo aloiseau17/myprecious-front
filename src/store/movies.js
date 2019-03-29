@@ -145,6 +145,9 @@ export const actions = {
 }
 
 export const getters = {
+	hasMovies(state) {
+		return state.movies.length > 0
+	},
 	getFirstRewatch(state) {
 		return state.firstRewatch
 	},

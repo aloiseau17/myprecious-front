@@ -12,16 +12,20 @@
 
 		<form @submit.prevent="addMovie">
 
-			<div>
-				<label for="title">
-					Title
-				</label>
-				<input
-					id="title"
-					v-model="title"
-					name="title"
-					type="text">
-			</div>
+			<el-autocomplete
+				v-model="title"
+				:fetch-suggestions="autocompleteTitle"
+				autosize
+				autocomplete
+				clearable
+				size="max"
+				class="inline-input"
+				placeholder="Entrez quelque chose"
+				@select="getMovie">
+				<template slot-scope="{ item }">
+					<div class="value">{{ item.title }} (id: {{ item.id }})</div>
+				</template>
+			</el-autocomplete>
 
 			<div>
 				<label for="director">
@@ -46,19 +50,19 @@
 			</div>
 
 			<div>
-				<label for="actors">
-					Actors
+				<label for="actor">
+					Main actor
 				</label>
 				<input
-					id="actors"
-					v-model="actors"
-					name="actors"
+					id="actor"
+					v-model="actor"
+					name="actor"
 					type="text">
 			</div>
 
 			<div>
 				<label for="duration">
-					Duration
+					Duration (min)
 				</label>
 				<input
 					id="duration"
@@ -155,13 +159,21 @@
 </template>
 
 <script>
+import { Autocomplete } from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import GetMoviesData from '~/mixins/getMoviesData'
+
 export default {
+	components: {
+		'el-autocomplete': Autocomplete
+	},
+	mixins: [GetMoviesData],
 	data() {
 		return {
 			title: '',
 			director: '',
 			types: '',
-			actors: '',
+			actor: '',
 			duration: '',
 			image: '',
 			rating: 'empty',
@@ -178,7 +190,7 @@ export default {
 					director: this.director,
 					types: this.types,
 					image: this.image,
-					actors: this.actors,
+					actor: this.actor,
 					duration: this.duration,
 					seen: this.seen,
 					rating: this.rating,

@@ -36,7 +36,9 @@ module.exports = {
 	/*
 	** Plugins to load before mounting the App
 	*/
-	plugins: [{ src: '~/plugins/Vuelidate', ssr: false }],
+	plugins: [
+		'~/plugins/theMovieDatabase/index'
+	],
 
 	/*
 	** Nuxt.js modules
@@ -109,6 +111,9 @@ module.exports = {
 		}
 	},
 	env: {
-		API_URL: process.env.API_URL
+		APP_LANG: process.env.APP_LANG,
+		API_URL: process.env.API_URL,
+		TMDB_URL: process.env.TMDB_URL,
+		TMDB_KEY: process.env.TMDB_KEY
 	}
 }

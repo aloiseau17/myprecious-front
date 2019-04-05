@@ -12,16 +12,20 @@
 
 		<form @submit.prevent="updateMovie">
 
-			<div>
-				<label for="title">
-					Title
-				</label>
-				<input
-					id="title"
-					v-model="title"
-					name="title"
-					type="text">
-			</div>
+			<el-autocomplete
+				v-model="title"
+				:fetch-suggestions="autocompleteTitle"
+				autosize
+				autocomplete
+				clearable
+				size="max"
+				class="inline-input"
+				placeholder="Entrez quelque chose"
+				@select="getMovie">
+				<template slot-scope="{ item }">
+					<div class="value">{{ item.title }} (id: {{ item.id }})</div>
+				</template>
+			</el-autocomplete>
 
 			<div>
 				<label for="director">
@@ -135,7 +139,15 @@
 </template>
 
 <script>
+import { Autocomplete } from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import GetMoviesData from '~/mixins/getMoviesData'
+
 export default {
+	components: {
+		'el-autocomplete': Autocomplete
+	},
+	mixins: [GetMoviesData],
 	data() {
 		return {
 			errors: null,

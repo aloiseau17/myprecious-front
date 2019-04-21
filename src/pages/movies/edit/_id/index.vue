@@ -50,14 +50,36 @@
 			</div>
 
 			<div>
-				<label for="image">
+				<label for="file">
 					Image
 				</label>
 				<input
-					id="image"
-					v-model="image"
-					name="image"
+					id="file"
+					name="file"
+					type="file"
+					@change="processFile($event)">
+			</div>
+
+			<div>
+				<label for="poster_link">
+					Image link
+				</label>
+				<input
+					id="poster_link"
+					v-model="poster_link"
+					name="poster_link"
 					type="text">
+			</div>
+
+			<div>
+				<input
+					id="file_remove"
+					v-model="file_remove"
+					name="file_remove"
+					type="checkbox">
+				<label for="file_remove">
+					Remove file
+				</label>
 			</div>
 
 			<div>
@@ -170,29 +192,41 @@ export default {
 					? movie.types.map(type => type.name).join(';')
 					: null,
 			image: movie.image,
-			seen: movie.seen,
+			seen: movie.seen ? true : false,
 			rating: movie.rating || 'empty',
-			possessionState: movie.possession_state || 'empty'
+			possessionState: movie.possession_state || 'empty',
+			file: null,
+			file_remove: null,
+			poster_link: null
 		}
 	},
 	methods: {
 		async updateMovie() {
-			this.loading = true
+			var formData = new FormData()
+			formData.append('title', this.title)
+			formData.append('director', this.director)
+			formData.append('types', this.types)
+			formData.append('actor', this.actor)
+			formData.append('duration', this.duration)
+			formData.append('rating', this.rating)
+			formData.append('possession_state', this.possessionState)
+			formData.append('seen', this.seen)
+			if (this.file_remove) formData.append('file_remove', this.file_remove)
+			if (this.poster_link) formData.append('poster_link', this.poster_link)
+			if (this.file) formData.append('file', this.file)
+			// Require for laravel
+			formData.append('_method', 'patch')
+			console.log(formData)
 
 			await this.$axios
-				.$patch('/api/movies/' + this.$route.params.id, {
-					title: this.title,
-					director: this.director,
-					types: this.types,
-					image: this.image,
-					seen: this.seen,
-					rating: this.rating,
-					possession_state: this.possessionState
-				})
+				.$post('/api/movies/' + this.$route.params.id, formData)
 				.then(res => {
 					this.$router.push({ path: `/movies/${this.$route.params.id}` })
 				})
 				.catch(error => (this.loading = false))
+		},
+		processFile(event) {
+			this.file = event.target.files[0]
 		}
 	}
 }

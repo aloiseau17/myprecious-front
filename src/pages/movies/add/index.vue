@@ -72,13 +72,24 @@
 			</div>
 
 			<div>
-				<label for="image">
+				<label for="file">
 					Image
 				</label>
 				<input
-					id="image"
-					v-model="image"
-					name="image"
+					id="file"
+					name="file"
+					type="file"
+					@change="processFile($event)">
+			</div>
+
+			<div>
+				<label for="poster_link">
+					Image link
+				</label>
+				<input
+					id="poster_link"
+					v-model="poster_link"
+					name="poster_link"
 					type="text">
 			</div>
 
@@ -175,7 +186,8 @@ export default {
 			types: '',
 			actor: '',
 			duration: '',
-			image: '',
+			file: null,
+			poster_link: null,
 			rating: 'empty',
 			seen: false,
 			possessionState: 'empty',
@@ -184,20 +196,25 @@ export default {
 	},
 	methods: {
 		async addMovie() {
+			var formData = new FormData()
+			formData.append('title', this.title)
+			formData.append('director', this.director)
+			formData.append('types', this.types)
+			formData.append('actor', this.actor)
+			formData.append('duration', this.duration)
+			formData.append('rating', this.rating)
+			formData.append('possession_state', this.possessionState)
+			formData.append('seen', this.seen)
+			if (this.poster_link) formData.append('poster_link', this.poster_link)
+			if (this.file) formData.append('file', this.file)
+
 			await this.$axios
-				.$post('/api/movies', {
-					title: this.title,
-					director: this.director,
-					types: this.types,
-					image: this.image,
-					actor: this.actor,
-					duration: this.duration,
-					seen: this.seen,
-					rating: this.rating,
-					possession_state: this.possessionState
-				})
+				.$post('/api/movies', formData)
 				.then(data => console.log(data))
 				.catch(error => (this.errors = error.response.data.errors))
+		},
+		processFile(event) {
+			this.file = event.target.files[0]
 		}
 	}
 }

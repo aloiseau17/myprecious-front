@@ -1,0 +1,70 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+
+
+
+
+/// Regular font family
+/// @type List
+$text-font: 'Signika', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+
+
+
+
+/// Main brand color
+/// @type Color - Blue
+$main-color: #00113a !default;
+
+/// Second brand color
+/// @type Color - Yellow
+$second-color: #e2bc00 !default;
+
+/// Third brand color
+/// @type Color - Light blue
+$third-color: #b0d6c7 !default;
+
+/// Light base
+/// @type Color - White
+$light-base: #FFFFFF;
+
+/// Error color
+/// @type Color - Red
+$error: red;
+
+/// Theme colors
+
+/// Third brand color
+/// @type Color - To buy
+$buy-color: #126b5a !default;
+
+/// Third brand color
+/// @type Color - Seen
+$seen-color: #307e84 !default;
+
+/// Third brand color
+/// @type Color - Add
+$add-color: #cd7f0f !default;
+
+/// Third brand color
+/// @type Color - Settings
+$settings-color: #a6a8b5 !default;
+
+/// Text color
+/// @type Color
+$text-color: $main-color;
+
+
+
+
+
+/// Breakpoints map
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+$breakpoints: (
+  'small': 320px,
+  'tablet': 768px,
+  'laptop': 992px,
+  'desktop': 1024px,
+) !default;

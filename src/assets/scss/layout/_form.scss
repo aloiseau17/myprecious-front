@@ -1,0 +1,43 @@
+form {
+	::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+		color: $third-color;
+		opacity: 1; /* Firefox */
+	}
+
+	input {
+		width: 100%;
+		padding: 8px 6px;
+		background: $light-base;
+		border: none;
+	}
+
+	.errors {
+		padding: 10px;
+		margin-bottom: 20px;
+
+		color: $error;
+		font-weight: 300;
+		border: 1px solid $error;
+	}
+
+	.error {
+		margin: 0.5em 0;
+		font-weight: 300;
+		color: $error;
+	}
+}
+
+.form {
+
+	&__group {
+		margin-bottom: 17px;
+	}
+
+	&__footer {
+		text-align: center;
+	}
+
+	&--error {
+		border: 1px $error;
+	}
+}

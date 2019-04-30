@@ -1,0 +1,38 @@
+/**
+ * Basic typography style for copy text
+ */
+
+body {
+	color: $text-color;
+	font-weight: 600;
+	font-size: 18px;
+	font-family: $text-font;
+
+	@include mq('laptop') {
+		font-size: 18px;
+	}
+}
+
+h1 {
+	color: $text-color;
+	font-weight: 300;
+	font-size: 24px;
+	text-transform: uppercase;
+	text-align: center;
+
+	border-top: 6px solid $second-color;
+	padding-top: 7px;
+
+	display: inline-block;
+	margin: 0 auto;
+
+	@include mq('laptop') {
+		font-size: 29px;
+	}
+}
+
+h2 {
+	color: $text-color;
+	font-weight: 600;
+	font-size: 22px;
+}

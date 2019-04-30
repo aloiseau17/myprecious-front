@@ -1,61 +1,71 @@
 <template>
-	<form
-		:class="{ 'form-group--error': $v.$error }"
-		@submit.prevent="login">
-		<div 
-			v-if="error"
-			class="error">
-			{{ error }}
+	<div class="content">
+		<div class="title__wrapper">
+			<h1>Login</h1>
 		</div>
 
-		<div>
-			<label for="email">
-				Email
-			</label>
-			<input
-				id="email"
-				v-model.trim="username"
-				name="email"
-				type="text"
-				@blur="$v.username.$touch()">
-			<div
-				v-if="$v.username.$dirty && !$v.username.required"
-				class="error">
-				Field is required
+		<form
+			:class="{ 'form--error': $v.$error }"
+			class="form"
+			@submit.prevent="login">
+			<div 
+				v-if="error"
+				class="errors">
+				{{ error }}
 			</div>
-		</div>
 
-		<div>
-			<label for="password">
-				Password
-			</label>
-			<input
-				id="password"
-				v-model="password"
-				name="password"
-				type="password"
-				@blur="$v.password.$touch()">
-			<div
-				v-if="$v.password.$dirty && !$v.password.required"
-				class="error">
-				Field is required
+			<div class="form__group">
+				<input
+					id="email"
+					v-model.trim="username"
+					name="email"
+					type="text"
+					placeholder="Email"
+					@blur="$v.username.$touch()">
+				<div
+					v-if="$v.username.$dirty && !$v.username.required"
+					class="error">
+					Field is required
+				</div>
 			</div>
-		</div>
-		<div>
-			<input
-				type="submit"
-				value="Login">
-			<div
-				v-if="isloading"
-				class="lds-dual-ring" />
-		</div>
-	</form>
+
+			<div class="form__group">
+				<input
+					id="password"
+					v-model="password"
+					name="password"
+					type="password"
+					placeholder="Password"
+					@blur="$v.password.$touch()">
+				<div
+					v-if="$v.password.$dirty && !$v.password.required"
+					class="error">
+					Field is required
+				</div>
+			</div>
+
+			<div class="form__footer">
+				<input
+					class="btn"
+					type="submit"
+					value="Login">
+				<div
+					v-if="isloading"
+					class="lds-dual-ring" />
+			</div>
+		</form>
+
+		<small>
+			<a href="#">Forgot Password</a>
+		</small>
+	</div>
 </template>
 
 <script>
 import { required } from 'vuelidate/lib/validators'
 
 export default {
+	layout: 'login',
 	data() {
 		return {
 			username: null,
@@ -98,35 +108,33 @@ export default {
 }
 </script>
 
-<style scoped>
-.form-group--error {
-	border: 1px red;
-}
-.error {
-	color: red;
-}
-.lds-dual-ring {
-	display: block;
-	width: 64px;
-	height: 64px;
-}
-.lds-dual-ring:after {
-	content: ' ';
-	display: block;
-	width: 46px;
-	height: 46px;
-	margin: 1px;
-	border-radius: 50%;
-	border: 5px solid #000;
-	border-color: #000 transparent #000 transparent;
-	animation: lds-dual-ring 1.2s linear infinite;
-}
-@keyframes lds-dual-ring {
-	0% {
-		transform: rotate(0deg);
+<style scoped lang="scss">
+.content {
+	flex: 1;
+
+	display: flex;
+	flex-direction: column;
+
+	@include mq('tablet') {
+		width: 300px;
+		margin: 0 auto;
 	}
-	100% {
-		transform: rotate(360deg);
+}
+
+form {
+	flex: 1 0 auto;
+	margin-bottom: 20px;
+
+	@include mq('tablet') {
+		flex: none;
+	}
+}
+
+small {
+	font-size: 11px;
+
+	@include mq('tablet') {
+		font-size: 14px;
 	}
 }
 </style>

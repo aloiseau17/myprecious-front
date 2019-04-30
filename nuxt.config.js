@@ -31,7 +31,10 @@ module.exports = {
 	/*
 	** Global CSS
 	*/
-	css: [],
+	css: [
+			'normalize.css',
+			'@/assets/scss/main.scss'
+	],
 
 	/*
 	** Plugins to load before mounting the App
@@ -52,7 +55,8 @@ module.exports = {
 			{
 				filename: dotEnvFilename
 			}
-		]
+		],
+		'@nuxtjs/style-resources'
 	],
 	/*
 	** Axios module configuration
@@ -82,6 +86,17 @@ module.exports = {
 				_scheme: '~/plugins/mypreciousAuth/mypreciousScheme.js'
 			}
 		}
+	},
+
+	/*
+	** Global SASS variables, mixins, functions, ...
+	*/
+	styleResources: {
+		scss: [
+			'@/assets/scss/abstracts/_variables.scss',
+			'@/assets/scss/abstracts/_placeholders.scss',
+			'@/assets/scss/abstracts/_mixins.scss'
+		]
 	},
 
 	/*

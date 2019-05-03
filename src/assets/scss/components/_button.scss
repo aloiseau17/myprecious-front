@@ -8,4 +8,12 @@
 	font-weight: 300;
 	font-size: 22px;
 	text-transform: uppercase;
+
+	transition: border 0.3s, color 0.3s, background 0.3s;
+
+	@include on-event {
+		background-color: $light-base;
+		border: 2px solid $second-color;
+		color: $second-color;
+	}
 }

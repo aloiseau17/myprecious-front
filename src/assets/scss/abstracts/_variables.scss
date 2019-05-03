@@ -29,6 +29,10 @@ $third-color: #b0d6c7 !default;
 /// @type Color - White
 $light-base: #FFFFFF;
 
+/// Dark base
+/// @type Color - Grey
+$dark-base: #00113a;
+
 /// Error color
 /// @type Color - Red
 $error: red;
@@ -37,11 +41,19 @@ $error: red;
 
 /// Third brand color
 /// @type Color - To buy
-$buy-color: #126b5a !default;
+$buy-color: #156C5C !default;
+
+/// Third brand color
+/// @type Color - Own
+$own-color: $second-color !default;
+
+/// Third brand color
+/// @type Color - see
+$see-color: $main-color !default;
 
 /// Third brand color
 /// @type Color - Seen
-$seen-color: #307e84 !default;
+$seen-color: #317F85 !default;
 
 /// Third brand color
 /// @type Color - Add
@@ -68,3 +80,8 @@ $breakpoints: (
   'laptop': 992px,
   'desktop': 1024px,
 ) !default;
+
+
+/// Sizes
+$menu_height: 50px;
+$menu_height_md: 60px;

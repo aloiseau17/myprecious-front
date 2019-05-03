@@ -21,3 +21,12 @@
     /* Corrects inability to style clickable `input` types in iOS */
     -webkit-appearance: none;
 }
+
+%reset-link {
+    &,
+    &:hover,
+    &:active,
+    &focus {
+        text-decoration: none;
+    }
+}

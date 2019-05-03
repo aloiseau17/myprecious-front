@@ -56,3 +56,34 @@
     }
   }
 }
+
+/// Box-shadow with direction
+/// @param {String} $direction
+/// @param {Bool} $inside
+@mixin box-shadow($direction: 'left', $inside: false) {
+  // Default left
+  $top: 0;
+  $left: -8px;
+
+  @if $direction == top {
+    $top: 0;
+    $left: 0;
+  } @else if $direction == bottom {
+    $top: 0;
+    $left: 0;
+  } @else if $direction == right {
+    $top: 0;
+    $left: 8px;
+  }
+
+  $blur: 10px;
+  $color: rgba($dark-base, 0.3);
+
+  @if $inside {
+    $spread: -10px;
+    box-shadow: inset $left $top $blur $spread $color;
+  } @else {
+    $spread: 0;
+    box-shadow: $left $top $blur $spread $color;
+  }
+}

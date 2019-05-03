@@ -9,6 +9,7 @@
 a {
 	color: $main-color;
 	text-decoration: none;
+	transition: color .3s;
 
 	@include on-event {
 		text-decoration: underline;

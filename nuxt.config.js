@@ -76,7 +76,7 @@ module.exports = {
 			login: '/login',
 			logout: '/',
 			callback: '/login',
-			home: '/'
+			home: '/movies'
 		},
 		defaultStrategy: 'myprecious',
 		strategies: {
@@ -125,6 +125,7 @@ module.exports = {
 			}
 		}
 	},
+
 	env: {
 		APP_LANG: process.env.APP_LANG,
 		API_URL: process.env.API_URL,

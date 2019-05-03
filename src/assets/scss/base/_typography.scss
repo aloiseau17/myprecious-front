@@ -20,11 +20,13 @@ h1 {
 	text-transform: uppercase;
 	text-align: center;
 
-	border-top: 6px solid $second-color;
-	padding-top: 7px;
-
 	display: inline-block;
 	margin: 0 auto;
+
+	&:not(.default) {
+		border-top: 6px solid $second-color;
+		padding-top: 7px;	
+	}
 
 	@include mq('laptop') {
 		font-size: 29px;

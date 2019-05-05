@@ -31,10 +31,7 @@ module.exports = {
 	/*
 	** Global CSS
 	*/
-	css: [
-			'normalize.css',
-			'@/assets/scss/main.scss'
-	],
+	css: ['normalize.css', '@/assets/scss/main.scss'],
 
 	/*
 	** Plugins to load before mounting the App
@@ -129,7 +126,9 @@ module.exports = {
 	env: {
 		APP_LANG: process.env.APP_LANG,
 		API_URL: process.env.API_URL,
+		POSTER_STORAGE_URL: process.env.POSTER_STORAGE_URL,
 		TMDB_URL: process.env.TMDB_URL,
-		TMDB_KEY: process.env.TMDB_KEY
+		TMDB_KEY: process.env.TMDB_KEY,
+		TMDB_IMAGE_PATH: process.env.TMDB_IMAGE_PATH
 	}
 }

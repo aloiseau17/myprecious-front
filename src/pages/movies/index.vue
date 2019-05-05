@@ -1,17 +1,23 @@
 <template>
 	<div>
-		<h1>Movies seen</h1>
+		<div class="content__title">
+			<h1>Seen movies</h1>
+		</div>
 		
-		<!-- Filters -->
-		<filters @filter-movies="beforeFilterMovies"/>
-		
-		<ul v-if="movies.length">
-			<li v-if="firstRewatch">
-				<movie-item :movie="firstRewatch" />
+		<ul
+			v-if="movies.length"
+			class="content__list">
+			<li
+				v-if="firstRewatch"
+				class="content__list__item">
+				<movie-item 
+					:movie="firstRewatch" 
+					rewatch />
 			</li>
 			<li
 				v-for="movie in movies"
-				:key="movie.id">
+				:key="movie.id"
+				class="content__list__item">
 				<movie-item :movie="movie" />
 			</li>
 		</ul>
@@ -20,6 +26,9 @@
 		<p v-if="!movies.length">
 			No movies found.
 		</p>
+		
+		<!-- Filters -->
+		<filters @filter-movies="beforeFilterMovies"/>
 	</div>
 </template>
 

@@ -293,7 +293,6 @@ export default {
 }
 
 .picto {
-	fill: $third-color;
 	vertical-align: middle;
 
 	&__background {

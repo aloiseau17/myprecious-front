@@ -11,7 +11,6 @@ export default {
 		},
 		async getMovie(item) {
 			await this.$tmdb.show(item.id, 'credits').then(data => {
-				console.log(data)
 				let director = data.credits.crew.find(item => item.job === 'Director')
 
 				this.title = data.title
@@ -21,6 +20,8 @@ export default {
 				this.actor = data.credits.cast[0] ? data.credits.cast[0].name : ''
 
 				this.duration = data.runtime ? data.runtime : ''
+
+				this.poster_link = process.env.TMDB_IMAGE_PATH + data.poster_path
 
 				let typeList = data.genres.reduce((list, genre) => {
 					return [...list, genre.name]

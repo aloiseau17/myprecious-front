@@ -1,14 +1,16 @@
 <template>
 	<div>
-		<h1>Movies to see</h1>
+		<div class="content__title">
+			<h1>Movies to see</h1>
+		</div>
 		
-		<!-- Filters -->
-		<filters @filter-movies="filterMovies"/>
-		
-		<ul v-if="movies.length">
+		<ul
+			v-if="movies.length"
+			class="content__list">
 			<li
 				v-for="movie in movies"
-				:key="movie.id">
+				:key="movie.id"
+				class="content__list__item">
 				<movie-item :movie="movie" />
 			</li>
 		</ul>
@@ -17,6 +19,9 @@
 		<p v-if="!movies.length">
 			No movies found.
 		</p>
+		
+		<!-- Filters -->
+		<filters @filter-movies="filterMovies"/>
 	</div>
 </template>
 

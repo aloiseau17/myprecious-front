@@ -11,8 +11,7 @@
 		<div
 			:class="{ 'is-active': opened}"
 			class="highlight main-menu__item__label"
-			@click="toggleMenu"
-			@mouseenter="opened = true">
+			@click="toggleMenu">
 			<svg
 				class="picto"
 				version="1.1"
@@ -114,6 +113,12 @@ export default {
 		width: auto;
 		box-shadow: none;
 		cursor: pointer;
+
+		@include on-event {
+			.menu-burger__pages {
+				transform: translateY(0);
+			}
+		}
 
 		.is-active {
 			.picto {

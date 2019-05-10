@@ -40,7 +40,7 @@ export default {
 		justify-content: flex-start;
 
 		padding: 0 $list_padding;
-		margin: 0 auto;
+		margin: 0 auto 35px;
 		list-style: none;
 
 		@function content_max_width($number) {

@@ -1,75 +1,123 @@
 <template>
 	<div>
-		<h3>Filtrez-nous !</h3>
+		<button
+			:class="{open: open}"
+			class="filters__button"
+			@click="open = true">
+			<img
+				class="filters__button__mobile"
+				src="/images/filter.png"
+				alt="filter us"
+				width="180"
+				height="60">
+			<img
+				class="filters__button__laptop"
+				src="/images/filter-laptop.png"
+				alt="filter us"
+				width="140"
+				height="190">
+		</button>
+		
+		<div
+			:class="{open: open}"
+			class="filters">
 
-		<form @submit.prevent="filter">
-			<div>
-				<label for="director">
-					Director
-				</label>
-				<input
-					id="director"
-					v-model="filters.director"
-					name="director"
-					type="text">
-			</div>
+			<form
+				class="filters__inner"
+				@submit.prevent="filter">
 
-			<div>
-				<label for="types">
-					Types
-				</label>
-				<input
-					id="types"
-					v-model="filters.types"
-					name="types"
-					type="text">
-			</div>
+				<fieldset>
+					<legend>By rating</legend>
 
-			<div>
-				<p>Rating</p>
-				<input
-					id="fantastic"
-					v-model="filters.rating"
-					name="rating"
-					value="fantastic"
-					type="radio">
-				<label for="fantastic">
-					Fantastic
-				</label>
-				<input
-					id="bad"
-					v-model="filters.rating"
-					name="rating"
-					value="bad"
-					type="radio">
-				<label for="bad">
-					Bad
-				</label>
-				<button 
-					:checked="!filters.rating"
-					type="button"
-					@click="filters.rating = null">
-					Clear
-				</button>
-			</div>
+					<div class="form__group__radio">
+						<input
+							id="fantastic"
+							v-model="filters.rating"
+							name="rating"
+							value="fantastic"
+							type="radio">
+						<label for="fantastic">
+							Fantastic
+						</label>
+					</div>
 
-			<div>
-				<label for="firstLetter">
-					First letter
-				</label>
-				<input
-					id="firstLetter"
-					v-model="filters.first_letter"
-					name="firstLetter"
-					type="text">
-			</div>
+					<div class="form__group__radio">
+						<input
+							id="bad"
+							v-model="filters.rating"
+							name="rating"
+							value="bad"
+							type="radio">
+						<label for="bad">
+							Bad
+						</label>
+					</div>
 
-			<div>
-				<input
-					type="submit"
-					value="Filter">
-			</div>
-		</form>
+					<div class="form__group__radio">
+						<input
+							id="empty"
+							v-model="noRating"
+							name="rating"
+							value="empty"
+							type="radio"
+							@change="filters.rating = null">
+						<label for="empty">
+							All
+						</label>
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<legend>
+						By type
+					</legend>
+					<input
+						id="types"
+						v-model="filters.types"
+						name="types"
+						type="text"
+						placeholder="Fantasy">
+				</fieldset>
+
+				<fieldset>
+					<legend>
+						By director
+					</legend>
+					<input
+						id="director"
+						v-model="filters.director"
+						name="director"
+						type="text"
+						placeholder="Peter Jackson">
+				</fieldset>
+
+				<fieldset>
+					<legend>
+						Movie begining with...
+					</legend>
+					<input
+						id="firstLetter"
+						v-model="filters.first_letter"
+						name="firstLetter"
+						type="text"
+						placeholder="A">
+				</fieldset>
+
+				<div class="form__footer">
+					<button
+						class="btn"
+						type="button"
+						@click="open = false">
+						Cancel
+					</button>
+					<input
+						class="btn"
+						type="submit"
+						value="Filter">
+				</div>
+			</form>
+		</div>
+
 	</div>
 </template>
 
@@ -84,7 +132,13 @@ export default {
 				director: null,
 				first_letter: null
 			},
+			open: false,
 			errors: null
+		}
+	},
+	computed: {
+		noRating() {
+			return !this.filters.rating ? 'empty' : null
 		}
 	},
 	created() {
@@ -112,7 +166,84 @@ export default {
 
 			this.$store.dispatch('filters/saveValues', dataSent)
 			this.$emit('filter-movies', dataSent)
+			this.open = false
 		}
 	}
 }
 </script>
+
+<style scope lang="scss">
+.filters {
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 100vh;
+	max-height: 100vh;
+	padding: 20px 35px;
+
+	background-color: $third-color;
+	overflow: auto;
+	z-index: 200;
+
+	transform: translateY(100%);
+	transition: transform 0.5s ease-out;
+
+	@include mq('laptop') {
+		padding: 150px calc((100% - 500px) / 2);
+	}
+
+	&.open {
+		transform: translateY(0);
+	}
+
+	&__button {
+		@extend %reset-button;
+
+		position: fixed;
+		left: 0;
+		bottom: 0;
+
+		height: 80px;
+		width: 100%;
+		background-color: $light-base;
+		border-top: 4px solid $third-color;
+
+		@include mq('laptop', 'bottom') {
+			transition: transform 0.5s ease-out;
+		}
+
+		@include mq('laptop') {
+			bottom: 20px;
+			right: 40px;
+			left: auto;
+			width: auto;
+			height: auto;
+			background: transparent;
+			border: none;
+			transform: rotate(-15deg);
+		}
+
+		&__mobile {
+			@include mq('laptop') {
+				display: none;
+			}
+		}
+
+		&__laptop {
+			display: none;
+
+			@include mq('laptop') {
+				display: block;
+			}
+		}
+
+		&.open {
+			@include mq('laptop', 'bottom') {
+				transform: translateY(-100vh);
+			}
+		}
+	}
+}
+</style>

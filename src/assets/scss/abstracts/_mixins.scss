@@ -11,15 +11,21 @@
 /// @param {String} $mq-breakpoints - Breakpoints map list
 /// @require $breakpoints
 /// @link https://jonsuh.com/blog/managing-responsive-breakpoints-with-sass-maps/
-@mixin mq($mq-breakpoint, $mq-breakpoints: $breakpoints) {
+@mixin mq($mq-breakpoint, $direction: 'up', $mq-breakpoints: $breakpoints) {
 	// If $mq-breakpoint is a key that exists in
 	// $mq-breakpoints, get and use the value
 	@if map-has-key($mq-breakpoints, $mq-breakpoint) {
 		$mq-breakpoint: map-get($mq-breakpoints, $mq-breakpoint);
-
-		@media screen and (min-width: #{$mq-breakpoint}) {
-			@content;
-		}
+    
+    @if $direction == up {
+  		@media screen and (min-width: #{$mq-breakpoint}) {
+  			@content;
+  		}
+    }  @else if $direction == bottom {
+      @media screen and (max-width: #{$mq-breakpoint}) {
+        @content;
+      }
+    }
 	}
 	// If the key doesn't exist in the map
 	@else {

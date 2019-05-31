@@ -1,6 +1,8 @@
 .btn {
 	@extend %reset-button;
 
+	display: inline-block;
+
 	padding: 5px 8px;
 	background-color: $second-color;
 
@@ -18,5 +20,32 @@
 		background-color: $light-base;
 		border-color: $second-color;
 		color: $second-color;
+	}
+
+	&--light {
+		background-color: $light-base;
+		color: $main-color;
+		font-weight: 600;
+	}
+}
+
+.back-btn {
+	@extend %reset-button;
+	cursor: pointer;
+
+	img {
+		display: block;
+		width: 26px;
+		height: 30px;
+	}
+
+	&__wrapper {
+		margin-bottom: 30px;
+
+		@include mq('tablet') {
+			position: absolute;
+			top: auto;
+			left: 20px;
+		}
 	}
 }

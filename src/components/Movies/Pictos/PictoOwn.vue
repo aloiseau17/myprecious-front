@@ -26,7 +26,7 @@ export default {
 }
 </script>
 
-<style scope lang="scss">
+<style scoped lang="scss">
 .picto {
 	&.active.own &__background {
 		fill: $own-color;

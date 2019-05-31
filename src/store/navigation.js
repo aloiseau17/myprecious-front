@@ -1,6 +1,6 @@
 export const state = () => ({
 	previousQuery: null,
-	previousPath: null
+	previousPath: '/movies'
 })
 
 export const mutations = {

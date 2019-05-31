@@ -64,7 +64,7 @@ export default {
 }
 </script>
 
-<style scope lang="scss">
+<style scoped lang="scss">
 .movie {
 	@extend %reset-link;
 	position: relative;

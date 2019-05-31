@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="filters__wrapper">
 		<button
 			:class="{open: open}"
 			class="filters__button"
@@ -56,7 +56,6 @@
 					<div class="form__group__radio">
 						<input
 							id="empty"
-							v-model="noRating"
 							name="rating"
 							value="empty"
 							type="radio"
@@ -104,16 +103,15 @@
 				</fieldset>
 
 				<div class="form__footer">
-					<button
-						class="btn"
-						type="button"
-						@click="open = false">
-						Cancel
-					</button>
 					<input
 						class="btn"
 						type="submit"
 						value="Filter">
+					<a
+						class="form__cancel"
+						@click.prevent="open = false">
+						cancel
+					</a>
 				</div>
 			</form>
 		</div>
@@ -172,7 +170,7 @@ export default {
 }
 </script>
 
-<style scope lang="scss">
+<style scoped lang="scss">
 .filters {
 	position: fixed;
 	top: 0;
@@ -185,13 +183,17 @@ export default {
 
 	background-color: $third-color;
 	overflow: auto;
-	z-index: 200;
 
 	transform: translateY(100%);
 	transition: transform 0.5s ease-out;
 
 	@include mq('laptop') {
 		padding: 150px calc((100% - 500px) / 2);
+	}
+
+	&__wrapper {
+		position: relative;
+		z-index: 300;
 	}
 
 	&.open {
@@ -236,6 +238,7 @@ export default {
 
 			@include mq('laptop') {
 				display: block;
+				cursor: pointer;
 			}
 		}
 

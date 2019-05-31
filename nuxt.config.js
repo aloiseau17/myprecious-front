@@ -38,6 +38,7 @@ module.exports = {
 	*/
 	plugins: [
 		'~/plugins/theMovieDatabase/index'
+		'~plugins/filters.js',
 	],
 
 	/*

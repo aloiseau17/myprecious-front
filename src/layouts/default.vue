@@ -1,5 +1,5 @@
 <template>
-	<div class="app">
+	<div class="app default-page">
 		<main-menu />
 		<div class="content">
 			<nuxt/>
@@ -15,56 +15,58 @@ export default {
 }
 </script>
 
-<style scope lang="scss">
-.app {
-	position: relative;
-	z-index: 0;
-}
-
-.content {
-	$list_padding: 10px;
-	$max_item_width: 300px;
-
-	position: relative;
-	z-index: -2;
-
-	&__title {
-		text-align: center;
-		margin: 25px auto 35px;
+<style lang="scss">
+.default-page {
+	.app {
+		position: relative;
+		z-index: 0;
 	}
 
-	&__list {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: flex-start;
+	.content {
+		$list_padding: 10px;
+		$max_item_width: 300px;
 
-		padding: 0 $list_padding;
-		margin: 0 auto 35px;
-		list-style: none;
+		// position: relative;
+		// z-index: -2;
 
-		@function content_max_width($number) {
-			@return calc(#{$number} * #{$max_item_width} + 2 * #{$list_padding});
+		&__title {
+			text-align: center;
+			margin: 25px auto 35px;
 		}
 
-		@media screen and (min-width: 992px) and (max-width: content_max_width(5)) {
-			max-width: content_max_width(4);
-		}
+		&__list {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: flex-start;
 
-		@media screen and (min-width: content_max_width(5)) and (max-width: content_max_width(6)) {
-			max-width: content_max_width(5);
-		}
+			padding: 0 $list_padding;
+			margin: 0 auto 35px;
+			list-style: none;
 
-		@media screen and (min-width: content_max_width(6)) {
-			max-width: content_max_width(6);
-		}
+			@function content_max_width($number) {
+				@return calc(#{$number} * #{$max_item_width} + 2 * #{$list_padding});
+			}
 
-		&__item {
-			width: 50%;
-			max-width: $max_item_width;
+			@media screen and (min-width: 992px) and (max-width: content_max_width(5)) {
+				max-width: content_max_width(4);
+			}
 
-			@include mq('tablet') {
-				flex: 1 0 25%;
+			@media screen and (min-width: content_max_width(5)) and (max-width: content_max_width(6)) {
+				max-width: content_max_width(5);
+			}
+
+			@media screen and (min-width: content_max_width(6)) {
+				max-width: content_max_width(6);
+			}
+
+			&__item {
+				width: 50%;
+				max-width: $max_item_width;
+
+				@include mq('tablet') {
+					flex: 1 0 25%;
+				}
 			}
 		}
 	}

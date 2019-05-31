@@ -10,6 +10,7 @@ a {
 	color: $main-color;
 	text-decoration: none;
 	transition: color .3s;
+	cursor: pointer;
 
 	@include on-event {
 		text-decoration: underline;
@@ -19,4 +20,9 @@ a {
 .title__wrapper {
 	margin-bottom: 2em;
 	text-align: center;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
 }

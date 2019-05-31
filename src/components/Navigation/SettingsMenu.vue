@@ -95,7 +95,7 @@ export default {
 }
 </script>
 
-<style scope lang="scss">
+<style scoped lang="scss">
 .closed {
 	transform: translateY(-110%);
 
@@ -141,7 +141,7 @@ export default {
 		list-style: none;
 
 		background-color: $third-color;
-		z-index: 100;
+		z-index: 350;
 
 		transition: transform 0.3s ease-in-out;
 
@@ -176,6 +176,8 @@ export default {
 			justify-content: center;
 			align-items: center;
 			height: 100%;
+			background: $light-base;
+			padding: 20px;
 
 			.picto {
 				display: inline-block;
@@ -254,6 +256,8 @@ export default {
 	}
 	// 50px 5px
 	&.is-active {
+		z-index: 400;
+
 		.line:nth-child(1) {
 			transform: translateY(7px) rotate(45deg) scale(1.6);
 		}

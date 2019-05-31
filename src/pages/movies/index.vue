@@ -4,42 +4,42 @@
 			<h1>Seen movies</h1>
 		</div>
 		
-		<ul
-			v-if="movies.length"
-			class="content__list">
-			<li
-				v-if="firstRewatch"
-				class="content__list__item">
-				<movie-item 
-					:movie="firstRewatch" 
-					rewatch />
-			</li>
-			<li
-				v-for="movie in movies"
-				:key="movie.id"
-				class="content__list__item">
-				<movie-item :movie="movie" />
-			</li>
-		</ul>
+		<div v-if="movies.length">
+			<ul
+				class="content__list">
+				<li
+					v-if="firstRewatch"
+					class="content__list__item">
+					<movie-item 
+						:movie="firstRewatch" 
+						rewatch />
+				</li>
+				<li
+					v-for="movie in movies"
+					:key="movie.id"
+					class="content__list__item">
+					<movie-item :movie="movie" />
+				</li>
+			</ul>
+
+			<!-- Filters -->
+			<filters @filter-movies="beforeFilterMovies"/>
+		</div>
 		
 		<!-- No content -->
-		<p v-if="!movies.length">
-			No movies found.
-		</p>
-		
-		<!-- Filters -->
-		<filters @filter-movies="beforeFilterMovies"/>
+		<no-movie v-if="!movies.length" />
 	</div>
 </template>
 
 <script>
 import MovieItem from '~/components/Movies/MovieItem'
+import NoMovie from '~/components/Movies/NoMovie'
 import Filters from '~/components/Movies/Filters'
 import { mapState } from 'vuex'
 import ManageMovieList from '~/mixins/manageMovieList'
 
 export default {
-	components: { MovieItem, Filters },
+	components: { MovieItem, Filters, NoMovie },
 	mixins: [ManageMovieList],
 	data() {
 		return {

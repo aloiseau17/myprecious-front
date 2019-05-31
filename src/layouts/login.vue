@@ -1,5 +1,5 @@
 <template>
-	<div class="app__wrapper">
+	<div class="app__wrapper login-page">
 		<div class="app">
 			<div class="logo__wrapper">	
 				<img
@@ -14,26 +14,28 @@
 	</div>
 </template>
 
-<style scoped lang="scss">
-.app {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
+<style lang="scss">
+.login-page {
+	.app {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
 
-	min-height: 100vh;
-	padding: 40px;
-	background-color: $third-color;
+		min-height: 100vh;
+		padding: 40px;
+		background-color: $third-color;
 
-	&__wrapper {
-		display: flex; // fix EI min-height flex bug
+		&__wrapper {
+			display: flex; // fix EI min-height flex bug
+		}
 	}
-}
 
-.logo {
-	margin-bottom: 70px;
+	.logo {
+		margin-bottom: 70px;
 
-	&__wrapper {
-		text-align: center;
+		&__wrapper {
+			text-align: center;
+		}
 	}
 }
 </style>

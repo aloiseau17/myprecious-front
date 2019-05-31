@@ -1,5 +1,7 @@
 <template>
-	<nav class="main-menu">
+	<nav
+		:class="currentRoute"
+		class="main-menu">
 		<settings-menu />
 		<ul class="main-menu__pages">
 			<li class="main-menu__item">
@@ -135,7 +137,7 @@
 							c3.649,0,6.608-2.959,6.608-6.608V65.152h27.826c3.649,0,6.608-2.959,6.608-6.609C97.5,54.894,94.541,51.935,90.892,51.935z"
 						/>
 					</svg>
-					<span class="main-menu__item__label">Add a movie</span>
+					<span class="main-menu__item__label">Add movie</span>
 				</nuxt-link>
 			</li>
 		</ul>
@@ -156,24 +158,73 @@
 import SettingsMenu from '~/components/Navigation/SettingsMenu'
 export default {
 	name: 'MainMenu',
-	components: { SettingsMenu }
+	components: { SettingsMenu },
+	data() {
+		return {
+			currentRoute: 'test'
+		}
+	},
+	watch: {
+		$route: {
+			handler: function() {
+				switch (this.$route.name) {
+					case 'movies':
+						this.currentRoute = 'seen'
+						break
+					case 'movies-to-see':
+						this.currentRoute = 'see'
+						break
+					case 'movies-to-buy':
+						this.currentRoute = 'buy'
+						break
+					case 'movies-own':
+						this.currentRoute = 'own'
+						break
+					default:
+						this.currentRoute = null
+				}
+			},
+			immediate: true
+		}
+	}
 }
 </script>
 
-<style scope lang="scss">
+<style scoped lang="scss">
 .main-menu {
 	display: flex;
 	width: 100%;
 	height: $menu_height;
 
+	transition: border-color 0.3s;
+
 	border-top: 6px solid $main-color;
+
+	&.buy {
+		border-color: $buy-color;
+	}
+
+	&.own {
+		border-color: $own-color;
+	}
+
+	&.see {
+		border-color: $see-color;
+	}
+
+	&.seen {
+		border-color: $seen-color;
+	}
+
 	@include box-shadow('bottom', false);
 
 	@include mq('laptop') {
+		position: relative;
 		flex-direction: row-reverse;
 		border-top: none;
 		height: $menu_height_md;
 		background-color: $light-base;
+		z-index: 100;
 	}
 
 	&__pages {
@@ -190,6 +241,7 @@ export default {
 
 		@include mq('laptop') {
 			justify-content: flex-end;
+			background: $light-base;
 		}
 	}
 
@@ -297,6 +349,7 @@ export default {
 
 	&__background {
 		transition: fill 0.3s linear;
+		fill: $third-color;
 
 		@include when-inside('.nuxt-link-exact-active .buy') {
 			fill: $buy-color;

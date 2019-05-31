@@ -32,6 +32,8 @@ export const mutations = {
 
 export const actions = {
 	syncNotIn({ commit, state }, movies) {
+		if (!movies) return
+
 		// Merge current not in with movies ids
 		let ids = state.defaultParams.not_in
 		ids = ids.concat(movies.map(movie => movie.id))
@@ -132,13 +134,25 @@ export const actions = {
 			})
 			.catch(error => console.log(error))
 	},
+	resetMoviesList({ commit }) {
+		commit('setNotInDefaultParameter', [])
+		commit('setCurrentPage', 0)
+		commit('setLastPage', 1)
+		commit('setMovies', {
+			movies: []
+		})
+	},
 	setDefaultParams(context, data) {
 		data.params = Object.assign({}, data.defaultParams, data.params)
 
 		if (!data.params.order)
-			data.params.order = this.$auth.$state.user.user_options.list_order
+			data.params.order = this.$auth.$state.user.user_options
+				? this.$auth.$state.user.user_options.list_order
+				: null
 		if (!data.params.order_by)
-			data.params.order_by = this.$auth.$state.user.user_options.list_order_by
+			data.params.order_by = this.$auth.$state.user.user_options
+				? this.$auth.$state.user.user_options.list_order_by
+				: null
 
 		return data.params
 	}

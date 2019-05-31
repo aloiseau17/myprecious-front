@@ -286,6 +286,8 @@ export default {
 			await this.$axios
 				.$post('/api/movies/' + this.$route.params.id, formData)
 				.then(res => {
+					// reset movies list saved
+					this.$store.dispatch('movies/resetMoviesList')
 					this.$router.push({ path: `/movies/${this.$route.params.id}` })
 				})
 				.catch(error => (this.loading = false))

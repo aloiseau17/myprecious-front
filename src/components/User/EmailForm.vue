@@ -17,9 +17,11 @@
 			</ul>
 		</div>
 
-		<form @submit.prevent="updateUserSettings">
-
-			<div>
+		<form
+			class="form"
+			@submit.prevent="updateUserSettings">
+			
+			<div class="form__group">
 				<label for="email">
 					Email
 				</label>
@@ -28,13 +30,17 @@
 					type="email">
 			</div>
 
-			<div v-if="!loading">
-				<input
-					type="submit"
-					value="Update">
-			</div>
-			<div v-else>
-				loading
+			<div class="form__footer">
+				<button
+					:disable="loading"
+					:class="{loading: loading}"
+					class="btn"
+					type="submit">
+					Update
+					<div
+						v-if="loading"
+						class="lds-dual-ring" />			
+				</button>
 			</div>
 		</form>
 

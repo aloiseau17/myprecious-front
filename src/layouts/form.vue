@@ -32,6 +32,7 @@
 		}
 
 		&__inner {
+			width: 80%;
 			max-width: 400px;
 			margin: 0 auto;
 		}

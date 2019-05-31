@@ -173,12 +173,12 @@
 
 						<div class="form__group__radio">
 							<input
-								id="fantastic"
+								id="rating-ok"
 								v-model="rating"
 								name="rating"
 								value="empty"
 								type="radio">
-							<label for="seen">
+							<label for="rating-ok">
 								Ok
 							</label>
 						</div>
@@ -281,7 +281,6 @@ export default {
 			if (this.file) formData.append('file', this.file)
 			// Require for laravel
 			formData.append('_method', 'patch')
-			console.log(formData)
 
 			await this.$axios
 				.$post('/api/movies/' + this.$route.params.id, formData)

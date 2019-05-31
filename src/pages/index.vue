@@ -14,7 +14,7 @@
 		<div class="home__btn">
 			<nuxt-link
 				class="btn"
-				to="/movies">
+				to="/movies/add">
 				Add movie
 			</nuxt-link>
 		</div>

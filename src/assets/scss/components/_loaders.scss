@@ -6,12 +6,16 @@
 	&:after {
 		content: ' ';
 		display: block;
-		width: 46px;
-		height: 46px;
+		width: 80%;
+		height: 80%;
 		margin: 1px;
 		border-radius: 50%;
-		border: 5px solid #000;
-		border-color: #000 transparent #000 transparent;
+		border-width: 5px;
+		border-style: solid;
+		border-left-color: transparent;
+		border-right-color: transparent;
+		border-top-color: $main-color;
+		border-bottom-color: $main-color;
 		animation: rotation 1.2s linear infinite;
 	}
 }

@@ -12,7 +12,8 @@ form {
 	input {
 		color: $main-color;
 	}
-
+	
+	select,
 	input {
 		width: 100%;
 		padding: 8px 15px;
@@ -47,10 +48,11 @@ form {
 		text-transform: uppercase;
 		margin-bottom: 20px;
 	}
-
+	
 	.el-autocomplete {
 		width: 100%;
-
+		
+		select,
 		input {
 			border: none;
 			border-radius: 0;

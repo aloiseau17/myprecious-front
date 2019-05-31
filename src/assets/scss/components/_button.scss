@@ -27,6 +27,25 @@
 		color: $main-color;
 		font-weight: 600;
 	}
+
+	.lds-dual-ring {
+		display: inline-block;
+		width: 15px;
+		height: 15px;
+
+		&:after {
+			border-width: 2px;
+			border-top-color: $light-base;
+			border-bottom-color: $light-base;
+		}
+	}
+
+	&[disable] {
+		color: $light-base;
+		border-color: transparent;
+		background-color: $settings-color;
+		cursor: pointer;
+	}
 }
 
 .back-btn {

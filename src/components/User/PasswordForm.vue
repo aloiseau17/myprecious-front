@@ -17,9 +17,11 @@
 			</ul>
 		</div>
 
-		<form @submit.prevent="updateUserSettings">
+		<form
+			class="form"
+			@submit.prevent="updateUserSettings">
 
-			<div>
+			<div class="form__group">
 				<label for="old_password">
 					Old password
 				</label>
@@ -29,18 +31,18 @@
 					type="password">
 			</div>
 
-			<div>
-				<label for="password">
+			<div class="form__group">
+				<label for="new_password">
 					New password
 				</label>
 				<input
-					id="password"
+					id="new_password"
 					v-model="password"
 					type="password">
 			</div>
 
 
-			<div>
+			<div class="form__group">
 				<label for="password_confirmation">
 					Confirm password
 				</label>
@@ -50,13 +52,17 @@
 					type="password">
 			</div>
 
-			<div v-if="!loading">
-				<input
-					type="submit"
-					value="Update">
-			</div>
-			<div v-else>
-				loading
+			<div class="form__footer">
+				<button
+					:disable="loading"
+					:class="{loading: loading}"
+					class="btn"
+					type="submit">
+					Update
+					<div
+						v-if="loading"
+						class="lds-dual-ring" />			
+				</button>
 			</div>
 		</form>
 

@@ -170,12 +170,12 @@
 
 					<div class="form__group__radio">
 						<input
-							id="fantastic"
+							id="rating-ok"
 							v-model="rating"
 							name="rating"
 							value="empty"
 							type="radio">
-						<label for="seen">
+						<label for="rating-ok">
 							Ok
 						</label>
 					</div>
@@ -195,9 +195,14 @@
 
 				<div class="form__footer">
 					<button
+						:disable="loading"
+						:class="{loading: loading}"
 						class="btn"
 						type="submit">
-						Add movie					
+						Add movie	
+						<div
+							v-if="loading"
+							class="lds-dual-ring" />			
 					</button>
 					<a
 						class="form__cancel"
@@ -277,7 +282,10 @@ export default {
 						path: destination
 					})
 				})
-				.catch(error => (this.errors = error.response.data.errors))
+				.catch(error => {
+					this.loading = false
+					this.errors = error.response.data.errors
+				})
 		},
 		newFile(file) {
 			this.file = file

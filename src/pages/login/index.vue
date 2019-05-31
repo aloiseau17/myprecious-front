@@ -45,13 +45,16 @@
 			</div>
 
 			<div class="form__footer">
-				<input
+				<button
+					:disable="isloading"
+					:class="{loading: isloading}"
 					class="btn"
-					type="submit"
-					value="Login">
-				<div
-					v-if="isloading"
-					class="lds-dual-ring" />
+					type="submit">
+					Login	
+					<div
+						v-if="isloading"
+						class="lds-dual-ring" />			
+				</button>
 			</div>
 		</form>
 

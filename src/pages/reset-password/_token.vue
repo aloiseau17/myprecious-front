@@ -1,41 +1,48 @@
 <template>
-	<div class="content">
-		<div class="title__wrapper">
-			<h1>Login</h1>
+	<div class="content__inner">
+		<div class="content__title">
+			<h1>Reset password</h1>
 		</div>
 
 		<form
 			:class="{ 'form--error': $v.$error }"
 			class="form"
-			@submit.prevent="login">
+			@submit.prevent="reset">
 			<div 
 				v-if="error"
 				class="errors">
 				{{ error }}
 			</div>
 
+			<input
+				id="token"
+				v-model="token"
+				name="token"
+				type="hidden">
+
 			<div class="form__group">
+				<label for="email">Mail</label>
 				<input
 					id="email"
-					v-model.trim="username"
+					v-model.trim="email"
 					name="email"
 					type="text"
-					placeholder="Email"
-					@blur="$v.username.$touch()">
+					placehold="you@email.com"
+					@blur="$v.email.$touch()">
 				<div
-					v-if="$v.username.$dirty && !$v.username.required"
+					v-if="$v.email.$dirty && !$v.email.required"
 					class="error">
 					Field is required
 				</div>
 			</div>
 
 			<div class="form__group">
+				<label for="password">New password</label>
 				<input
 					id="password"
-					v-model="password"
+					v-model.trim="password"
 					name="password"
-					type="password"
-					placeholder="Password"
+					type="passwor"
 					@blur="$v.password.$touch()">
 				<div
 					v-if="$v.password.$dirty && !$v.password.required"
@@ -50,19 +57,18 @@
 					:class="{loading: isloading}"
 					class="btn"
 					type="submit">
-					Login	
+					Reset password	
 					<div
 						v-if="isloading"
 						class="lds-dual-ring" />			
 				</button>
+				<nuxt-link
+					to="/login"
+					class="form__cancel">
+					cancel
+				</nuxt-link>
 			</div>
 		</form>
-
-		<small>
-			<nuxt-link to="/lost-password">
-				Lost password
-			</nuxt-link>
-		</small>
 	</div>
 </template>
 
@@ -70,17 +76,19 @@
 import { required } from 'vuelidate/lib/validators'
 
 export default {
-	layout: 'login',
+	auth: false,
+	layout: 'form',
 	data() {
 		return {
-			username: null,
+			email: null,
 			password: null,
+			token: this.$route.params.token,
 			error: null,
 			isloading: false
 		}
 	},
 	validations: {
-		username: {
+		email: {
 			required
 		},
 		password: {
@@ -88,58 +96,33 @@ export default {
 		}
 	},
 	methods: {
-		async login(e) {
+		async reset(e) {
 			this.error = null
 
 			this.$v.$touch()
-
 			if (this.$v.$invalid) return
 
 			this.isloading = true
 
-			return this.$auth
-				.loginWith('myprecious', {
-					data: {
-						username: this.username,
-						password: this.password
-					}
-				})
-				.catch(e => {
+			let data = {
+				email: this.email,
+				password: this.password,
+				password_confirmation: this.password, // automatically
+				token: this.token
+			}
+
+			await this.$axios
+				.$post('/api/password/reset', data)
+				.then(data => {
 					this.isloading = false
-					this.error = e.response.data
+					this.$router.push({
+						path: '/login'
+					})
+				})
+				.catch(error => {
+					console.log(error.response.data)
 				})
 		}
 	}
 }
 </script>
-
-<style scoped lang="scss">
-.content {
-	flex: 1;
-
-	display: flex;
-	flex-direction: column;
-
-	@include mq('tablet') {
-		width: 300px;
-		margin: 0 auto;
-	}
-}
-
-form {
-	flex: 1 0 auto;
-	margin-bottom: 20px;
-
-	@include mq('tablet') {
-		flex: none;
-	}
-}
-
-small {
-	font-size: 11px;
-
-	@include mq('tablet') {
-		font-size: 14px;
-	}
-}
-</style>

@@ -28,6 +28,7 @@
 
 <script>
 export default {
+	layout: 'form',
 	name: 'NuxtError',
 	props: {
 		error: {

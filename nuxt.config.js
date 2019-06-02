@@ -125,6 +125,7 @@ module.exports = {
 	},
 
 	env: {
+		APP_URL: process.env.APP_URL,
 		APP_LANG: process.env.APP_LANG,
 		API_URL: process.env.API_URL,
 		POSTER_STORAGE_URL: process.env.POSTER_STORAGE_URL,

@@ -37,8 +37,11 @@ module.exports = {
 	** Plugins to load before mounting the App
 	*/
 	plugins: [
-		'~/plugins/theMovieDatabase/index'
 		'~plugins/filters.js',
+		'~/plugins/appHelpers/helpers',
+		'~/plugins/theMovieDatabase/index',
+		'~/plugins/Axios',
+		{ src: '~/plugins/Vuelidate', ssr: false }
 	],
 
 	/*

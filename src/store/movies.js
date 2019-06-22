@@ -13,8 +13,8 @@ export const mutations = {
 		state.currentPage = page
 	},
 	setFirstRewatch(state, movie) {
-		if (movie) state.defaultParams.not_in.push(movie.id)
-		else state.defaultParams.not_in = []
+		state.defaultParams.not_in = [] // reset not_in
+		if (movie) state.defaultParams.not_in = [movie.id] // only set this id as not in
 
 		state.firstRewatch = movie
 	},

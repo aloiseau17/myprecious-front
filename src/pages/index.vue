@@ -8,7 +8,7 @@
 				width="243"
 				height="50">
 		</h1>
-		<p>Personnal movie library</p>
+		<p>Personnal movies library</p>
 		<p>Manage your movies as fantastic or bad.</p>
 		<p>You can save movie you want to buy and them who you already own.</p>
 		<div class="home__btn">

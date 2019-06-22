@@ -7,7 +7,9 @@ export const state = () => ({
 
 export const mutations = {
 	setValues(state, data) {
-		for (let value in data) state[value] = data[value]
+		state['rating'] = data['rating'] ? data['rating'] : null
+		state['types'] = data['types'] ? data['types'] : null
+		state['director'] = data['director'] ? data['director'] : null
 	}
 }
 

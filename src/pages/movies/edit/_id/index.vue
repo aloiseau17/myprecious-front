@@ -238,6 +238,12 @@ export default {
 			loading: false
 		}
 	},
+	watch: {
+		title(newData, oldData) {
+			// reset filePrewiew on movie change
+			if (!newData) this.$emit('resetFilePreview', true)
+		}
+	},
 	async asyncData({ store, route, $axios }) {
 		let movie = await $axios
 			.$get('/api/movies/' + route.params.id)
@@ -292,10 +298,19 @@ export default {
 				.catch(error => (this.loading = false))
 		},
 		newFile(file) {
+			if (!file) {
+				this.file_remove = true
+			}
+
 			this.file = file
 		},
 		processFile(event) {
 			this.file = event.target.files[0]
+		},
+		possessionSelect(value) {
+			this.possessionState === value
+				? (this.possessionState = 'empty')
+				: (this.possessionState = value)
 		}
 	}
 }

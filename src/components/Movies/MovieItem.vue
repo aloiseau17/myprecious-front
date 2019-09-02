@@ -28,6 +28,11 @@
 					<picto type="seen"/>
 				</li>
 				<li
+					v-if="!movie.seen"
+					class="movie__picto__item">
+					<picto type="to-see"/>
+				</li>
+				<li
 					v-if="movie.possession_state"
 					class="movie__picto__item">
 					<picto :type="movie.possession_state"/>
@@ -91,7 +96,7 @@ export default {
 	}
 
 	&__content {
-		padding-left: 6px;
+		padding-left: 8px;
 		border-left: 3px solid $second-color;
 	}
 

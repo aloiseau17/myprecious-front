@@ -1,5 +1,7 @@
 <template>
-	<div class="app default-page">
+	<div
+		:class="currentRoute"
+		class="app default-page">
 		<main-menu />
 		<div class="content">
 			<nuxt/>
@@ -11,15 +13,48 @@
 import MainMenu from '~/components/Navigation/MainMenu'
 
 export default {
-	components: { MainMenu }
+	components: { MainMenu },
+	data() {
+		return {
+			currentRoute: ''
+		}
+	},
+	watch: {
+		$route: {
+			handler: function() {
+				switch (this.$route.name) {
+					case 'movies':
+						this.currentRoute = 'seen'
+						break
+					case 'movies-to-see':
+						this.currentRoute = 'see'
+						break
+					case 'movies-to-buy':
+						this.currentRoute = 'buy'
+						break
+					case 'movies-own':
+						this.currentRoute = 'own'
+						break
+					default:
+						this.currentRoute = null
+				}
+			},
+			immediate: true
+		}
+	}
 }
 </script>
 
 <style lang="scss">
 .default-page {
-	.app {
+	&.app {
 		position: relative;
+		padding-bottom: $filter-height;
 		z-index: 0;
+
+		@include mq('tablet') {
+			padding-bottom: 0;
+		}
 	}
 
 	.content {
@@ -31,7 +66,7 @@ export default {
 
 		&__title {
 			text-align: center;
-			margin: 25px auto 35px;
+			margin: 50px auto 35px;
 		}
 
 		&__list {

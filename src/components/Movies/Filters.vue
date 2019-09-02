@@ -22,6 +22,16 @@
 			:class="{open: open}"
 			class="filters">
 
+			<div class="back-btn__wrapper">
+				<div
+					class="back-btn"
+					@click="open = false">
+					<img
+						src="/images/back.svg"
+						alt="Back button">
+				</div>
+			</div>
+
 			<form
 				class="filters__inner"
 				@submit.prevent="filter">
@@ -139,6 +149,12 @@ export default {
 			return !this.filters.rating ? 'empty' : null
 		}
 	},
+	watch: {
+		open(newVal, oldVal) {
+			if (newVal) document.documentElement.style.overflowY = 'hidden'
+			else document.documentElement.style.overflowY = 'auto'
+		}
+	},
 	created() {
 		// get previous page data
 		let savedPage = this.$store.getters['navigation/getSavedPage']
@@ -179,13 +195,17 @@ export default {
 	width: 100%;
 	height: 100vh;
 	max-height: 100vh;
-	padding: 20px 35px;
+	padding: 60px 35px;
 
 	background-color: $third-color;
 	overflow: auto;
 
-	transform: translateY(100%);
+	transform: translateY(100vh);
 	transition: transform 0.5s ease-out;
+
+	@include mq('tablet') {
+		padding: 20px 35px;
+	}
 
 	@include mq('laptop') {
 		padding: 150px calc((100% - 500px) / 2);
@@ -207,7 +227,7 @@ export default {
 		left: 0;
 		bottom: 0;
 
-		height: 80px;
+		height: $filter-height;
 		width: 100%;
 		background-color: $light-base;
 		border-top: 4px solid $third-color;
@@ -235,6 +255,7 @@ export default {
 
 		&__laptop {
 			display: none;
+			width: 110px;
 
 			@include mq('laptop') {
 				display: block;

@@ -31,6 +31,22 @@ h1 {
 	@include mq('laptop') {
 		font-size: 29px;
 	}
+
+	@include when-inside('.app.see') {
+		border-color: $see-color;
+	}
+
+	@include when-inside('.app.buy') {
+		border-color: $buy-color;
+	}
+
+	@include when-inside('.app.own') {
+		border-color: $own-color;
+	}
+
+	@include when-inside('.app.seen') {
+		border-color: $seen-color;
+	}
 }
 
 h2 {

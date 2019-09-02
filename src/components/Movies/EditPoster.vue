@@ -27,7 +27,7 @@
 		</div>
 		<p
 			class="poster__remove"
-			@click="file = null">
+			@click="removePoster">
 			Remove poster
 		</p>
 	</div>
@@ -49,7 +49,8 @@ export default {
 	data() {
 		return {
 			file: null,
-			filePreview: null
+			filePreview: null,
+			hasImage: this.movieImage ? true : false
 		}
 	},
 	computed: {
@@ -59,6 +60,8 @@ export default {
 				: '/images/poster_default.png'
 		},
 		previewSrc: function() {
+			if (!this.hasImage) return '/images/poster_default.png'
+
 			if (this.file && this.filePreview) return this.filePreview
 			else if (this.moviePoster || (this.file && !this.filePreview))
 				return this.moviePoster
@@ -84,12 +87,20 @@ export default {
 			const reader = new FileReader()
 			reader.onload = e => {
 				this.filePreview = e.target.result
+				this.hasImage = true
 			}
 
 			reader.readAsDataURL(this.file)
 		},
+		removePoster: function() {
+			this.file = null
+			this.hasImage = false
+			this.$emit('updateFile', null)
+		},
 		resetFilePreview: function(value) {
+			this.hasImage = true
 			this.filePreview = null
+			this.$emit('updateFile', null)
 		}
 	}
 }
@@ -135,6 +146,7 @@ export default {
 		padding-left: 10px;
 		margin: 0;
 		align-self: flex-end;
+		cursor: pointer;
 	}
 }
 </style>

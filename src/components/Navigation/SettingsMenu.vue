@@ -89,7 +89,8 @@ export default {
 			this.$auth.logout()
 		},
 		toggleMenu(e, closed = false) {
-			this.opened = !this.opened
+			console.log(window.innerWidth)
+			if (window.innerWidth < 992) this.opened = !this.opened
 		}
 	}
 }
@@ -117,6 +118,9 @@ export default {
 		@include on-event {
 			.menu-burger__pages {
 				transform: translateY(0);
+			}
+			.picto {
+				transform: rotate(180deg);
 			}
 		}
 
@@ -279,6 +283,12 @@ export default {
 		@include when-inside('.menu-burger') {
 			display: none;
 		}
+	}
+}
+
+.highlight {
+	@include mq('laptop') {
+		@include box-shadow('right', true);
 	}
 }
 </style>

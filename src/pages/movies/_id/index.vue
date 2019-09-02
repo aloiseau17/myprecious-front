@@ -24,10 +24,12 @@
 						width="230"
 						height="310">
 					<div v-if="movie.rating">
-						<picto
-							:type="movie.rating"
-							:class="movie.rating"
-							class="rating" />
+						<div class="picto__wrapper">
+							<picto
+								:type="movie.rating"
+								:class="movie.rating"
+								class="rating" />
+						</div>
 					</div>
 				</div>
 			</div>
@@ -42,7 +44,7 @@
 					<li
 						v-if="movie.possession_state"
 						class="movie__picto__item">
-						<picto :type="movie.possession_state"/> Owned
+						<picto :type="movie.possession_state"/> {{ movie.possessionState === 'own' ? 'Own' : 'To own' }}
 					</li>
 				</ul>
 
@@ -144,6 +146,7 @@ export default {
 		position: relative;
 		display: inline-block;
 		margin: 0 auto;
+		max-width: 150px;
 
 		&__wrapper {
 			text-align: center;
@@ -154,9 +157,21 @@ export default {
 		}
 
 		.picto {
-			@include mq('laptop') {
-				width: 70px;
-				height: 50px;
+			width: 70px;
+			height: 50px;
+
+			&__wrapper {
+				@include mq('laptop', 'bottom') {
+					position: absolute;
+					top: 0;
+					left: 0;
+
+					display: block;
+					width: 100%;
+					height: 100%;
+
+					transform: translateY(10px);
+				}
 			}
 		}
 	}

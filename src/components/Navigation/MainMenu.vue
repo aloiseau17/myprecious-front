@@ -1,6 +1,5 @@
 <template>
 	<nav
-		:class="currentRoute"
 		class="main-menu">
 		<settings-menu />
 		<ul class="main-menu__pages">
@@ -143,7 +142,7 @@
 		</ul>
 		<nuxt-link
 			class="logo__wrapper"
-			to="/">
+			to="/movies">
 			<img
 				class="logo"
 				src="~/static/images/logo.svg"
@@ -156,37 +155,10 @@
 
 <script>
 import SettingsMenu from '~/components/Navigation/SettingsMenu'
+
 export default {
 	name: 'MainMenu',
-	components: { SettingsMenu },
-	data() {
-		return {
-			currentRoute: 'test'
-		}
-	},
-	watch: {
-		$route: {
-			handler: function() {
-				switch (this.$route.name) {
-					case 'movies':
-						this.currentRoute = 'seen'
-						break
-					case 'movies-to-see':
-						this.currentRoute = 'see'
-						break
-					case 'movies-to-buy':
-						this.currentRoute = 'buy'
-						break
-					case 'movies-own':
-						this.currentRoute = 'own'
-						break
-					default:
-						this.currentRoute = null
-				}
-			},
-			immediate: true
-		}
-	}
+	components: { SettingsMenu }
 }
 </script>
 
@@ -334,6 +306,9 @@ export default {
 }
 
 .logo {
+	min-height: 40px;
+	height: 100%;
+
 	&__wrapper {
 		display: none;
 

@@ -1,17 +1,15 @@
 <template>
 	<nav class="menu-burger">
-		<div
-			:class="{ 'is-active': opened}"
-			class="burger"
-			@click="toggleMenu">
+		<div :class="{ 'is-active': opened }" class="burger" @click="toggleMenu">
 			<span class="line" />
 			<span class="line" />
 			<span class="line" />
 		</div>
 		<div
-			:class="{ 'is-active': opened}"
+			:class="{ 'is-active': opened }"
 			class="highlight main-menu__item__label"
-			@click="toggleMenu">
+			@click="toggleMenu"
+		>
 			<svg
 				class="picto"
 				version="1.1"
@@ -23,44 +21,34 @@
 				height="10"
 				viewBox="0 0 46.7 26.5"
 				style="enable-background:new 0 0 46.7 26.5;"
-				xml:space="preserve">
-				<polygon
-					class="picto__background"
-					points="0,0 46.7,0 23.3,26.5 "/>
+				xml:space="preserve"
+			>
+				<polygon class="picto__background" points="0,0 46.7,0 23.3,26.5 " />
 			</svg>
 			<span>Menu</span>
 		</div>
-		<ul
-			:class="menuState"
-			class="menu-burger__pages">
-			<li
-				class="menu-burger__item"
-				@click="opened = false">
+		<ul :class="menuState" class="menu-burger__pages">
+			<li class="menu-burger__item" @click="opened = false">
 				<img
 					class="logo"
 					src="~/static/images/logo.svg"
 					alt="My Precious - movie library"
 					width="243"
-					height="50">
+					height="50"
+				/>
 			</li>
-			<li
-				class="menu-burger__item"
-				@click="opened = false">
-				<nuxt-link to="/settings">Settings</nuxt-link>
+			<li class="menu-burger__item" @click="opened = false">
+				<nuxt-link to="/settings">
+					Settings
+				</nuxt-link>
 			</li>
-			<li
-				class="menu-burger__item"
-				@click="opened = false">
-				<nuxt-link to="/settings/account">My account</nuxt-link>
+			<li class="menu-burger__item" @click="opened = false">
+				<nuxt-link to="/settings/account">
+					My account
+				</nuxt-link>
 			</li>
-			<li
-				class="menu-burger__item"
-				@click="opened = false">
-				<nuxt-link
-					class="btn"
-					event=""
-					to="/"
-					@click.native="logout">
+			<li class="menu-burger__item" @click="opened = false">
+				<nuxt-link class="btn" event="" to="/" @click.native="logout">
 					Log out
 				</nuxt-link>
 			</li>
@@ -88,8 +76,8 @@ export default {
 		logout() {
 			this.$auth.logout()
 		},
-		toggleMenu(e, closed = false) {
-			console.log(window.innerWidth)
+		toggleMenu() {
+			// console.log(window.innerWidth)
 			if (window.innerWidth < 992) this.opened = !this.opened
 		}
 	}

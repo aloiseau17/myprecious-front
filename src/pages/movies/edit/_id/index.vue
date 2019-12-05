@@ -5,23 +5,17 @@
 		</div>
 
 		<ul v-if="errors">
-			<li
-				v-for="(error, key) in errors"
-				:key="key">
-				{{ key }}: {{ error }}
-			</li>
+			<li v-for="(error, key) in errors" :key="key">{{ key }}: {{ error }}</li>
 		</ul>
 
-		<form
-			class="form"
-			@submit.prevent="updateMovie">
-			
+		<form class="form" @submit.prevent="updateMovie">
 			<div class="form__column">
 				<div>
 					<edit-poster
 						:movie-poster="poster_link"
 						:movie-image="image"
-						@updateFile="newFile" />
+						@updateFile="newFile"
+					/>
 				</div>
 
 				<div class="form__left">
@@ -40,7 +34,8 @@
 								size="max"
 								class="inline-input"
 								placeholder="The lord of the ring"
-								@select="getMovie">
+								@select="getMovie"
+							>
 								<template slot-scope="{ item }">
 									<div class="value">{{ item.title }} (id: {{ item.id }})</div>
 								</template>
@@ -56,7 +51,8 @@
 								v-model="director"
 								name="director"
 								type="text"
-								placeholder="Peter Jackson">
+								placeholder="Peter Jackson"
+							/>
 						</div>
 
 						<div class="form__group">
@@ -68,7 +64,8 @@
 								v-model="types"
 								name="types"
 								type="text"
-								placeholder="Fantasy">
+								placeholder="Fantasy"
+							/>
 						</div>
 
 						<div class="form__group">
@@ -80,7 +77,8 @@
 								v-model="actor"
 								name="actor"
 								type="text"
-								placeholder="Gollum">
+								placeholder="Gollum"
+							/>
 						</div>
 
 						<div class="form__group">
@@ -92,7 +90,8 @@
 								v-model="duration"
 								name="duration"
 								type="text"
-								placeholder="162">
+								placeholder="162"
+							/>
 						</div>
 					</fieldset>
 				</div>
@@ -103,17 +102,19 @@
 
 						<div class="form__group btn-select__wrapper">
 							<button
-								:class="{active: possessionState === 'own'}"
+								:class="{ active: possessionState === 'own' }"
 								class="btn-select"
 								type="button"
-								@click="possessionSelect('own')">
+								@click="possessionSelect('own')"
+							>
 								Owned
 							</button>
 							<button
-								:class="{active: possessionState === 'to_own'}"
+								:class="{ active: possessionState === 'to_own' }"
 								class="btn-select"
 								type="button"
-								@click="possessionSelect('to_own')">
+								@click="possessionSelect('to_own')"
+							>
 								To Own
 							</button>
 							<input
@@ -122,16 +123,17 @@
 								class="btn-select__input"
 								name="possession_state"
 								value="own"
-								type="radio">
+								type="radio"
+							/>
 							<input
 								id="to_own"
 								v-model="possessionState"
 								class="btn-select__input"
 								name="possession_state"
 								value="to_own"
-								type="radio">
+								type="radio"
+							/>
 						</div>
-
 
 						<div class="form__group__radio">
 							<input
@@ -139,7 +141,8 @@
 								v-model="seen"
 								:value="true"
 								name="see"
-								type="radio">
+								type="radio"
+							/>
 							<label for="seen">
 								Seen
 							</label>
@@ -150,7 +153,8 @@
 								v-model="seen"
 								:value="false"
 								name="see"
-								type="radio">
+								type="radio"
+							/>
 							<label for="to_see">
 								To see
 							</label>
@@ -165,7 +169,8 @@
 								v-model="rating"
 								name="rating"
 								value="fantastic"
-								type="radio">
+								type="radio"
+							/>
 							<label for="fantastic">
 								Fantastic
 							</label>
@@ -177,7 +182,8 @@
 								v-model="rating"
 								name="rating"
 								value="empty"
-								type="radio">
+								type="radio"
+							/>
 							<label for="rating-ok">
 								Ok
 							</label>
@@ -189,7 +195,8 @@
 								v-model="rating"
 								name="rating"
 								value="bad"
-								type="radio">
+								type="radio"
+							/>
 							<label for="bad">
 								Bad
 							</label>
@@ -200,14 +207,9 @@
 
 			<div class="form__footer">
 				<div v-if="!loading">
-					<input
-						class="btn"
-						type="submit"
-						value="Update">
+					<input class="btn" type="submit" value="Update" />
 
-					<nuxt-link
-						:to="'/movies/' + movieId"
-						class="form__cancel">
+					<nuxt-link :to="'/movies/' + movieId" class="form__cancel">
 						cancel
 					</nuxt-link>
 				</div>
@@ -232,19 +234,7 @@ export default {
 		'edit-poster': EditPoster
 	},
 	mixins: [GetMoviesData],
-	data() {
-		return {
-			errors: null,
-			loading: false
-		}
-	},
-	watch: {
-		title(newData, oldData) {
-			// reset filePrewiew on movie change
-			if (!newData) this.$emit('resetFilePreview', true)
-		}
-	},
-	async asyncData({ store, route, $axios }) {
+	async asyncData({ route, $axios }) {
 		let movie = await $axios
 			.$get('/api/movies/' + route.params.id)
 			.then(res => {
@@ -271,6 +261,18 @@ export default {
 			actor: movie.actor
 		}
 	},
+	data() {
+		return {
+			errors: null,
+			loading: false
+		}
+	},
+	watch: {
+		title(newData) {
+			// reset filePrewiew on movie change
+			if (!newData) this.$emit('resetFilePreview', true)
+		}
+	},
 	methods: {
 		async updateMovie() {
 			var formData = new FormData()
@@ -290,12 +292,12 @@ export default {
 
 			await this.$axios
 				.$post('/api/movies/' + this.$route.params.id, formData)
-				.then(res => {
+				.then(() => {
 					// reset movies list saved
 					this.$store.dispatch('movies/resetMoviesList')
 					this.$router.push({ path: `/movies/${this.$route.params.id}` })
 				})
-				.catch(error => (this.loading = false))
+				.catch(() => (this.loading = false))
 		},
 		newFile(file) {
 			if (!file) {

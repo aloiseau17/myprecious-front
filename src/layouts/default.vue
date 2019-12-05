@@ -1,10 +1,8 @@
 <template>
-	<div
-		:class="currentRoute"
-		class="app default-page">
-		<main-menu />
+	<div :class="currentRoute" class="app default-page">
+		<MainMenu />
 		<div class="content">
-			<nuxt/>
+			<nuxt />
 		</div>
 	</div>
 </template>

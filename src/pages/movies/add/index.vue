@@ -1,21 +1,16 @@
 <template>
 	<div>
 		<div class="content__title-wrapper">
-			<h1 class="content__title">Add movie</h1>
+			<h1 class="content__title">
+				Add movie
+			</h1>
 		</div>
 
 		<ul v-if="errors">
-			<li
-				v-for="(error, key) in errors"
-				:key="key">
-				{{ key }}: {{ error }}
-			</li>
+			<li v-for="(error, key) in errors" :key="key">{{ key }}: {{ error }}</li>
 		</ul>
 
-		<form
-			class="form form__column"
-			@submit.prevent="addMovie">
-			
+		<form class="form form__column" @submit.prevent="addMovie">
 			<div class="form__left">
 				<fieldset>
 					<legend>Movie</legend>
@@ -32,7 +27,8 @@
 							size="max"
 							class="inline-input"
 							placeholder="The lord of the ring"
-							@select="getMovie">
+							@select="getMovie"
+						>
 							<template slot-scope="{ item }">
 								<div class="value">{{ item.title }} (id: {{ item.id }})</div>
 							</template>
@@ -48,7 +44,8 @@
 							v-model="director"
 							name="director"
 							type="text"
-							placeholder="Peter Jackson">
+							placeholder="Peter Jackson"
+						/>
 					</div>
 
 					<div class="form__group">
@@ -60,7 +57,8 @@
 							v-model="types"
 							name="types"
 							type="text"
-							placeholder="Fantasy">
+							placeholder="Fantasy"
+						/>
 					</div>
 
 					<div class="form__group">
@@ -72,7 +70,8 @@
 							v-model="actor"
 							name="actor"
 							type="text"
-							placeholder="Gollum">
+							placeholder="Gollum"
+						/>
 					</div>
 
 					<div class="form__group">
@@ -84,13 +83,11 @@
 							v-model="duration"
 							name="duration"
 							type="text"
-							placeholder="162">
+							placeholder="162"
+						/>
 					</div>
-					
-					<edit-poster
-						:movie-poster="poster_link"
-						@updateFile="newFile" />
 
+					<edit-poster :movie-poster="poster_link" @updateFile="newFile" />
 				</fieldset>
 			</div>
 
@@ -100,17 +97,19 @@
 
 					<div class="form__group btn-select__wrapper">
 						<button
-							:class="{active: possessionState === 'own'}"
+							:class="{ active: possessionState === 'own' }"
 							class="btn-select"
 							type="button"
-							@click="possessionSelect('own')">
+							@click="possessionSelect('own')"
+						>
 							Owned
 						</button>
 						<button
-							:class="{active: possessionState === 'to_own'}"
+							:class="{ active: possessionState === 'to_own' }"
 							class="btn-select"
 							type="button"
-							@click="possessionSelect('to_own')">
+							@click="possessionSelect('to_own')"
+						>
 							To Own
 						</button>
 						<input
@@ -119,16 +118,17 @@
 							class="btn-select__input"
 							name="possession_state"
 							value="own"
-							type="radio">
+							type="radio"
+						/>
 						<input
 							id="to_own"
 							v-model="possessionState"
 							class="btn-select__input"
 							name="possession_state"
 							value="to_own"
-							type="radio">
+							type="radio"
+						/>
 					</div>
-
 
 					<div class="form__group__radio">
 						<input
@@ -136,7 +136,8 @@
 							v-model="seen"
 							:value="true"
 							name="see"
-							type="radio">
+							type="radio"
+						/>
 						<label for="seen">
 							Seen
 						</label>
@@ -147,7 +148,8 @@
 							v-model="seen"
 							:value="false"
 							name="see"
-							type="radio">
+							type="radio"
+						/>
 						<label for="to_see">
 							To see
 						</label>
@@ -162,7 +164,8 @@
 							v-model="rating"
 							name="rating"
 							value="fantastic"
-							type="radio">
+							type="radio"
+						/>
 						<label for="fantastic">
 							Fantastic
 						</label>
@@ -174,7 +177,8 @@
 							v-model="rating"
 							name="rating"
 							value="empty"
-							type="radio">
+							type="radio"
+						/>
 						<label for="rating-ok">
 							Ok
 						</label>
@@ -186,7 +190,8 @@
 							v-model="rating"
 							name="rating"
 							value="bad"
-							type="radio">
+							type="radio"
+						/>
 						<label for="bad">
 							Bad
 						</label>
@@ -196,17 +201,14 @@
 				<div class="form__footer">
 					<button
 						:disable="loading"
-						:class="{loading: loading}"
+						:class="{ loading: loading }"
 						class="btn"
-						type="submit">
-						Add movie	
-						<div
-							v-if="loading"
-							class="lds-dual-ring" />			
+						type="submit"
+					>
+						Add movie
+						<div v-if="loading" class="lds-dual-ring" />
 					</button>
-					<a
-						class="form__cancel"
-						@click.prevent="$router.back()">
+					<a class="form__cancel" @click.prevent="$router.back()">
 						cancel
 					</a>
 				</div>
@@ -246,7 +248,7 @@ export default {
 		}
 	},
 	watch: {
-		title(newData, oldData) {
+		title(newData) {
 			// reset filePrewiew on movie change
 			if (!newData) this.$emit('resetFilePreview', true)
 		}
@@ -271,7 +273,7 @@ export default {
 
 			await this.$axios
 				.$post('/api/movies', formData)
-				.then(data => {
+				.then(() => {
 					// reset movies list saved
 					this.$store.dispatch('movies/resetMoviesList')
 					// redirect to last page

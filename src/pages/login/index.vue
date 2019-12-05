@@ -7,10 +7,9 @@
 		<form
 			:class="{ 'form--error': $v.$error }"
 			class="form"
-			@submit.prevent="login">
-			<div 
-				v-if="error"
-				class="errors">
+			@submit.prevent="login"
+		>
+			<div v-if="error" class="errors">
 				{{ error }}
 			</div>
 
@@ -21,10 +20,9 @@
 					name="email"
 					type="text"
 					placeholder="Email"
-					@blur="$v.username.$touch()">
-				<div
-					v-if="$v.username.$dirty && !$v.username.required"
-					class="error">
+					@blur="$v.username.$touch()"
+				/>
+				<div v-if="$v.username.$dirty && !$v.username.required" class="error">
 					Field is required
 				</div>
 			</div>
@@ -36,10 +34,9 @@
 					name="password"
 					type="password"
 					placeholder="Password"
-					@blur="$v.password.$touch()">
-				<div
-					v-if="$v.password.$dirty && !$v.password.required"
-					class="error">
+					@blur="$v.password.$touch()"
+				/>
+				<div v-if="$v.password.$dirty && !$v.password.required" class="error">
 					Field is required
 				</div>
 			</div>
@@ -47,13 +44,12 @@
 			<div class="form__footer">
 				<button
 					:disable="isloading"
-					:class="{loading: isloading}"
+					:class="{ loading: isloading }"
 					class="btn"
-					type="submit">
-					Login	
-					<div
-						v-if="isloading"
-						class="lds-dual-ring" />			
+					type="submit"
+				>
+					Login
+					<div v-if="isloading" class="lds-dual-ring" />
 				</button>
 			</div>
 		</form>
@@ -88,7 +84,7 @@ export default {
 		}
 	},
 	methods: {
-		async login(e) {
+		async login() {
 			this.error = null
 
 			this.$v.$touch()

@@ -1,7 +1,5 @@
 <template>
-	<component
-		:is="'picto-' + type"
-		:class="{'active': active}"/>
+	<component :is="'picto-' + type" :class="{ active: active }" />
 </template>
 
 <script>

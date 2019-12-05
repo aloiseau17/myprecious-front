@@ -10,7 +10,8 @@
 		height="20px"
 		viewBox="0 0 100 100"
 		enable-background="new 0 0 100 100"
-		xml:space="preserve">
+		xml:space="preserve"
+	>
 		<path
 			class="picto__background"
 			d="M49.998,0C22.385,0,0,22.386,0,50c0,27.613,22.385,50,49.998,50C77.613,100,100,77.613,100,50

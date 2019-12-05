@@ -2,14 +2,10 @@
 	<div>
 		<div v-if="errors">
 			<ul>
-				<li
-					v-for="(errorLine, key) in errors"
-					:key="key">
+				<li v-for="(errorLine, key) in errors" :key="key">
 					{{ key }}
 					<ul>
-						<li
-							v-for="(line, index) in errorLine"
-							:key="index">
+						<li v-for="(line, index) in errorLine" :key="index">
 							{{ line }}
 						</li>
 					</ul>
@@ -17,33 +13,26 @@
 			</ul>
 		</div>
 
-		<form
-			class="form"
-			@submit.prevent="updateUserSettings">
-			
+		<form class="form" @submit.prevent="updateUserSettings">
 			<div class="form__group">
 				<label for="email">
 					Email
 				</label>
-				<input
-					v-model="email"
-					type="email">
+				<input v-model="email" type="email" />
 			</div>
 
 			<div class="form__footer">
 				<button
 					:disable="loading"
-					:class="{loading: loading}"
+					:class="{ loading: loading }"
 					class="btn"
-					type="submit">
+					type="submit"
+				>
 					Update
-					<div
-						v-if="loading"
-						class="lds-dual-ring" />			
+					<div v-if="loading" class="lds-dual-ring" />
 				</button>
 			</div>
 		</form>
-
 	</div>
 </template>
 

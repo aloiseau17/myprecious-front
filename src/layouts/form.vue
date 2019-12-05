@@ -1,8 +1,8 @@
 <template>
 	<div class="app form-page">
-		<main-menu />
+		<MainMenu />
 		<div class="content">
-			<nuxt/>
+			<nuxt />
 		</div>
 	</div>
 </template>

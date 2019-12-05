@@ -1,41 +1,34 @@
 <template>
 	<div class="filters__wrapper">
 		<button
-			:class="{open: open}"
+			:class="{ open: open }"
 			class="filters__button"
-			@click="open = true">
+			@click="open = true"
+		>
 			<img
 				class="filters__button__mobile"
 				src="/images/filter.png"
 				alt="filter us"
 				width="180"
-				height="60">
+				height="60"
+			/>
 			<img
 				class="filters__button__laptop"
 				src="/images/filter-laptop.png"
 				alt="filter us"
 				width="140"
-				height="190">
+				height="190"
+			/>
 		</button>
-		
-		<div
-			:class="{open: open}"
-			class="filters">
 
+		<div :class="{ open: open }" class="filters">
 			<div class="back-btn__wrapper">
-				<div
-					class="back-btn"
-					@click="open = false">
-					<img
-						src="/images/back.svg"
-						alt="Back button">
+				<div class="back-btn" @click="open = false">
+					<img src="/images/back.svg" alt="Back button" />
 				</div>
 			</div>
 
-			<form
-				class="filters__inner"
-				@submit.prevent="filter">
-
+			<form class="filters__inner" @submit.prevent="filter">
 				<fieldset>
 					<legend>By rating</legend>
 
@@ -45,7 +38,8 @@
 							v-model="filters.rating"
 							name="rating"
 							value="fantastic"
-							type="radio">
+							type="radio"
+						/>
 						<label for="fantastic">
 							Fantastic
 						</label>
@@ -57,7 +51,8 @@
 							v-model="filters.rating"
 							name="rating"
 							value="bad"
-							type="radio">
+							type="radio"
+						/>
 						<label for="bad">
 							Bad
 						</label>
@@ -69,7 +64,8 @@
 							name="rating"
 							value="empty"
 							type="radio"
-							@change="filters.rating = null">
+							@change="filters.rating = null"
+						/>
 						<label for="empty">
 							All
 						</label>
@@ -85,7 +81,8 @@
 						v-model="filters.types"
 						name="types"
 						type="text"
-						placeholder="Fantasy">
+						placeholder="Fantasy"
+					/>
 				</fieldset>
 
 				<fieldset>
@@ -97,7 +94,8 @@
 						v-model="filters.director"
 						name="director"
 						type="text"
-						placeholder="Peter Jackson">
+						placeholder="Peter Jackson"
+					/>
 				</fieldset>
 
 				<fieldset>
@@ -109,23 +107,18 @@
 						v-model="filters.first_letter"
 						name="firstLetter"
 						type="text"
-						placeholder="A">
+						placeholder="A"
+					/>
 				</fieldset>
 
 				<div class="form__footer">
-					<input
-						class="btn"
-						type="submit"
-						value="Filter">
-					<a
-						class="form__cancel"
-						@click.prevent="open = false">
+					<input class="btn" type="submit" value="Filter" />
+					<a class="form__cancel" @click.prevent="open = false">
 						cancel
 					</a>
 				</div>
 			</form>
 		</div>
-
 	</div>
 </template>
 
@@ -150,7 +143,7 @@ export default {
 		}
 	},
 	watch: {
-		open(newVal, oldVal) {
+		open(newVal) {
 			if (newVal) document.documentElement.style.overflowY = 'hidden'
 			else document.documentElement.style.overflowY = 'auto'
 		}

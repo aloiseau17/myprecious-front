@@ -4,30 +4,22 @@
 			Poster
 		</label>
 
-		<div
-			class="poster"
-			@click="addFile">
+		<div class="poster" @click="addFile">
 			<input
 				id="file"
 				ref="poster-file"
 				name="file"
 				class="poster__file"
 				type="file"
-				@change="processFile($event)">
+				@change="processFile($event)"
+			/>
 			<transition mode="out-in">
-				<img
-					key="image_default"
-					:src="previewSrc"
-					class="poster__preview">
+				<img key="image_default" :src="previewSrc" class="poster__preview" />
 			</transition>
 			<!-- Edit icon -->
-			<img
-				src="/images/edit.svg"
-				class="poster__edit">
+			<img src="/images/edit.svg" class="poster__edit" />
 		</div>
-		<p
-			class="poster__remove"
-			@click="removePoster">
+		<p class="poster__remove" @click="removePoster">
 			Remove poster
 		</p>
 	</div>
@@ -97,7 +89,7 @@ export default {
 			this.hasImage = false
 			this.$emit('updateFile', null)
 		},
-		resetFilePreview: function(value) {
+		resetFilePreview: function() {
 			this.hasImage = true
 			this.filePreview = null
 			this.$emit('updateFile', null)

@@ -3,25 +3,20 @@
 		<div class="content__title">
 			<h1>Movies own</h1>
 		</div>
-		
-		<ul
-			v-if="movies.length"
-			class="content__list">
-			<li
-				v-for="movie in movies"
-				:key="movie.id"
-				class="content__list__item">
-				<movie-item :movie="movie" />
+
+		<ul v-if="movies.length" class="content__list">
+			<li v-for="movie in movies" :key="movie.id" class="content__list__item">
+				<MovieItem :movie="movie" />
 			</li>
 		</ul>
-		
+
 		<!-- No content -->
 		<p v-if="!movies.length">
 			No movies found.
 		</p>
-		
+
 		<!-- Filters -->
-		<filters @filter-movies="filterMovies"/>
+		<Filters @filter-movies="filterMovies" />
 	</div>
 </template>
 
@@ -34,15 +29,7 @@ import ManageMovieList from '~/mixins/manageMovieList'
 export default {
 	components: { MovieItem, Filters },
 	mixins: [ManageMovieList],
-	data() {
-		return {
-			defaultParams: {}
-		}
-	},
-	computed: {
-		...mapState('movies', ['movies', 'firstRewatch', 'currentPage', 'lastPage'])
-	},
-	async asyncData({ store, $axios, route }) {
+	async asyncData({ store, route }) {
 		// get previous page data
 		let savedPage = store.getters['navigation/getSavedPage']
 
@@ -69,6 +56,14 @@ export default {
 		return {
 			defaultParams
 		}
+	},
+	data() {
+		return {
+			defaultParams: {}
+		}
+	},
+	computed: {
+		...mapState('movies', ['movies', 'firstRewatch', 'currentPage', 'lastPage'])
 	}
 }
 </script>

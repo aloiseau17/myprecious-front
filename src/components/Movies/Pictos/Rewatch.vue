@@ -4,7 +4,8 @@
 		src="/images/rewatch.png"
 		alt="Rewatch advice"
 		width="300"
-		height="95">
+		height="95"
+	/>
 </template>
 
 <script>

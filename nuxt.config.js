@@ -11,8 +11,8 @@ module.exports = {
 	buildDir: 'www',
 
 	/*
-	** Headers of the page
-	*/
+	 ** Headers of the page
+	 */
 	head: {
 		title: pkg.name,
 		meta: [
@@ -24,18 +24,18 @@ module.exports = {
 	},
 
 	/*
-	** Customize the progress-bar color
-	*/
+	 ** Customize the progress-bar color
+	 */
 	loading: { color: '#fff' },
 
 	/*
-	** Global CSS
-	*/
+	 ** Global CSS
+	 */
 	css: ['normalize.css', '@/assets/scss/main.scss'],
 
 	/*
-	** Plugins to load before mounting the App
-	*/
+	 ** Plugins to load before mounting the App
+	 */
 	plugins: [
 		'~plugins/filters.js',
 		'~/plugins/appHelpers/helpers',
@@ -45,8 +45,8 @@ module.exports = {
 	],
 
 	/*
-	** Nuxt.js modules
-	*/
+	 ** Nuxt.js modules
+	 */
 	modules: [
 		// Doc: https://github.com/nuxt-community/axios-module#usage
 		'@nuxtjs/axios',
@@ -60,8 +60,8 @@ module.exports = {
 		'@nuxtjs/style-resources'
 	],
 	/*
-	** Axios module configuration
-	*/
+	 ** Axios module configuration
+	 */
 	axios: {
 		// See https://github.com/nuxt-community/axios-module#options
 		baseURL: process.env.API_URL, // TODO env
@@ -69,8 +69,8 @@ module.exports = {
 	},
 
 	/*
-	** Authentification module configuration
-	*/
+	 ** Authentification module configuration
+	 */
 	auth: {
 		cookie: false,
 		redirect: {
@@ -90,8 +90,8 @@ module.exports = {
 	},
 
 	/*
-	** Global SASS variables, mixins, functions, ...
-	*/
+	 ** Global SASS variables, mixins, functions, ...
+	 */
 	styleResources: {
 		scss: [
 			'@/assets/scss/abstracts/_variables.scss',
@@ -101,19 +101,19 @@ module.exports = {
 	},
 
 	/*
-	** Router configuration
-	*/
+	 ** Router configuration
+	 */
 	router: {
 		middleware: ['auth']
 	},
 
 	/*
-	** Build configuration
-	*/
+	 ** Build configuration
+	 */
 	build: {
 		/*
-		** You can extend webpack config here
-		*/
+		 ** You can extend webpack config here
+		 */
 		extend(config, ctx) {
 			// Run ESLint on save
 			if (ctx.isDev && ctx.isClient) {

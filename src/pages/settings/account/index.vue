@@ -1,19 +1,17 @@
 <template>
 	<div class="content__inner">
 		<div class="back-btn__wrapper">
-			<nuxt-link
-				:to="lastPage"
-				class="back-btn">
-				<img
-					src="/images/back.svg"
-					alt="Back button">
+			<nuxt-link :to="lastPage" class="back-btn">
+				<img src="/images/back.svg" alt="Back button" />
 			</nuxt-link>
 		</div>
 
 		<div class="content__title-wrapper">
-			<h1 class="content__title">My account</h1>
+			<h1 class="content__title">
+				My account
+			</h1>
 		</div>
-		
+
 		<div class="settings__block">
 			<email-form />
 		</div>

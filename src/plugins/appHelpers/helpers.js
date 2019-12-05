@@ -1,7 +1,7 @@
 import * as component from './components'
 let appHelpers = component
 
-export default ({ app }, inject) => {
+export default ({ app }) => {
 	// Inject it to nuxt context as $appHelpers
-	inject('appHelpers', appHelpers)
+	app.addHelpers = appHelpers
 }

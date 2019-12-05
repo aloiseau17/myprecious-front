@@ -1,15 +1,16 @@
 <template>
 	<div class="app__wrapper login-page">
 		<div class="app">
-			<div class="logo__wrapper">	
+			<div class="logo__wrapper">
 				<img
 					class="logo"
 					src="~/static/images/logo.svg"
 					alt="Logo My Precious"
 					width="243"
-					height="50">
+					height="50"
+				/>
 			</div>
-			<nuxt/>
+			<nuxt />
 		</div>
 	</div>
 </template>

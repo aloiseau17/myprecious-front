@@ -2,14 +2,10 @@
 	<div>
 		<div v-if="errors">
 			<ul>
-				<li
-					v-for="(errorLine, key) in errors"
-					:key="key">
+				<li v-for="(errorLine, key) in errors" :key="key">
 					{{ key }}
 					<ul>
-						<li
-							v-for="(line, index) in errorLine"
-							:key="index">
+						<li v-for="(line, index) in errorLine" :key="index">
 							{{ line }}
 						</li>
 					</ul>
@@ -17,30 +13,20 @@
 			</ul>
 		</div>
 
-		<form
-			class="form"
-			@submit.prevent="updateUserSettings">
-
+		<form class="form" @submit.prevent="updateUserSettings">
 			<div class="form__group">
 				<label for="old_password">
 					Old password
 				</label>
-				<input
-					id="old_password"
-					v-model="old_password"
-					type="password">
+				<input id="old_password" v-model="old_password" type="password" />
 			</div>
 
 			<div class="form__group">
 				<label for="new_password">
 					New password
 				</label>
-				<input
-					id="new_password"
-					v-model="password"
-					type="password">
+				<input id="new_password" v-model="password" type="password" />
 			</div>
-
 
 			<div class="form__group">
 				<label for="password_confirmation">
@@ -49,23 +35,22 @@
 				<input
 					id="password_confirmation"
 					v-model="password_confirmation"
-					type="password">
+					type="password"
+				/>
 			</div>
 
 			<div class="form__footer">
 				<button
 					:disable="loading"
-					:class="{loading: loading}"
+					:class="{ loading: loading }"
 					class="btn"
-					type="submit">
+					type="submit"
+				>
 					Update
-					<div
-						v-if="loading"
-						class="lds-dual-ring" />			
+					<div v-if="loading" class="lds-dual-ring" />
 				</button>
 			</div>
 		</form>
-
 	</div>
 </template>
 

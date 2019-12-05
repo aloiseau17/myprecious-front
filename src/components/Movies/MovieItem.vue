@@ -1,41 +1,31 @@
 <template>
-	<nuxt-link
-		:to="'/movies/' + movie.id"
-		class="movie">
+	<nuxt-link :to="'/movies/' + movie.id" class="movie">
 		<div class="movie__image">
 			<img
 				:src="image"
 				class="movie__poster"
 				alt="Movie poster"
 				width="230"
-				height="310">
+				height="310"
+			/>
 			<div v-if="movie.rating">
-				<picto
-					:type="movie.rating"
-					:class="movie.rating"
-					class="rating" />
+				<Picto :type="movie.rating" :class="movie.rating" class="rating" />
 			</div>
 		</div>
-		<rewatch v-if="rewatch"/>
+		<Rewatch v-if="rewatch" />
 		<div class="movie__content">
 			<h2 class="movie__title">
 				{{ movie.title }}
 			</h2>
 			<ul class="movie__picto">
-				<li
-					v-if="movie.seen"
-					class="movie__picto__item">
-					<picto type="seen"/>
+				<li v-if="movie.seen" class="movie__picto__item">
+					<Picto type="seen" />
 				</li>
-				<li
-					v-if="!movie.seen"
-					class="movie__picto__item">
-					<picto type="to-see"/>
+				<li v-if="!movie.seen" class="movie__picto__item">
+					<Picto type="to-see" />
 				</li>
-				<li
-					v-if="movie.possession_state"
-					class="movie__picto__item">
-					<picto :type="movie.possession_state"/>
+				<li v-if="movie.possession_state" class="movie__picto__item">
+					<Picto :type="movie.possession_state" />
 				</li>
 			</ul>
 		</div>

@@ -1,7 +1,6 @@
 <template>
-	<nav
-		class="main-menu">
-		<settings-menu />
+	<nav class="main-menu">
+		<SettingsMenu />
 		<ul class="main-menu__pages">
 			<li class="main-menu__item">
 				<!-- ============= To Buy ============= -->
@@ -17,7 +16,8 @@
 						height="20px"
 						viewBox="0 0 52.5 100"
 						enable-background="new 0 0 52.5 100"
-						xml:space="preserve">
+						xml:space="preserve"
+					>
 						<path
 							class="picto__background"
 							d="M32.984,86.823c-0.42,0.104-0.732,0.313-0.732,0.835l0.104,10.359c0,1.356-0.627,1.982-1.879,1.982H21.92
@@ -48,7 +48,8 @@
 						height="20px"
 						viewBox="0 0 100 100"
 						enable-background="new 0 0 100 100"
-						xml:space="preserve">
+						xml:space="preserve"
+					>
 						<path
 							class="picto__background"
 							d="M49.998,0C22.385,0,0,22.386,0,50c0,27.613,22.385,50,49.998,50C77.613,100,100,77.613,100,50
@@ -73,7 +74,8 @@
 						height="20px"
 						viewBox="0 0 67.513 100"
 						enable-background="new 0 0 67.513 100"
-						xml:space="preserve">
+						xml:space="preserve"
+					>
 						<path
 							class="picto__background"
 							d="M65.623,46.529L8.99,1.121C7.459-0.106,5.011-0.346,3.244,0.502C1.474,1.352,0,3.14,0,5.102v89.797
@@ -98,7 +100,8 @@
 						height="20px"
 						viewBox="0 0 122.163 100"
 						enable-background="new 0 0 122.163 100"
-						xml:space="preserve">
+						xml:space="preserve"
+					>
 						<path
 							class="picto__background"
 							d="M34.521,100c-0.049,0-0.098,0-0.146-0.002c-2.133-0.041-4.148-0.98-5.553-2.588L1.867,66.535
@@ -123,12 +126,9 @@
 						height="20px"
 						viewBox="0 0 115 115"
 						enable-background="new 0 0 115 115"
-						xml:space="preserve">
-						<circle
-							fill="#CD8010"
-							cx="57.5"
-							cy="57.5"
-							r="57.479"/>
+						xml:space="preserve"
+					>
+						<circle fill="#CD8010" cx="57.5" cy="57.5" r="57.479" />
 						<path
 							fill="#FFFFFF"
 							d="M90.892,51.935H63.065V24.108c0-3.649-2.959-6.608-6.608-6.608c-3.65,0-6.609,2.959-6.609,6.608v27.826
@@ -140,15 +140,14 @@
 				</nuxt-link>
 			</li>
 		</ul>
-		<nuxt-link
-			class="logo__wrapper"
-			to="/movies">
+		<nuxt-link class="logo__wrapper" to="/movies">
 			<img
 				class="logo"
 				src="~/static/images/logo.svg"
 				alt="My Precious - movie library"
 				width="226"
-				height="40">
+				height="40"
+			/>
 		</nuxt-link>
 	</nav>
 </template>

@@ -3,16 +3,17 @@
 		<div class="content__title">
 			<h1>Lost password</h1>
 		</div>
-		
-		<p v-if="sent">We have e-mailed your password reset link!</p>
+
+		<p v-if="sent">
+			We have e-mailed your password reset link!
+		</p>
 
 		<form
 			:class="{ 'form--error': $v.$error }"
 			class="form"
-			@submit.prevent="reset">
-			<div 
-				v-if="error"
-				class="errors">
+			@submit.prevent="reset"
+		>
+			<div v-if="error" class="errors">
 				{{ error }}
 			</div>
 
@@ -24,10 +25,10 @@
 					name="email"
 					type="text"
 					placehold="you@email.com"
-					@blur="$v.email.$touch()">
-				<div
-					v-if="$v.email.$dirty && !$v.email.required"
-					class="error">
+					@blur="$v.email.$touch()"
+				/>
+				/>
+				<div v-if="$v.email.$dirty && !$v.email.required" class="error">
 					Field is required
 				</div>
 			</div>
@@ -35,17 +36,14 @@
 			<div class="form__footer">
 				<button
 					:disable="isloading"
-					:class="{loading: isloading}"
+					:class="{ loading: isloading }"
 					class="btn"
-					type="submit">
-					Reset password	
-					<div
-						v-if="isloading"
-						class="lds-dual-ring" />			
+					type="submit"
+				>
+					Reset password
+					<div v-if="isloading" class="lds-dual-ring" />
 				</button>
-				<nuxt-link
-					to="/login"
-					class="form__cancel">
+				<nuxt-link to="/login" class="form__cancel">
 					cancel
 				</nuxt-link>
 			</div>
@@ -73,7 +71,7 @@ export default {
 		}
 	},
 	methods: {
-		async reset(e) {
+		async reset() {
 			this.error = null
 			this.sent = false
 
@@ -89,11 +87,11 @@ export default {
 
 			await this.$axios
 				.$post('/api/password/email', data)
-				.then(data => {
+				.then(() => {
 					this.isloading = false
 					this.sent = true
 				})
-				.catch(error => {
+				.catch(() => {
 					// console.log(error.response.data)
 				})
 		}

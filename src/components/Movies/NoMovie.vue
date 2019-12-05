@@ -4,11 +4,10 @@
 		<img
 			src="/images/add_first.svg"
 			alt="Come on, add your movie"
-			width="200px">
+			width="200px"
+		/>
 		<div class="no-movie__btn">
-			<nuxt-link
-				to="/movies/add"
-				class="btn">
+			<nuxt-link to="/movies/add" class="btn">
 				Add movie
 			</nuxt-link>
 		</div>

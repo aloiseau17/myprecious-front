@@ -3,31 +3,23 @@
 		<div class="content__title">
 			<h1>Seen movies</h1>
 		</div>
-		
+
 		<div v-if="movies.length">
-			<ul
-				class="content__list">
-				<li
-					v-if="firstRewatch"
-					class="content__list__item">
-					<movie-item 
-						:movie="firstRewatch" 
-						rewatch />
+			<ul class="content__list">
+				<li v-if="firstRewatch" class="content__list__item">
+					<MovieItem :movie="firstRewatch" rewatch />
 				</li>
-				<li
-					v-for="movie in movies"
-					:key="movie.id"
-					class="content__list__item">
-					<movie-item :movie="movie" />
+				<li v-for="movie in movies" :key="movie.id" class="content__list__item">
+					<MovieItem :movie="movie" />
 				</li>
 			</ul>
 
 			<!-- Filters -->
-			<filters @filter-movies="beforeFilterMovies"/>
+			<Filters @filter-movies="beforeFilterMovies" />
 		</div>
-		
+
 		<!-- No content -->
-		<no-movie v-if="!movies.length" />
+		<NoMovie v-if="!movies.length" />
 	</div>
 </template>
 
@@ -41,15 +33,7 @@ import ManageMovieList from '~/mixins/manageMovieList'
 export default {
 	components: { MovieItem, Filters, NoMovie },
 	mixins: [ManageMovieList],
-	data() {
-		return {
-			defaultParams: {}
-		}
-	},
-	computed: {
-		...mapState('movies', ['movies', 'firstRewatch', 'currentPage', 'lastPage'])
-	},
-	async asyncData({ store, $axios, route }) {
+	async asyncData({ store, route }) {
 		// get previous page data
 		let savedPage = store.getters['navigation/getSavedPage']
 
@@ -83,6 +67,14 @@ export default {
 		return {
 			defaultParams
 		}
+	},
+	data() {
+		return {
+			defaultParams: {}
+		}
+	},
+	computed: {
+		...mapState('movies', ['movies', 'firstRewatch', 'currentPage', 'lastPage'])
 	},
 	methods: {
 		async beforeFilterMovies(data) {

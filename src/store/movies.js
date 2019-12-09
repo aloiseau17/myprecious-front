@@ -1,8 +1,6 @@
 export const state = () => ({
 	currentPage: 0,
-	defaultParams: {
-		not_in: []
-	},
+	defaultParams: {},
 	firstRewatch: null,
 	lastPage: 1,
 	movies: []
@@ -24,23 +22,17 @@ export const mutations = {
 	setMovies(state, data) {
 		if (data.push) state.movies = state.movies.concat(data.movies)
 		else state.movies = data.movies
-	},
-	setNotInDefaultParameter(state, ids) {
-		state.defaultParams.not_in = ids
 	}
 }
 
 export const actions = {
-	syncNotIn({ commit, state }, movies) {
-		if (!movies) return
-
-		// Merge current not in with movies ids
-		let ids = state.defaultParams.not_in
-		ids = ids.concat(movies.map(movie => movie.id))
-
-		commit('setNotInDefaultParameter', ids)
-	},
 	async fetchFirstRandomFantasticMovies({ commit }) {
+		// empty movies list before fetch one fantasticMovie
+		// prevent duplicate key
+		commit('setMovies', {
+			movies: []
+		})
+
 		await this.$axios
 			.$get('/api/movies/search', {
 				params: {
@@ -60,9 +52,11 @@ export const actions = {
 	async fetchMovies({ commit, dispatch, state }, data) {
 		let params = Object.assign({}, data.params)
 
-		if (data.partial) params.number = params.number - 1
-		// if partial include firstRewatch in total
-		else commit('setFirstRewatch', null) // reset
+		// if newFirstRandom : include firstRewatch in total
+		if (data.newFirstRandom) {
+			await dispatch('fetchFirstRandomFantasticMovies')
+			params.number = params.number - 1
+		} else commit('setFirstRewatch', null) // reset
 
 		params = await dispatch('setDefaultParams', {
 			params,
@@ -74,8 +68,7 @@ export const actions = {
 				params
 			})
 			.then(res => {
-				if (!data.partial) commit('setCurrentPage', 1)
-				else commit('setCurrentPage', 0)
+				commit('setCurrentPage', 1)
 
 				if (!res.data) {
 					commit('setLastPage', 1)
@@ -84,12 +77,10 @@ export const actions = {
 					})
 				} else {
 					commit('setLastPage', res.last_page)
-
 					commit('setMovies', {
 						movies: res.data
 					})
 				}
-
 				return res.data
 			})
 			.catch(error => console.log(error))
@@ -135,7 +126,6 @@ export const actions = {
 			.catch(error => console.log(error))
 	},
 	resetMoviesList({ commit }) {
-		commit('setNotInDefaultParameter', [])
 		commit('setCurrentPage', 0)
 		commit('setLastPage', 1)
 		commit('setMovies', {
@@ -165,7 +155,9 @@ export const getters = {
 	getFirstRewatch(state) {
 		return state.firstRewatch
 	},
-	getMovies(state) {
-		return state.movies
+	getMovies: state => (withRewatch = false) => {
+		return withRewatch && state.firstRewatch
+			? [state.firstRewatch, ...state.movies]
+			: state.movies
 	}
 }

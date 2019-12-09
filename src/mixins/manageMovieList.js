@@ -1,12 +1,12 @@
 export default {
 	methods: {
-		async filterMovies(data, partial = false) {
+		async filterMovies(data, newFirstRandom = false) {
 			// Combine default and filter parameters
 			const params = Object.assign({}, this.defaultParams, data)
 
 			let movies = await this.$store.dispatch('movies/fetchMovies', {
 				params,
-				partial: partial
+				newFirstRandom
 			})
 
 			return movies

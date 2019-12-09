@@ -6,9 +6,6 @@
 
 		<div v-if="movies.length">
 			<ul class="content__list">
-				<li v-if="firstRewatch" class="content__list__item">
-					<MovieItem :movie="firstRewatch" rewatch />
-				</li>
 				<li v-for="movie in movies" :key="movie.id" class="content__list__item">
 					<MovieItem :movie="movie" />
 				</li>
@@ -52,17 +49,11 @@ export default {
 			hasMovies = store.getters['movies/hasMovies']
 
 		// If there isn't movies, proceed fresh request
-		if (!hasMovies) {
-			// Require one fantastic movie
-			await store.dispatch('movies/fetchFirstRandomFantasticMovies')
-
-			let movies = await store.dispatch('movies/fetchMovies', {
+		if (!hasMovies)
+			await store.dispatch('movies/fetchMovies', {
 				params: defaultParams,
-				partial: true
+				newFirstRandom: true
 			})
-
-			store.dispatch('movies/syncNotIn', movies)
-		}
 
 		return {
 			defaultParams
@@ -74,19 +65,15 @@ export default {
 		}
 	},
 	computed: {
-		...mapState('movies', ['movies', 'firstRewatch', 'currentPage', 'lastPage'])
+		...mapState('movies', ['currentPage', 'lastPage']),
+		movies() {
+			return this.$store.getters['movies/getMovies'](true)
+		}
 	},
 	methods: {
 		async beforeFilterMovies(data) {
 			const resetFirstRewatch = Object.keys(data).length === 0
-
-			if (resetFirstRewatch)
-				await this.$store.dispatch('movies/fetchFirstRandomFantasticMovies')
-
-			let movies = await this.filterMovies(data, resetFirstRewatch)
-
-			if (resetFirstRewatch && movies)
-				this.$store.dispatch('movies/syncNotIn', movies)
+			await this.filterMovies(data, resetFirstRewatch)
 		}
 	}
 }

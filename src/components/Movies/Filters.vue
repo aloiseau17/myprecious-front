@@ -131,22 +131,22 @@ export default {
 				rating: null,
 				types: null,
 				director: null,
-				first_letter: null
+				first_letter: null,
 			},
 			open: false,
-			errors: null
+			errors: null,
 		}
 	},
 	computed: {
 		noRating() {
 			return !this.filters.rating ? 'empty' : null
-		}
+		},
 	},
 	watch: {
 		open(newVal) {
 			if (newVal) document.documentElement.style.overflowY = 'hidden'
 			else document.documentElement.style.overflowY = 'auto'
-		}
+		},
 	},
 	created() {
 		// get previous page data
@@ -161,7 +161,7 @@ export default {
 	methods: {
 		filter() {
 			let dataSent = Object.keys(this.filters)
-				.filter(key => {
+				.filter((key) => {
 					// remove null
 					return this.filters[key]
 				})
@@ -174,8 +174,8 @@ export default {
 			this.$store.dispatch('filters/saveValues', dataSent)
 			this.$emit('filter-movies', dataSent)
 			this.open = false
-		}
-	}
+		},
+	},
 }
 </script>
 

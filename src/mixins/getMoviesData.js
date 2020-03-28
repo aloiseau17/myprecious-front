@@ -5,13 +5,13 @@ export default {
 
 			if (!this.title) return
 
-			await this.$tmdb.find(queryString).then(data => {
+			await this.$tmdb.find(queryString).then((data) => {
 				cb(data.results.splice(0, 5))
 			})
 		},
 		async getMovie(item) {
-			await this.$tmdb.show(item.id, 'credits').then(data => {
-				let director = data.credits.crew.find(item => item.job === 'Director')
+			await this.$tmdb.show(item.id, 'credits').then((data) => {
+				let director = data.credits.crew.find((item) => item.job === 'Director')
 
 				this.title = data.title
 
@@ -28,6 +28,6 @@ export default {
 				}, [])
 				if (typeList.length !== 0) this.types = typeList.join(';')
 			})
-		}
-	}
+		},
+	},
 }

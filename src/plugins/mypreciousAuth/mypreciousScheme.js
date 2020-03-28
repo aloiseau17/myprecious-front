@@ -144,8 +144,8 @@ export default class MyLocalScheme {
 		const result = await this.$auth.request(
 			{
 				data: {
-					refresh_token: refreshToken
-				}
+					refresh_token: refreshToken,
+				},
 			},
 			this.options.endpoints.refreshToken
 		)

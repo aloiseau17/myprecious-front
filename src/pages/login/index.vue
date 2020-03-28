@@ -72,16 +72,16 @@ export default {
 			username: null,
 			password: null,
 			error: null,
-			isloading: false
+			isloading: false,
 		}
 	},
 	validations: {
 		username: {
-			required
+			required,
 		},
 		password: {
-			required
-		}
+			required,
+		},
 	},
 	methods: {
 		async login() {
@@ -97,15 +97,15 @@ export default {
 				.loginWith('myprecious', {
 					data: {
 						username: this.username,
-						password: this.password
-					}
+						password: this.password,
+					},
 				})
-				.catch(e => {
+				.catch((e) => {
 					this.isloading = false
 					this.error = e.response.data
 				})
-		}
-	}
+		},
+	},
 }
 </script>
 

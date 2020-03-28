@@ -22,8 +22,8 @@
 					x2="124.6922"
 					y2="64.3287"
 				>
-					<stop offset="0" style="stop-color:#E0D08C" />
-					<stop offset="0.6915" style="stop-color:#E4BD05" />
+					<stop offset="0" style="stop-color: #e0d08c;" />
+					<stop offset="0.6915" style="stop-color: #e4bd05;" />
 				</linearGradient>
 				<path
 					fill="url(#SVGID_2_)"
@@ -70,8 +70,8 @@
 				x2="120.7743"
 				y2="63.3588"
 			>
-				<stop offset="0" style="stop-color:#E52820" />
-				<stop offset="0.6915" style="stop-color:#B61917" />
+				<stop offset="0" style="stop-color: #e52820;" />
+				<stop offset="0.6915" style="stop-color: #b61917;" />
 			</linearGradient>
 			<path
 				fill="url(#SVGID_5_)"
@@ -110,8 +110,8 @@
 						x2="148.9609"
 						y2="54.7285"
 					>
-						<stop offset="0" style="stop-color:#B61917" />
-						<stop offset="0.6862" style="stop-color:#AD1916" />
+						<stop offset="0" style="stop-color: #b61917;" />
+						<stop offset="0.6862" style="stop-color: #ad1916;" />
 					</linearGradient>
 					<path
 						fill="url(#SVGID_7_)"
@@ -135,6 +135,6 @@
 
 <script>
 export default {
-	name: 'PictoFantastic'
+	name: 'PictoFantastic',
 }
 </script>

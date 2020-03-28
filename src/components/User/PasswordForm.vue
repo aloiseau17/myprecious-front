@@ -64,7 +64,7 @@ export default {
 			password_confirmation: null,
 			loading: false,
 			errors: null,
-			message: null
+			message: null,
 		}
 	},
 	methods: {
@@ -76,7 +76,7 @@ export default {
 			let data = {
 				old_password: this.old_password,
 				password: this.password,
-				password_confirmation: this.password_confirmation
+				password_confirmation: this.password_confirmation,
 			}
 			let responseError = await this.$store.dispatch(
 				'user/updatePassword',
@@ -89,7 +89,7 @@ export default {
 				this.message = responseError.data.message
 				this.errors = responseError.data.errors
 			}
-		}
-	}
+		},
+	},
 }
 </script>

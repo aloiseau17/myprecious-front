@@ -74,16 +74,16 @@ export default {
 			password: null,
 			token: this.$route.params.token,
 			error: null,
-			isloading: false
+			isloading: false,
 		}
 	},
 	validations: {
 		email: {
-			required
+			required,
 		},
 		password: {
-			required
-		}
+			required,
+		},
 	},
 	methods: {
 		async reset() {
@@ -98,7 +98,7 @@ export default {
 				email: this.email,
 				password: this.password,
 				password_confirmation: this.password, // automatically
-				token: this.token
+				token: this.token,
 			}
 
 			await this.$axios
@@ -106,13 +106,13 @@ export default {
 				.then(() => {
 					this.isloading = false
 					this.$router.push({
-						path: '/login'
+						path: '/login',
 					})
 				})
-				.catch(error => {
+				.catch((error) => {
 					console.log(error.response.data)
 				})
-		}
-	}
+		},
+	},
 }
 </script>

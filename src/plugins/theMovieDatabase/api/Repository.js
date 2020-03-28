@@ -1,4 +1,4 @@
-export default axios => ({
+export default (axios) => ({
 	// ================================
 	// Retrieve movie by its id
 	// Extend response with more data in extendResponse
@@ -9,11 +9,11 @@ export default axios => ({
 				params: {
 					api_key: process.env.TMDB_KEY,
 					language: process.env.APP_LANG,
-					append_to_response: extendResponse
-				}
+					append_to_response: extendResponse,
+				},
 			})
-			.then(res => res.data)
-			.catch(error => console.log(error.response))
+			.then((res) => res.data)
+			.catch((error) => console.log(error.response))
 	},
 
 	// ================================
@@ -25,10 +25,10 @@ export default axios => ({
 				params: {
 					api_key: process.env.TMDB_KEY,
 					language: process.env.APP_LANG,
-					query: queryString
-				}
+					query: queryString,
+				},
 			})
-			.then(res => res.data)
-			.catch(error => console.log(error.response))
-	}
+			.then((res) => res.data)
+			.catch((error) => console.log(error.response))
+	},
 })

@@ -31,18 +31,18 @@ export default {
 	props: {
 		moviePoster: {
 			type: String,
-			default: null
+			default: null,
 		},
 		movieImage: {
 			type: String,
-			default: null
-		}
+			default: null,
+		},
 	},
 	data() {
 		return {
 			file: null,
 			filePreview: null,
-			hasImage: this.movieImage ? true : false
+			hasImage: this.movieImage ? true : false,
 		}
 	},
 	computed: {
@@ -51,7 +51,7 @@ export default {
 				? process.env.POSTER_STORAGE_URL + this.movieImage
 				: '/images/poster_default.png'
 		},
-		previewSrc: function() {
+		previewSrc: function () {
 			if (!this.hasImage) return '/images/poster_default.png'
 
 			if (this.file && this.filePreview) return this.filePreview
@@ -59,9 +59,9 @@ export default {
 				return this.moviePoster
 			else if (this.movieImage) return this.image
 			else return '/images/poster_default.png'
-		}
+		},
 	},
-	created: function() {
+	created: function () {
 		this.$parent.$on('resetFilePreview', this.resetFilePreview)
 	},
 	methods: {
@@ -77,24 +77,24 @@ export default {
 			if (!this.file) return null
 
 			const reader = new FileReader()
-			reader.onload = e => {
+			reader.onload = (e) => {
 				this.filePreview = e.target.result
 				this.hasImage = true
 			}
 
 			reader.readAsDataURL(this.file)
 		},
-		removePoster: function() {
+		removePoster: function () {
 			this.file = null
 			this.hasImage = false
 			this.$emit('updateFile', null)
 		},
-		resetFilePreview: function() {
+		resetFilePreview: function () {
 			this.hasImage = true
 			this.filePreview = null
 			this.$emit('updateFile', null)
-		}
-	}
+		},
+	},
 }
 </script>
 

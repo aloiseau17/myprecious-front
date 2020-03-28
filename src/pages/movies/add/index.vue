@@ -227,7 +227,7 @@ export default {
 	layout: 'form',
 	components: {
 		'el-autocomplete': Autocomplete,
-		'edit-poster': EditPoster
+		'edit-poster': EditPoster,
 	},
 	mixins: [GetMoviesData],
 	data() {
@@ -244,14 +244,14 @@ export default {
 			seen: false,
 			possessionState: 'empty',
 			errors: null,
-			loading: false
+			loading: false,
 		}
 	},
 	watch: {
 		title(newData) {
 			// reset filePrewiew on movie change
 			if (!newData) this.$emit('resetFilePreview', true)
-		}
+		},
 	},
 	methods: {
 		async addMovie() {
@@ -281,10 +281,10 @@ export default {
 						? this.$store.getters['navigation/getSavedPage']['path']
 						: '/movies'
 					this.$router.push({
-						path: destination
+						path: destination,
 					})
 				})
-				.catch(error => {
+				.catch((error) => {
 					this.loading = false
 					this.errors = error.response.data.errors
 				})
@@ -296,7 +296,7 @@ export default {
 			this.possessionState === value
 				? (this.possessionState = 'empty')
 				: (this.possessionState = value)
-		}
-	}
+		},
+	},
 }
 </script>

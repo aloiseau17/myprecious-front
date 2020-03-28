@@ -44,7 +44,7 @@ export default {
 			email: this.$auth.$state.user.email,
 			loading: false,
 			errors: null,
-			message: null
+			message: null,
 		}
 	},
 	methods: {
@@ -54,7 +54,7 @@ export default {
 			this.errors = null
 
 			let data = {
-				email: this.email
+				email: this.email,
 			}
 			let responseError = await this.$store.dispatch('user/updateEmail', data)
 
@@ -66,7 +66,7 @@ export default {
 			} else {
 				await this.$auth.fetchUser() // update auth store
 			}
-		}
-	}
+		},
+	},
 }
 </script>

@@ -14,12 +14,12 @@ export default {
 	components: { MainMenu },
 	data() {
 		return {
-			currentRoute: ''
+			currentRoute: '',
 		}
 	},
 	watch: {
 		$route: {
-			handler: function() {
+			handler: function () {
 				switch (this.$route.name) {
 					case 'movies':
 						this.currentRoute = 'seen'
@@ -37,9 +37,9 @@ export default {
 						this.currentRoute = null
 				}
 			},
-			immediate: true
-		}
-	}
+			immediate: true,
+		},
+	},
 }
 </script>
 

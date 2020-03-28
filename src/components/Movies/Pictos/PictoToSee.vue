@@ -23,7 +23,7 @@
 
 <script>
 export default {
-	name: 'PictoToSee'
+	name: 'PictoToSee',
 }
 </script>
 

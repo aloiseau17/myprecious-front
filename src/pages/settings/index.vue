@@ -48,7 +48,7 @@ export default {
 	layout: 'form',
 	data() {
 		return {
-			orderSelected: null
+			orderSelected: null,
 		}
 	},
 	computed: {
@@ -67,7 +67,7 @@ export default {
 				'__' +
 				this.user.user_options.list_order
 			).toLowerCase()
-		}
+		},
 	},
 	mounted() {
 		this.orderSelected = this.order
@@ -77,7 +77,7 @@ export default {
 			let newData = this.orderSelected.split('__')
 			let data = {
 				list_order_by: newData[0],
-				list_order: newData[1]
+				list_order: newData[1],
 			}
 			await this.$store.dispatch('user/updateSettings', data)
 			await this.$auth.fetchUser() // update auth store
@@ -86,9 +86,9 @@ export default {
 			this.$store.dispatch('movies/resetMoviesList')
 			// redirect to last page
 			this.$router.push({
-				path: this.$store.getters['navigation/getSavedPage']['path']
+				path: this.$store.getters['navigation/getSavedPage']['path'],
 			})
-		}
-	}
+		},
+	},
 }
 </script>

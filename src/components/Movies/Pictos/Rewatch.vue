@@ -10,6 +10,6 @@
 
 <script>
 export default {
-	name: 'Rewatch'
+	name: 'Rewatch',
 }
 </script>

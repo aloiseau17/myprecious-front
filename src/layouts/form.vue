@@ -11,7 +11,7 @@
 import MainMenu from '~/components/Navigation/MainMenu'
 
 export default {
-	components: { MainMenu }
+	components: { MainMenu },
 }
 </script>
 

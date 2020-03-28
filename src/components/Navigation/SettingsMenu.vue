@@ -20,7 +20,7 @@
 				width="20"
 				height="10"
 				viewBox="0 0 46.7 26.5"
-				style="enable-background:new 0 0 46.7 26.5;"
+				style="enable-background: new 0 0 46.7 26.5;"
 				xml:space="preserve"
 			>
 				<polygon class="picto__background" points="0,0 46.7,0 23.3,26.5 " />
@@ -61,16 +61,16 @@ export default {
 	name: 'SettingsMenu',
 	data() {
 		return {
-			opened: false
+			opened: false,
 		}
 	},
 	computed: {
 		menuState() {
 			return {
 				opened: this.opened,
-				closed: !this.opened
+				closed: !this.opened,
 			}
-		}
+		},
 	},
 	methods: {
 		logout() {
@@ -79,8 +79,8 @@ export default {
 		toggleMenu() {
 			// console.log(window.innerWidth)
 			if (window.innerWidth < 992) this.opened = !this.opened
-		}
-	}
+		},
+	},
 }
 </script>
 

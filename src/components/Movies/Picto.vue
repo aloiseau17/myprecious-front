@@ -18,18 +18,18 @@ export default {
 		PictoToSee,
 		PictoSeen,
 		PictoFantastic,
-		PictoBad
+		PictoBad,
 	},
 	props: {
 		type: {
 			type: String,
-			required: true
+			required: true,
 		},
 		active: {
 			type: Boolean,
-			default: true
-		}
-	}
+			default: true,
+		},
+	},
 }
 </script>
 

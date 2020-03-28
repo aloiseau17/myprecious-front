@@ -1,4 +1,4 @@
-const minutesConvert = min => {
+const minutesConvert = (min) => {
 	if (!min) return false
 
 	let num = min
@@ -9,7 +9,7 @@ const minutesConvert = min => {
 
 	return {
 		hours: rhours,
-		minutes: rminutes
+		minutes: rminutes,
 	}
 }
 

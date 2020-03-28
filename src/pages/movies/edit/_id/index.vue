@@ -231,16 +231,16 @@ export default {
 	layout: 'form',
 	components: {
 		'el-autocomplete': Autocomplete,
-		'edit-poster': EditPoster
+		'edit-poster': EditPoster,
 	},
 	mixins: [GetMoviesData],
 	async asyncData({ route, $axios }) {
 		let movie = await $axios
 			.$get('/api/movies/' + route.params.id)
-			.then(res => {
+			.then((res) => {
 				return res
 			})
-			.catch(error => console.log(error))
+			.catch((error) => console.log(error))
 
 		return {
 			movieId: movie.id,
@@ -248,7 +248,7 @@ export default {
 			director: movie.director ? movie.director.name : null,
 			types:
 				movie.types.length > 0
-					? movie.types.map(type => type.name).join(';')
+					? movie.types.map((type) => type.name).join(';')
 					: null,
 			image: movie.image,
 			seen: movie.seen ? true : false,
@@ -258,20 +258,20 @@ export default {
 			file_remove: null,
 			poster_link: null,
 			duration: movie.duration,
-			actor: movie.actor
+			actor: movie.actor,
 		}
 	},
 	data() {
 		return {
 			errors: null,
-			loading: false
+			loading: false,
 		}
 	},
 	watch: {
 		title(newData) {
 			// reset filePrewiew on movie change
 			if (!newData) this.$emit('resetFilePreview', true)
-		}
+		},
 	},
 	methods: {
 		async updateMovie() {
@@ -313,8 +313,8 @@ export default {
 			this.possessionState === value
 				? (this.possessionState = 'empty')
 				: (this.possessionState = value)
-		}
-	}
+		},
+	},
 }
 </script>
 

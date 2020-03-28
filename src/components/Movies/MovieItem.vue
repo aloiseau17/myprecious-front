@@ -42,20 +42,20 @@ export default {
 	props: {
 		movie: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		rewatch: {
 			type: Boolean,
-			default: false
-		}
+			default: false,
+		},
 	},
 	computed: {
 		image() {
 			return this.movie.image
 				? process.env.POSTER_STORAGE_URL + this.movie.image
 				: '/images/poster_default.png'
-		}
-	}
+		},
+	},
 }
 </script>
 

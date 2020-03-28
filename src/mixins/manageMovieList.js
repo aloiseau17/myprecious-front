@@ -6,7 +6,7 @@ export default {
 
 			let movies = await this.$store.dispatch('movies/fetchMovies', {
 				params,
-				newFirstRandom
+				newFirstRandom,
 			})
 
 			return movies
@@ -23,10 +23,10 @@ export default {
 				let params = Object.assign({}, this.defaultParams, filterValues)
 
 				this.$store.dispatch('movies/fetchNextPage', {
-					params
+					params,
 				})
 			}
-		}
+		},
 	},
 	mounted() {
 		this.scroll()
@@ -37,8 +37,8 @@ export default {
 		// has access to `this` component instance.
 		this.$store.dispatch('navigation/savePage', {
 			path: from.path,
-			query: this.lastQueryParams
+			query: this.lastQueryParams,
 		})
 		next()
-	}
+	},
 }

@@ -3,7 +3,7 @@ export const state = () => ({
 	defaultParams: {},
 	firstRewatch: null,
 	lastPage: 1,
-	movies: []
+	movies: [],
 })
 
 export const mutations = {
@@ -22,7 +22,7 @@ export const mutations = {
 	setMovies(state, data) {
 		if (data.push) state.movies = state.movies.concat(data.movies)
 		else state.movies = data.movies
-	}
+	},
 }
 
 export const actions = {
@@ -30,7 +30,7 @@ export const actions = {
 		// empty movies list before fetch one fantasticMovie
 		// prevent duplicate key
 		commit('setMovies', {
-			movies: []
+			movies: [],
 		})
 
 		await this.$axios
@@ -39,15 +39,15 @@ export const actions = {
 					number: 1,
 					seen: 1,
 					rating: 'fantastic',
-					random: '1'
-				}
+					random: '1',
+				},
 			})
-			.then(res => {
+			.then((res) => {
 				if (!res.data) return
 
 				commit('setFirstRewatch', res.data[0])
 			})
-			.catch(error => console.log(error))
+			.catch((error) => console.log(error))
 	},
 	async fetchMovies({ commit, dispatch, state }, data) {
 		let params = Object.assign({}, data.params)
@@ -60,36 +60,36 @@ export const actions = {
 
 		params = await dispatch('setDefaultParams', {
 			params,
-			defaultParams: state.defaultParams
+			defaultParams: state.defaultParams,
 		})
 
 		return await this.$axios
 			.$get('/api/movies/search', {
-				params
+				params,
 			})
-			.then(res => {
+			.then((res) => {
 				commit('setCurrentPage', 1)
 
 				if (!res.data) {
 					commit('setLastPage', 1)
 					commit('setMovies', {
-						movies: []
+						movies: [],
 					})
 				} else {
 					commit('setLastPage', res.last_page)
 					commit('setMovies', {
-						movies: res.data
+						movies: res.data,
 					})
 				}
 				return res.data
 			})
-			.catch(error => console.log(error))
+			.catch((error) => console.log(error))
 	},
 	async fetchNextPage({ commit, dispatch, state }, data) {
 		let params = Object.assign({}, data.params)
 		params = await dispatch('setDefaultParams', {
 			params,
-			defaultParams: state.defaultParams
+			defaultParams: state.defaultParams,
 		})
 
 		if (state.currentPage >= state.lastPage) return
@@ -98,38 +98,38 @@ export const actions = {
 
 		await this.$axios
 			.$get('/api/movies/search', {
-				params
+				params,
 			})
-			.then(res => {
+			.then((res) => {
 				if (!res.data) return
 
 				commit('setCurrentPage', res.current_page)
 				commit('setLastPage', res.last_page)
 				commit('setMovies', {
 					movies: res.data,
-					push: true
+					push: true,
 				})
 			})
-			.catch(error => console.log(error))
+			.catch((error) => console.log(error))
 	},
 	async filterMovies({ commit }, params) {
 		await this.$axios
 			.$get('/api/movies/search', {
-				params
+				params,
 			})
-			.then(res => {
+			.then((res) => {
 				commit('setFirstRewatch', null) // no firstRewatch on filter
 				commit('setCurrentPage', res.current_page)
 				commit('setLastPage', res.last_page)
 				commit('setMovies', res.data)
 			})
-			.catch(error => console.log(error))
+			.catch((error) => console.log(error))
 	},
 	resetMoviesList({ commit }) {
 		commit('setCurrentPage', 0)
 		commit('setLastPage', 1)
 		commit('setMovies', {
-			movies: []
+			movies: [],
 		})
 	},
 	setDefaultParams(context, data) {
@@ -145,7 +145,7 @@ export const actions = {
 				: null
 
 		return data.params
-	}
+	},
 }
 
 export const getters = {
@@ -155,9 +155,9 @@ export const getters = {
 	getFirstRewatch(state) {
 		return state.firstRewatch
 	},
-	getMovies: state => (withRewatch = false) => {
+	getMovies: (state) => (withRewatch = false) => {
 		return withRewatch && state.firstRewatch
 			? [state.firstRewatch, ...state.movies]
 			: state.movies
-	}
+	},
 }

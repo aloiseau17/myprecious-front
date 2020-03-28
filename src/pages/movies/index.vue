@@ -38,7 +38,7 @@ export default {
 		// and then pagination and filter
 		const defaultParams = {
 			number: 10,
-			seen: 1
+			seen: 1,
 		}
 
 		let hasMovies = false
@@ -52,29 +52,29 @@ export default {
 		if (!hasMovies)
 			await store.dispatch('movies/fetchMovies', {
 				params: defaultParams,
-				newFirstRandom: true
+				newFirstRandom: true,
 			})
 
 		return {
-			defaultParams
+			defaultParams,
 		}
 	},
 	data() {
 		return {
-			defaultParams: {}
+			defaultParams: {},
 		}
 	},
 	computed: {
 		...mapState('movies', ['currentPage', 'lastPage']),
 		movies() {
 			return this.$store.getters['movies/getMovies'](true)
-		}
+		},
 	},
 	methods: {
 		async beforeFilterMovies(data) {
 			const resetFirstRewatch = Object.keys(data).length === 0
 			await this.filterMovies(data, resetFirstRewatch)
-		}
-	}
+		},
+	},
 }
 </script>

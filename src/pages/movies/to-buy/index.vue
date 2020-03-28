@@ -37,7 +37,7 @@ export default {
 		// and then pagination and filter
 		const defaultParams = {
 			number: 10,
-			possession_state: 'to_own'
+			possession_state: 'to_own',
 		}
 
 		let hasMovies = false
@@ -50,20 +50,25 @@ export default {
 		// If there isn't movies, proceed fresh request
 		if (!hasMovies)
 			await store.dispatch('movies/fetchMovies', {
-				params: defaultParams
+				params: defaultParams,
 			})
 
 		return {
-			defaultParams
+			defaultParams,
 		}
 	},
 	data() {
 		return {
-			defaultParams: {}
+			defaultParams: {},
 		}
 	},
 	computed: {
-		...mapState('movies', ['movies', 'firstRewatch', 'currentPage', 'lastPage'])
-	}
+		...mapState('movies', [
+			'movies',
+			'firstRewatch',
+			'currentPage',
+			'lastPage',
+		]),
+	},
 }
 </script>

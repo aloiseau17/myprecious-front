@@ -1,6 +1,6 @@
-export default function({ $axios }) {
+export default function ({ $axios }) {
 	// Return status codes along side with data
-	$axios.onResponse(res => {
+	$axios.onResponse((res) => {
 		if (res.data) res.data.status = res.status
 		else {
 			res.data = {}

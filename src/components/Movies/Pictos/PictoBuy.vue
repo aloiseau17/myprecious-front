@@ -29,7 +29,7 @@
 
 <script>
 export default {
-	name: 'PictoBuy'
+	name: 'PictoBuy',
 }
 </script>
 

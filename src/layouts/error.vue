@@ -34,8 +34,8 @@ export default {
 	props: {
 		error: {
 			type: Object,
-			default: null
-		}
+			default: null,
+		},
 	},
 	computed: {
 		statusCode() {
@@ -43,7 +43,7 @@ export default {
 		},
 		message() {
 			return this.error.message || `<%= messages.client_error %>`
-		}
+		},
 	},
 	head() {
 		return {
@@ -52,11 +52,11 @@ export default {
 				{
 					name: 'viewport',
 					content:
-						'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no'
-				}
-			]
+						'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no',
+				},
+			],
 		}
-	}
+	},
 }
 </script>
 

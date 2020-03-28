@@ -29,13 +29,13 @@ export default {
 	layout: 'form',
 	components: {
 		'email-form': EmailForm,
-		'password-form': PasswordForm
+		'password-form': PasswordForm,
 	},
 	computed: {
 		lastPage() {
 			return this.$store.getters['navigation/getSavedPage']
-		}
-	}
+		},
+	},
 }
 </script>
 

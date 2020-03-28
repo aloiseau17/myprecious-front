@@ -87,18 +87,18 @@ export default {
 	async asyncData({ route, $axios }) {
 		let movie = await $axios
 			.$get('/api/movies/' + route.params.id)
-			.then(res => {
+			.then((res) => {
 				return res
 			})
-			.catch(error => console.log(error))
+			.catch((error) => console.log(error))
 
 		return {
-			movie
+			movie,
 		}
 	},
 	data() {
 		return {
-			movie: null
+			movie: null,
 		}
 	},
 	computed: {
@@ -109,8 +109,8 @@ export default {
 		},
 		lastPage() {
 			return this.$store.getters['navigation/getSavedPage']
-		}
-	}
+		},
+	},
 }
 </script>
 

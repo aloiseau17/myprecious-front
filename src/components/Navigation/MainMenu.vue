@@ -157,7 +157,7 @@ import SettingsMenu from '~/components/Navigation/SettingsMenu'
 
 export default {
 	name: 'MainMenu',
-	components: { SettingsMenu }
+	components: { SettingsMenu },
 }
 </script>
 

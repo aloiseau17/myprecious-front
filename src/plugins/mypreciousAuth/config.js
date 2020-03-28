@@ -5,23 +5,23 @@ export const CONFIG = {
 			login: {
 				url: '/api/login',
 				method: 'post',
-				propertyName: null
+				propertyName: null,
 				// Default propertyName not required here to get url response data
 				// if set only propertyName is return on $auth.request()
 			},
 			logout: {
 				url: '/api/logout',
-				method: 'post'
+				method: 'post',
 			},
 			user: {
 				url: '/api/user',
 				method: 'get',
-				propertyName: ''
+				propertyName: '',
 			},
 			refreshToken: {
 				url: '/api/refresh-login',
-				method: 'post'
-			}
+				method: 'post',
+			},
 		},
 		accessTokenKey: 'access_token',
 		expireInKey: 'expires_in',
@@ -30,6 +30,6 @@ export const CONFIG = {
 		refreshTokenKey: 'refresh_token',
 		tokenName: 'Authorization',
 		tokenRequired: true,
-		tokenType: 'Bearer'
-	}
+		tokenType: 'Bearer',
+	},
 }

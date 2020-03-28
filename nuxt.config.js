@@ -18,9 +18,9 @@ module.exports = {
 		meta: [
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
-			{ hid: 'description', name: 'description', content: pkg.description }
+			{ hid: 'description', name: 'description', content: pkg.description },
 		],
-		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
 	},
 
 	/*
@@ -41,7 +41,7 @@ module.exports = {
 		'~/plugins/appHelpers/helpers',
 		'~/plugins/theMovieDatabase/index',
 		'~/plugins/Axios',
-		{ src: '~/plugins/Vuelidate', ssr: false }
+		{ src: '~/plugins/Vuelidate', ssr: false },
 	],
 
 	/*
@@ -54,10 +54,10 @@ module.exports = {
 		[
 			'@nuxtjs/dotenv',
 			{
-				filename: dotEnvFilename
-			}
+				filename: dotEnvFilename,
+			},
 		],
-		'@nuxtjs/style-resources'
+		'@nuxtjs/style-resources',
 	],
 	/*
 	 ** Axios module configuration
@@ -65,7 +65,7 @@ module.exports = {
 	axios: {
 		// See https://github.com/nuxt-community/axios-module#options
 		baseURL: process.env.API_URL, // TODO env
-		debug: true
+		debug: true,
 	},
 
 	/*
@@ -77,16 +77,16 @@ module.exports = {
 			login: '/login',
 			logout: '/',
 			callback: '/login',
-			home: '/movies'
+			home: '/movies',
 		},
 		defaultStrategy: 'myprecious',
 		strategies: {
 			local: false,
 			resetOnError: true,
 			myprecious: {
-				_scheme: '~/plugins/mypreciousAuth/mypreciousScheme.js'
-			}
-		}
+				_scheme: '~/plugins/mypreciousAuth/mypreciousScheme.js',
+			},
+		},
 	},
 
 	/*
@@ -96,15 +96,15 @@ module.exports = {
 		scss: [
 			'@/assets/scss/abstracts/_variables.scss',
 			'@/assets/scss/abstracts/_placeholders.scss',
-			'@/assets/scss/abstracts/_mixins.scss'
-		]
+			'@/assets/scss/abstracts/_mixins.scss',
+		],
 	},
 
 	/*
 	 ** Router configuration
 	 */
 	router: {
-		middleware: ['auth']
+		middleware: ['auth'],
 	},
 
 	/*
@@ -121,10 +121,10 @@ module.exports = {
 					enforce: 'pre',
 					test: /\.(js|vue)$/,
 					loader: 'eslint-loader',
-					exclude: [path.resolve(__dirname, 'www'), /(node_modules)/]
+					exclude: [path.resolve(__dirname, 'www'), /(node_modules)/],
 				})
 			}
-		}
+		},
 	},
 
 	env: {
@@ -134,6 +134,6 @@ module.exports = {
 		POSTER_STORAGE_URL: process.env.POSTER_STORAGE_URL,
 		TMDB_URL: process.env.TMDB_URL,
 		TMDB_KEY: process.env.TMDB_KEY,
-		TMDB_IMAGE_PATH: process.env.TMDB_IMAGE_PATH
-	}
+		TMDB_IMAGE_PATH: process.env.TMDB_IMAGE_PATH,
+	},
 }

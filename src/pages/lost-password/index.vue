@@ -62,13 +62,13 @@ export default {
 			sent: false,
 			email: null,
 			error: null,
-			isloading: false
+			isloading: false,
 		}
 	},
 	validations: {
 		email: {
-			required
-		}
+			required,
+		},
 	},
 	methods: {
 		async reset() {
@@ -82,7 +82,7 @@ export default {
 
 			let data = {
 				email: this.email,
-				url: process.env.APP_URL + '/reset-password'
+				url: process.env.APP_URL + '/reset-password',
 			}
 
 			await this.$axios
@@ -94,7 +94,7 @@ export default {
 				.catch(() => {
 					// console.log(error.response.data)
 				})
-		}
-	}
+		},
+	},
 }
 </script>

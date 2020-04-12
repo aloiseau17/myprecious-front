@@ -184,14 +184,12 @@ export default {
 	position: fixed;
 	top: 0;
 	left: 0;
-
 	width: 100%;
 	height: 100vh;
 	max-height: 100vh;
 	padding: 60px 35px;
-
-	background-color: $third-color;
 	overflow: auto;
+	background-color: $third-color;
 
 	transform: translateY(100vh);
 	transition: transform 0.5s ease-out;
@@ -217,11 +215,11 @@ export default {
 		@extend %reset-button;
 
 		position: fixed;
-		left: 0;
 		bottom: 0;
+		left: 0;
+		width: 100%;
 
 		height: $filter-height;
-		width: 100%;
 		background-color: $light-base;
 		border-top: 4px solid $third-color;
 
@@ -230,8 +228,8 @@ export default {
 		}
 
 		@include mq('laptop') {
-			bottom: 20px;
 			right: 40px;
+			bottom: 20px;
 			left: auto;
 			width: auto;
 			height: auto;

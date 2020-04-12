@@ -68,9 +68,8 @@ export default {
 	padding: 20% 20px 0;
 
 	@include mq('laptop') {
-		padding-left: 30px;
 		padding-right: 30px;
-
+		padding-left: 30px;
 		transition: transform 0.3s;
 
 		@include on-event {
@@ -80,9 +79,9 @@ export default {
 
 	&__title {
 		color: $second-color;
+		font-weight: 600;
 		font-size: 16px;
 		text-transform: uppercase;
-		font-weight: 600;
 	}
 
 	&__content {
@@ -103,8 +102,8 @@ export default {
 
 	&__picto {
 		display: flex;
-		padding: 0;
 		margin: 0;
+		padding: 0;
 		list-style: none;
 
 		&__item {
@@ -123,8 +122,8 @@ export default {
 
 .rating {
 	position: absolute;
-	bottom: 0;
 	right: 0;
+	bottom: 0;
 
 	&.fantastic {
 		transform: translate(60%, 3px) rotate(25deg);

@@ -9,8 +9,8 @@
 a {
 	color: $main-color;
 	text-decoration: none;
-	transition: color .3s;
 	cursor: pointer;
+	transition: color 0.3s;
 
 	@include on-event {
 		text-decoration: underline;

@@ -47,8 +47,8 @@ export default {
 .default-page {
 	&.app {
 		position: relative;
-		padding-bottom: $filter-height;
 		z-index: 0;
+		padding-bottom: $filter-height;
 
 		@include mq('tablet') {
 			padding-bottom: 0;
@@ -63,8 +63,8 @@ export default {
 		// z-index: -2;
 
 		&__title {
-			text-align: center;
 			margin: 50px auto 35px;
+			text-align: center;
 		}
 
 		&__list {
@@ -72,9 +72,9 @@ export default {
 			flex-direction: row;
 			flex-wrap: wrap;
 			justify-content: flex-start;
+			margin: 0 auto 35px;
 
 			padding: 0 $list_padding;
-			margin: 0 auto 35px;
 			list-style: none;
 
 			@function content_max_width($number) {

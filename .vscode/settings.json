@@ -1,19 +1,11 @@
 {
-	"eslint.validate": [
-		{
-			"language": "vue",
-			"autoFix": true
-		},
-		{
-			"language": "javascript",
-			"autoFix": true
-		},
-		{
-			"language": "javascriptreact",
-			"autoFix": true
-		}
-	],
-	"eslint.autoFixOnSave": true,
-	"editor.formatOnSave": false,
-	"vetur.validation.template": false
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"files.eol": "\n",
+	"files.encoding": "utf8",
+	"files.trimTrailingWhitespace": true,
+	"files.trimFinalNewlines": true
 }

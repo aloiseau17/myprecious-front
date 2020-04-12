@@ -127,6 +127,8 @@ module.exports = {
 		},
 	},
 
+	buildModules: [['@nuxtjs/stylelint-module', { fix: true }]],
+
 	env: {
 		APP_URL: process.env.APP_URL,
 		APP_LANG: process.env.APP_LANG,

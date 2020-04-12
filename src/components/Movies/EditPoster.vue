@@ -135,9 +135,9 @@ export default {
 	&__remove {
 		display: inline-block;
 		flex: 1;
-		padding-left: 10px;
-		margin: 0;
 		align-self: flex-end;
+		margin: 0;
+		padding-left: 10px;
 		cursor: pointer;
 	}
 }

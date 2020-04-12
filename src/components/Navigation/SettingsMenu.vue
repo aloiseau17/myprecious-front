@@ -123,18 +123,16 @@ export default {
 		position: absolute;
 		top: 0;
 		left: 0;
-
+		z-index: 350;
 		display: block;
 		width: 100%;
 		height: 100vh;
+		margin: 0;
 
 		padding: 100px 40px 40px;
-		margin: 0;
 		list-style: none;
 
 		background-color: $third-color;
-		z-index: 350;
-
 		transition: transform 0.3s ease-in-out;
 
 		@include mq('laptop') {
@@ -142,18 +140,17 @@ export default {
 			right: 0;
 			left: auto;
 
+			z-index: -1;
 			width: 250px;
 			height: auto;
 
 			padding: 15px;
-
-			z-index: -1;
 		}
 	}
 
 	&__item {
-		text-align: center;
 		margin-bottom: 30px;
+		text-align: center;
 
 		@include mq('laptop') {
 			margin-bottom: 20px;
@@ -165,11 +162,11 @@ export default {
 
 		@include mq('laptop') {
 			display: flex;
-			justify-content: center;
 			align-items: center;
+			justify-content: center;
 			height: 100%;
-			background: $light-base;
 			padding: 20px;
+			background: $light-base;
 
 			.picto {
 				display: inline-block;
@@ -184,9 +181,9 @@ export default {
 	}
 
 	a {
+		font-weight: 300;
 		font-size: 22px;
 		text-transform: uppercase;
-		font-weight: 300;
 
 		@include on-event {
 			text-decoration: none;
@@ -197,9 +194,8 @@ export default {
 		}
 
 		&:not(.btn) {
-			border-top: 6px solid transparent;
 			padding-top: 7px;
-
+			border-top: 6px solid transparent;
 			transition: border 0.3s linear;
 
 			&.nuxt-link-exact-active {
@@ -221,9 +217,8 @@ export default {
 	position: absolute;
 	top: 0;
 	left: 0;
-
-	padding: 12px;
 	z-index: 150;
+	padding: 12px;
 
 	@include mq('laptop') {
 		display: none;

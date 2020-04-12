@@ -111,10 +111,10 @@ export default {
 
 <style scoped lang="scss">
 .content {
-	flex: 1;
-
 	display: flex;
+	flex: 1;
 	flex-direction: column;
+	color: red;
 
 	@include mq('tablet') {
 		width: 300px;

@@ -124,16 +124,16 @@ export default {
 
 	&__title {
 		color: $light-base;
+		font-weight: 600;
 		font-size: 22px;
 		text-transform: uppercase;
-		font-weight: 600;
 	}
 
 	&__image {
 		position: relative;
 		display: inline-block;
-		margin: 0 auto;
 		max-width: 150px;
+		margin: 0 auto;
 
 		&__wrapper {
 			text-align: center;
@@ -152,11 +152,9 @@ export default {
 					position: absolute;
 					top: 0;
 					left: 0;
-
 					display: block;
 					width: 100%;
 					height: 100%;
-
 					transform: translateY(10px);
 				}
 			}
@@ -172,10 +170,10 @@ export default {
 	&__picto {
 		display: flex;
 		flex-direction: row;
-		padding: 0;
-		margin: 20px 0;
-		list-style: none;
 		justify-content: center;
+		margin: 20px 0;
+		padding: 0;
+		list-style: none;
 
 		@include mq('laptop') {
 			display: block;
@@ -199,9 +197,9 @@ export default {
 	}
 
 	&__infos {
-		list-style: none;
 		padding: 0;
 		font-weight: 300;
+		list-style: none;
 
 		strong {
 			font-weight: 600;
@@ -223,8 +221,8 @@ export default {
 
 .rating {
 	position: absolute;
-	bottom: 0;
 	right: 0;
+	bottom: 0;
 
 	&.fantastic {
 		transform: translate(60%, 3px) rotate(25deg);

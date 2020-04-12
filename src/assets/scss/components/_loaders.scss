@@ -4,18 +4,18 @@
 	height: 64px;
 
 	&:after {
-		content: ' ';
 		display: block;
 		width: 80%;
 		height: 80%;
 		margin: 1px;
-		border-radius: 50%;
-		border-width: 5px;
 		border-style: solid;
-		border-left-color: transparent;
-		border-right-color: transparent;
+		border-width: 5px;
 		border-top-color: $main-color;
+		border-right-color: transparent;
 		border-bottom-color: $main-color;
+		border-left-color: transparent;
+		border-radius: 50%;
 		animation: rotation 1.2s linear infinite;
+		content: ' ';
 	}
 }

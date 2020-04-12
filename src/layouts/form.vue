@@ -17,12 +17,12 @@ export default {
 
 <style lang="scss">
 .form-page {
-	min-height: 100vh;
-	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	justify-content: strech;
 	align-items: strech;
+	justify-content: strech;
+	height: 100vh;
+	min-height: 100vh;
 
 	.app {
 		position: relative;
@@ -40,19 +40,18 @@ export default {
 	}
 
 	.content {
-		flex: 1 1 auto;
-
 		display: flex;
+		flex: 1 1 auto;
 		flex-direction: row;
-		justify-content: center;
 		align-items: center;
+		justify-content: center;
 
 		padding: 20px 30px;
 		background-color: $third-color;
 
 		&__title {
-			text-align: center;
 			margin: 0 0 20px;
+			text-align: center;
 
 			@include mq('laptop') {
 				margin-bottom: 120px;

@@ -166,10 +166,8 @@ export default {
 	display: flex;
 	width: 100%;
 	height: $menu_height;
-
-	transition: border-color 0.3s;
-
 	border-top: 6px solid $main-color;
+	transition: border-color 0.3s;
 
 	&.buy {
 		border-color: $buy-color;
@@ -191,23 +189,23 @@ export default {
 
 	@include mq('laptop') {
 		position: relative;
+		z-index: 100;
 		flex-direction: row-reverse;
-		border-top: none;
 		height: $menu_height_md;
 		background-color: $light-base;
-		z-index: 100;
+		border-top: none;
 	}
 
 	&__pages {
 		display: flex;
+
+		flex: 1;
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
-
-		flex: 1;
+		margin: 0;
 
 		padding: 0;
-		margin: 0;
 		list-style: none;
 
 		@include mq('laptop') {
@@ -219,8 +217,8 @@ export default {
 	&__item {
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
 		align-items: center;
+		justify-content: center;
 
 		width: 20%;
 		height: 100%;
@@ -269,11 +267,11 @@ export default {
 
 		&__label {
 			display: none;
-			vertical-align: middle;
+			font-weight: 300;
 
 			font-size: 16px;
-			font-weight: 300;
 			text-transform: uppercase;
+			vertical-align: middle;
 
 			@include mq('laptop') {
 				display: inline-block;
@@ -297,16 +295,16 @@ export default {
 
 			a,
 			span {
-				cursor: pointer;
 				color: $light-base;
+				cursor: pointer;
 			}
 		}
 	}
 }
 
 .logo {
-	min-height: 40px;
 	height: 100%;
+	min-height: 40px;
 
 	&__wrapper {
 		display: none;

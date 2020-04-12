@@ -62,19 +62,17 @@ export default {
 
 <style scoped lang="scss">
 .error-page {
-	padding: 1rem;
-	text-align: center;
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-
 	position: absolute;
 	top: 0;
-	left: 0;
 	right: 0;
 	bottom: 0;
+	left: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem;
+	text-align: center;
 
 	&__icon {
 		display: block;
@@ -83,14 +81,13 @@ export default {
 	}
 
 	&__title {
+		display: inline-block;
+		margin: 0 auto;
 		color: $text-color;
 		font-weight: 300;
 		font-size: 24px;
-		text-transform: uppercase;
 		text-align: center;
-
-		display: inline-block;
-		margin: 0 auto;
+		text-transform: uppercase;
 
 		@include mq('laptop') {
 			font-size: 29px;

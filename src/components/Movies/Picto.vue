@@ -1,5 +1,5 @@
 <template>
-	<component :is="'picto-' + type" :class="{ active: active }" />
+  <component :is="'picto-' + type" :class="{ active: active }" />
 </template>
 
 <script>
@@ -11,34 +11,34 @@ import PictoFantastic from '~/components/Movies/Pictos/PictoFantastic'
 import PictoBad from '~/components/Movies/Pictos/PictoBad'
 
 export default {
-	name: 'Picto',
-	components: {
-		PictoOwn,
-		'picto-to_own': PictoBuy,
-		PictoToSee,
-		PictoSeen,
-		PictoFantastic,
-		PictoBad,
-	},
-	props: {
-		type: {
-			type: String,
-			required: true,
-		},
-		active: {
-			type: Boolean,
-			default: true,
-		},
-	},
+  name: 'Picto',
+  components: {
+    PictoOwn,
+    'picto-to_own': PictoBuy,
+    PictoToSee,
+    PictoSeen,
+    PictoFantastic,
+    PictoBad,
+  },
+  props: {
+    type: {
+      type: String,
+      required: true,
+    },
+    active: {
+      type: Boolean,
+      default: true,
+    },
+  },
 }
 </script>
 
 <style scoped lang="scss">
 .picto {
-	fill: $third-color;
+  fill: $third-color;
 
-	&__background {
-		transition: fill 0.3s linear;
-	}
+  &__background {
+    transition: fill 0.3s linear;
+  }
 }
 </style>

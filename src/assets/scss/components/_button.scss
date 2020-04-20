@@ -1,69 +1,69 @@
 .btn {
-	@extend %reset-button;
+  @extend %reset-button;
 
-	display: inline-block;
+  display: inline-block;
 
-	padding: 5px 8px;
-	color: $light-base;
-	font-weight: 300;
-	font-size: 22px;
-	text-transform: uppercase;
-	background-color: $second-color;
+  padding: 5px 8px;
+  color: $light-base;
+  font-weight: 300;
+  font-size: 22px;
+  text-transform: uppercase;
+  background-color: $second-color;
 
-	border: 2px solid transparent;
-	cursor: pointer;
-	transition: border 0.3s, color 0.3s, background 0.3s;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border 0.3s, color 0.3s, background 0.3s;
 
-	@include on-event {
-		color: $second-color;
-		text-decoration: none;
-		background-color: $light-base;
-		border-color: $second-color;
-	}
+  @include on-event {
+    color: $second-color;
+    text-decoration: none;
+    background-color: $light-base;
+    border-color: $second-color;
+  }
 
-	&--light {
-		color: $main-color;
-		font-weight: 600;
-		background-color: $light-base;
-	}
+  &--light {
+    color: $main-color;
+    font-weight: 600;
+    background-color: $light-base;
+  }
 
-	.lds-dual-ring {
-		display: inline-block;
-		width: 15px;
-		height: 15px;
+  .lds-dual-ring {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
 
-		&:after {
-			border-width: 2px;
-			border-top-color: $light-base;
-			border-bottom-color: $light-base;
-		}
-	}
+    &:after {
+      border-width: 2px;
+      border-top-color: $light-base;
+      border-bottom-color: $light-base;
+    }
+  }
 
-	&[disable] {
-		color: $light-base;
-		background-color: $settings-color;
-		border-color: transparent;
-		cursor: pointer;
-	}
+  &[disable] {
+    color: $light-base;
+    background-color: $settings-color;
+    border-color: transparent;
+    cursor: pointer;
+  }
 }
 
 .back-btn {
-	@extend %reset-button;
-	cursor: pointer;
+  @extend %reset-button;
+  cursor: pointer;
 
-	img {
-		display: block;
-		width: 26px;
-		height: 30px;
-	}
+  img {
+    display: block;
+    width: 26px;
+    height: 30px;
+  }
 
-	&__wrapper {
-		margin-bottom: 30px;
+  &__wrapper {
+    margin-bottom: 30px;
 
-		@include mq('tablet') {
-			position: absolute;
-			top: auto;
-			left: 5%;
-		}
-	}
+    @include mq('tablet') {
+      position: absolute;
+      top: auto;
+      left: 5%;
+    }
+  }
 }

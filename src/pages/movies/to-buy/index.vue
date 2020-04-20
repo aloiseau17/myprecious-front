@@ -1,23 +1,23 @@
 <template>
-	<div>
-		<div class="content__title">
-			<h1>Movies to buy</h1>
-		</div>
+  <div>
+    <div class="content__title">
+      <h1>Movies to buy</h1>
+    </div>
 
-		<ul v-if="movies.length" class="content__list">
-			<li v-for="movie in movies" :key="movie.id" class="content__list__item">
-				<MovieItem :movie="movie" />
-			</li>
-		</ul>
+    <ul v-if="movies.length" class="content__list">
+      <li v-for="movie in movies" :key="movie.id" class="content__list__item">
+        <MovieItem :movie="movie" />
+      </li>
+    </ul>
 
-		<!-- No content -->
-		<p v-if="!movies.length">
-			No movies found.
-		</p>
+    <!-- No content -->
+    <p v-if="!movies.length">
+      No movies found.
+    </p>
 
-		<!-- Filters -->
-		<Filters @filter-movies="filterMovies" />
-	</div>
+    <!-- Filters -->
+    <Filters @filter-movies="filterMovies" />
+  </div>
 </template>
 
 <script>
@@ -27,48 +27,48 @@ import { mapState } from 'vuex'
 import ManageMovieList from '~/mixins/manageMovieList'
 
 export default {
-	components: { MovieItem, Filters },
-	mixins: [ManageMovieList],
-	async asyncData({ store, route }) {
-		// get previous page data
-		let savedPage = store.getters['navigation/getSavedPage']
+  components: { MovieItem, Filters },
+  mixins: [ManageMovieList],
+  async asyncData({ store, route }) {
+    // get previous page data
+    let savedPage = store.getters['navigation/getSavedPage']
 
-		// Define parameters use for first movie catch
-		// and then pagination and filter
-		const defaultParams = {
-			number: 10,
-			possession_state: 'to_own',
-		}
+    // Define parameters use for first movie catch
+    // and then pagination and filter
+    const defaultParams = {
+      number: 10,
+      possession_state: 'to_own',
+    }
 
-		let hasMovies = false
+    let hasMovies = false
 
-		// If last page is the current one
-		// Then get existing movies to avoid new requests
-		if (route.path === savedPage.path)
-			hasMovies = store.getters['movies/hasMovies']
+    // If last page is the current one
+    // Then get existing movies to avoid new requests
+    if (route.path === savedPage.path)
+      hasMovies = store.getters['movies/hasMovies']
 
-		// If there isn't movies, proceed fresh request
-		if (!hasMovies)
-			await store.dispatch('movies/fetchMovies', {
-				params: defaultParams,
-			})
+    // If there isn't movies, proceed fresh request
+    if (!hasMovies)
+      await store.dispatch('movies/fetchMovies', {
+        params: defaultParams,
+      })
 
-		return {
-			defaultParams,
-		}
-	},
-	data() {
-		return {
-			defaultParams: {},
-		}
-	},
-	computed: {
-		...mapState('movies', [
-			'movies',
-			'firstRewatch',
-			'currentPage',
-			'lastPage',
-		]),
-	},
+    return {
+      defaultParams,
+    }
+  },
+  data() {
+    return {
+      defaultParams: {},
+    }
+  },
+  computed: {
+    ...mapState('movies', [
+      'movies',
+      'firstRewatch',
+      'currentPage',
+      'lastPage',
+    ]),
+  },
 }
 </script>

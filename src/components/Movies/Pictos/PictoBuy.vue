@@ -1,20 +1,20 @@
 <template>
-	<svg
-		class="picto buy"
-		version="1.1"
-		xmlns="http://www.w3.org/2000/svg"
-		xmlns:xlink="http://www.w3.org/1999/xlink"
-		x="0px"
-		y="0px"
-		width="20px"
-		height="20px"
-		viewBox="0 0 52.5 100"
-		enable-background="new 0 0 52.5 100"
-		xml:space="preserve"
-	>
-		<path
-			class="picto__background"
-			d="M32.984,86.823c-0.42,0.104-0.732,0.313-0.732,0.835l0.104,10.359c0,1.356-0.627,1.982-1.879,1.982H21.92
+  <svg
+    class="picto buy"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    x="0px"
+    y="0px"
+    width="20px"
+    height="20px"
+    viewBox="0 0 52.5 100"
+    enable-background="new 0 0 52.5 100"
+    xml:space="preserve"
+  >
+    <path
+      class="picto__background"
+      d="M32.984,86.823c-0.42,0.104-0.732,0.313-0.732,0.835l0.104,10.359c0,1.356-0.627,1.982-1.879,1.982H21.92
 			c-1.254,0-1.881-0.626-1.881-1.982l0.105-10.15c0-0.521-0.314-0.835-0.834-0.939C7.516,85.049,0.627,77.951,0.627,67.827v-4.802
 			c0-1.252,0.729-1.982,1.982-1.982h15.344c1.252,0,1.982,0.417,1.982,1.043v1.148c0,3.549,1.984,7.41,6.992,7.41
 			c4.594,0,5.951-3.34,5.951-5.322c0-6.889-16.701-6.68-25.053-12.943C3.652,49.248,0,43.299,0,35.158
@@ -23,20 +23,20 @@
 			c0,1.253-0.73,1.984-1.982,1.984H34.861c-1.252,0-1.982-0.313-1.982-0.836v-0.834c0-3.862-1.775-8.246-7.098-8.246
 			c-3.758,0-6.471,2.191-6.471,5.01c0,5.637,10.959,6.055,19.725,9.812C48.639,48.518,52.5,55.615,52.5,64.383
 			C52.5,76.281,45.611,84.632,32.984,86.823z"
-		/>
-	</svg>
+    />
+  </svg>
 </template>
 
 <script>
 export default {
-	name: 'PictoBuy',
+  name: 'PictoBuy',
 }
 </script>
 
 <style scoped lang="scss">
 .picto {
-	&.active.buy &__background {
-		fill: $buy-color;
-	}
+  &.active.buy &__background {
+    fill: $buy-color;
+  }
 }
 </style>

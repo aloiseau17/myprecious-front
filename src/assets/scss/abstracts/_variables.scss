@@ -5,7 +5,7 @@
 /// Regular font family
 /// @type List
 $text-font: 'Signika', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica',
-	'Arial', sans-serif !default;
+  'Arial', sans-serif !default;
 
 /// Main brand color
 /// @type Color - Blue
@@ -65,10 +65,10 @@ $text-color: $main-color;
 /// @prop {String} keys - Keys are identifiers mapped to a given length
 /// @prop {Map} values - Values are actual breakpoints expressed in pixels
 $breakpoints: (
-	'small': 320px,
-	'tablet': 768px,
-	'laptop': 992px,
-	'desktop': 1024px,
+  'small': 320px,
+  'tablet': 768px,
+  'laptop': 992px,
+  'desktop': 1024px,
 ) !default;
 
 /// Sizes

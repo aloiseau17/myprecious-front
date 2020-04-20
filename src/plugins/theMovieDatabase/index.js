@@ -7,11 +7,11 @@ import axios from 'axios'
 import createRepository from './api/Repository.js'
 
 export default (ctx, inject) => {
-	let instance = axios.create({
-		baseURL: process.env.TMDB_URL,
-	})
+  let instance = axios.create({
+    baseURL: process.env.TMDB_URL,
+  })
 
-	const tmdb = createRepository(instance)
+  const tmdb = createRepository(instance)
 
-	inject('tmdb', tmdb)
+  inject('tmdb', tmdb)
 }

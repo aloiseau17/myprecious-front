@@ -1,31 +1,31 @@
 %reset-button {
-	width: auto;
-	margin: 0;
-	padding: 0;
-	overflow: visible;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
 
-	/* inherit font & color from ancestor */
-	color: inherit;
-	font: inherit;
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
 
-	/* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
-	line-height: normal;
-	background: transparent;
-	border: none;
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+  background: transparent;
+  border: none;
 
-	/* Corrects inability to style clickable `input` types in iOS */
-	-webkit-appearance: none;
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
 
-	/* Corrects font smoothing for webkit */
-	-webkit-font-smoothing: inherit;
-	-moz-osx-font-smoothing: inherit;
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
 }
 
 %reset-link {
-	&,
-	&:hover,
-	&:active,
-	&focus {
-		text-decoration: none;
-	}
+  &,
+  &:hover,
+  &:active,
+  &focus {
+    text-decoration: none;
+  }
 }

@@ -9,34 +9,34 @@
 /// @require $breakpoints
 /// @link https://jonsuh.com/blog/managing-responsive-breakpoints-with-sass-maps/
 @mixin mq($mq-breakpoint, $direction: 'up', $mq-breakpoints: $breakpoints) {
-	// If $mq-breakpoint is a key that exists in
-	// $mq-breakpoints, get and use the value
-	@if map-has-key($mq-breakpoints, $mq-breakpoint) {
-		$mq-breakpoint: map-get($mq-breakpoints, $mq-breakpoint);
+  // If $mq-breakpoint is a key that exists in
+  // $mq-breakpoints, get and use the value
+  @if map-has-key($mq-breakpoints, $mq-breakpoint) {
+    $mq-breakpoint: map-get($mq-breakpoints, $mq-breakpoint);
 
-		@if $direction == up {
-			@media screen and (min-width: #{$mq-breakpoint}) {
-				@content;
-			}
-		} @else if $direction == bottom {
-			@media screen and (max-width: #{$mq-breakpoint}) {
-				@content;
-			}
-		}
-	}
-	// If the key doesn't exist in the map
-	@else {
-		@error "Unfortunately, no value could be retrived from `#{$breakpoints}`. ";
-	}
+    @if $direction == up {
+      @media screen and (min-width: #{$mq-breakpoint}) {
+        @content;
+      }
+    } @else if $direction == bottom {
+      @media screen and (max-width: #{$mq-breakpoint}) {
+        @content;
+      }
+    }
+  }
+  // If the key doesn't exist in the map
+  @else {
+    @error "Unfortunately, no value could be retrived from `#{$breakpoints}`. ";
+  }
 }
 
 /// Make a context based selector a little more friendly
 /// @author Hugo Giraudel
 /// @param {String} $context
 @mixin when-inside($context) {
-	#{$context} & {
-		@content;
-	}
+  #{$context} & {
+    @content;
+  }
 }
 
 /// Event wrapper
@@ -44,49 +44,49 @@
 /// @param {Bool} $self [false] - Whether or not to include current selector
 /// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
 @mixin on-event($self: false) {
-	@if $self {
-		&,
-		&:hover,
-		&:active,
-		&:focus {
-			@content;
-		}
-	} @else {
-		&:hover,
-		&:active,
-		&:focus {
-			@content;
-		}
-	}
+  @if $self {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  } @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
 }
 
 /// Box-shadow with direction
 /// @param {String} $direction
 /// @param {Bool} $inside
 @mixin box-shadow($direction: 'left', $inside: false) {
-	// Default left
-	$top: 0;
-	$left: -8px;
+  // Default left
+  $top: 0;
+  $left: -8px;
 
-	@if $direction == top {
-		$top: 0;
-		$left: 0;
-	} @else if $direction == bottom {
-		$top: 0;
-		$left: 0;
-	} @else if $direction == right {
-		$top: 0;
-		$left: 8px;
-	}
+  @if $direction == top {
+    $top: 0;
+    $left: 0;
+  } @else if $direction == bottom {
+    $top: 0;
+    $left: 0;
+  } @else if $direction == right {
+    $top: 0;
+    $left: 8px;
+  }
 
-	$blur: 10px;
-	$color: rgba($dark-base, 0.3);
+  $blur: 10px;
+  $color: rgba($dark-base, 0.3);
 
-	@if $inside {
-		$spread: -10px;
-		box-shadow: inset $left $top $blur $spread $color;
-	} @else {
-		$spread: 0;
-		box-shadow: $left $top $blur $spread $color;
-	}
+  @if $inside {
+    $spread: -10px;
+    box-shadow: inset $left $top $blur $spread $color;
+  } @else {
+    $spread: 0;
+    box-shadow: $left $top $blur $spread $color;
+  }
 }

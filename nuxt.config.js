@@ -3,7 +3,9 @@ const dotEnvFilename = '.env.dev'
 
 const pkg = require('./package')
 const path = require('path')
-require('dotenv').config({ path: dotEnvFilename }) // make .env available in nuxt-config.js
+require('dotenv').config({
+  path: path.resolve(__dirname, dotEnvFilename),
+}) // make .env available in nuxt-config.js
 
 module.exports = {
   mode: 'spa',
@@ -66,6 +68,7 @@ module.exports = {
     [
       '@nuxtjs/dotenv',
       {
+        path: path.resolve(__dirname),
         filename: dotEnvFilename,
       },
     ],
@@ -76,7 +79,7 @@ module.exports = {
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
-    baseURL: process.env.API_URL, // TODO env
+    baseURL: process.env.API_URL,
     debug: true,
   },
 

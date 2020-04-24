@@ -1,5 +1,5 @@
 <template>
-  <section class="home container">
+  <section class="home">
     <h1 class="default">
       <img
         class="logo"
@@ -20,9 +20,12 @@
   </section>
 </template>
 
-<style>
-.home {
-  padding: 25vh 0;
-  text-align: center;
+<script>
+export default {
+  layout: 'light-centered',
 }
+</script>
+
+<style>
+@import '~assets/scss/pages/home.scss';
 </style>

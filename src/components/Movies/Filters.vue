@@ -28,103 +28,72 @@
         </div>
       </div>
 
-      <form class="filters__inner" @submit.prevent="filter">
-        <fieldset>
-          <legend>By rating</legend>
-
-          <div class="form__group__radio">
-            <input
-              id="fantastic"
+      <FormBase
+        class="filters__inner"
+        :errors="errors"
+        save-label="Filter"
+        cancel-label="cancel"
+        @submit="filter"
+        @cancel="open = false"
+      >
+        <template #content>
+          <FieldsetBase legend="By rating">
+            <RadioField
               v-model="filters.rating"
               name="rating"
-              value="fantastic"
-              type="radio"
+              :items="[
+                { label: 'Fantastic', value: 'fantastic' },
+                { label: 'Bad', value: 'bad' },
+                { label: 'All', value: null },
+              ]"
             />
-            <label for="fantastic">
-              Fantastic
-            </label>
-          </div>
+          </FieldsetBase>
 
-          <div class="form__group__radio">
-            <input
-              id="bad"
-              v-model="filters.rating"
-              name="rating"
-              value="bad"
-              type="radio"
+          <FieldsetBase legend="By type">
+            <TextField
+              v-model="filters.types"
+              name="types"
+              placeholder="Fantasy"
             />
-            <label for="bad">
-              Bad
-            </label>
-          </div>
+          </FieldsetBase>
 
-          <div class="form__group__radio">
-            <input
-              id="empty"
-              name="rating"
-              value="empty"
-              type="radio"
-              @change="filters.rating = null"
+          <FieldsetBase legend="By director">
+            <TextField
+              v-model="filters.director"
+              name="director"
+              placeholder="Peter Jackson"
             />
-            <label for="empty">
-              All
-            </label>
-          </div>
-        </fieldset>
+          </FieldsetBase>
 
-        <fieldset>
-          <legend>
-            By type
-          </legend>
-          <input
-            id="types"
-            v-model="filters.types"
-            name="types"
-            type="text"
-            placeholder="Fantasy"
-          />
-        </fieldset>
-
-        <fieldset>
-          <legend>
-            By director
-          </legend>
-          <input
-            id="director"
-            v-model="filters.director"
-            name="director"
-            type="text"
-            placeholder="Peter Jackson"
-          />
-        </fieldset>
-
-        <fieldset>
-          <legend>
-            Movie begining with...
-          </legend>
-          <input
-            id="firstLetter"
-            v-model="filters.first_letter"
-            name="firstLetter"
-            type="text"
-            placeholder="A"
-          />
-        </fieldset>
-
-        <div class="form__footer">
-          <input class="btn" type="submit" value="Filter" />
-          <a class="form__cancel" @click.prevent="open = false">
-            cancel
-          </a>
-        </div>
-      </form>
+          <FieldsetBase legend=" Movie begining with...">
+            <TextField
+              v-model="filters.first_letter"
+              name="firstLetter"
+              placeholder="A"
+            />
+          </FieldsetBase>
+        </template>
+      </FormBase>
     </div>
   </div>
 </template>
 
 <script>
+import {
+  FieldsetBase,
+  FormBase,
+  RadioField,
+  TextField,
+} from '~/components/UI/Form'
+
 export default {
   name: 'Filters',
+  components: {
+    FieldsetBase,
+    FormBase,
+    RadioField,
+    TextField,
+  },
   data() {
     return {
       filters: {
@@ -180,85 +149,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.filters {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  max-height: 100vh;
-  padding: 60px 35px;
-  overflow: auto;
-  background-color: $third-color;
-
-  transform: translateY(100vh);
-  transition: transform 0.5s ease-out;
-
-  @include mq('tablet') {
-    padding: 20px 35px;
-  }
-
-  @include mq('laptop') {
-    padding: 150px calc((100% - 500px) / 2);
-  }
-
-  &__wrapper {
-    position: relative;
-    z-index: 300;
-  }
-
-  &.open {
-    transform: translateY(0);
-  }
-
-  &__button {
-    @extend %reset-button;
-
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-
-    height: $filter-height;
-    background-color: $light-base;
-    border-top: 4px solid $third-color;
-
-    @include mq('laptop', 'bottom') {
-      transition: transform 0.5s ease-out;
-    }
-
-    @include mq('laptop') {
-      right: 40px;
-      bottom: 20px;
-      left: auto;
-      width: auto;
-      height: auto;
-      background: transparent;
-      border: none;
-      transform: rotate(-15deg);
-    }
-
-    &__mobile {
-      @include mq('laptop') {
-        display: none;
-      }
-    }
-
-    &__laptop {
-      display: none;
-      width: 110px;
-
-      @include mq('laptop') {
-        display: block;
-        cursor: pointer;
-      }
-    }
-
-    &.open {
-      @include mq('laptop', 'bottom') {
-        transform: translateY(-100vh);
-      }
-    }
-  }
-}
+@import '~assets/scss/components/Filters.scss';
 </style>

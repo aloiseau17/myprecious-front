@@ -1,0 +1,5 @@
+.picto {
+  &.active.own &__background {
+    fill: $own-color;
+  }
+}

@@ -1,62 +1,44 @@
 <template>
   <div class="content__inner">
-    <div class="content__title">
-      <h1>Lost password</h1>
-    </div>
+    <TheTitle title="Lost password" />
 
     <p v-if="sent">
       We have e-mailed your password reset link!
     </p>
 
-    <form
-      :class="{ 'form--error': $v.$error }"
-      class="form"
-      @submit.prevent="reset"
+    <FormBase
+      :errors="error"
+      :loading="isloading"
+      save-label="Reset password"
+      @submit="reset"
+      @cancel="$router.push({ name: 'login' })"
     >
-      <div v-if="error" class="errors">
-        {{ error }}
-      </div>
-
-      <div class="form__group">
-        <label for="email">Enter your account e-mail:</label>
-        <input
-          id="email"
-          v-model.trim="email"
+      <template #content>
+        <TextField
+          v-model="email"
           name="email"
-          type="text"
-          placehold="you@email.com"
-          @blur="$v.email.$touch()"
+          label="Enter your account e-mail:"
+          type="email"
+          required
         />
-        />
-        <div v-if="$v.email.$dirty && !$v.email.required" class="error">
-          Field is required
-        </div>
-      </div>
-
-      <div class="form__footer">
-        <button
-          :disable="isloading"
-          :class="{ loading: isloading }"
-          class="btn"
-          type="submit"
-        >
-          Reset password
-          <div v-if="isloading" class="lds-dual-ring" />
-        </button>
-        <nuxt-link to="/login" class="form__cancel">
-          cancel
-        </nuxt-link>
-      </div>
-    </form>
+      </template>
+    </FormBase>
   </div>
 </template>
 
 <script>
+import { FormBase, TextField } from '~/components/UI/Form'
 import { required } from 'vuelidate/lib/validators'
+import TheTitle from '~/components/UI/TheTitle'
 
 export default {
   auth: false,
-  layout: 'form',
+  components: {
+    TheTitle,
+    FormBase,
+    TextField,
+  },
+  layout: 'dark-centered',
   data() {
     return {
       sent: false,
@@ -88,11 +70,13 @@ export default {
       await this.$axios
         .$post('/api/password/email', data)
         .then(() => {
-          this.isloading = false
           this.sent = true
         })
         .catch(() => {
           // console.log(error.response.data)
+        })
+        .finally(() => {
+          this.isloading = false
         })
     },
   },

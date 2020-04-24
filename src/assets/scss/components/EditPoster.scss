@@ -1,0 +1,37 @@
+.poster {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+  &__label {
+    width: 100%;
+  }
+
+  &__edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+  }
+
+  &__file {
+    position: absolute;
+    visibility: hidden;
+  }
+
+  &__preview {
+    display: block;
+    width: 150px;
+    height: auto;
+  }
+
+  &__remove {
+    display: block;
+    flex: 1;
+    align-self: flex-end;
+    margin: 0;
+    padding-left: 10px;
+    cursor: pointer;
+  }
+}

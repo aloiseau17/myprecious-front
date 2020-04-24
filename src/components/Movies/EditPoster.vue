@@ -1,8 +1,6 @@
 <template>
   <div class="form__group poster__wrapper">
-    <label class="poster__label">
-      Poster
-    </label>
+    <label class="poster__label">Poster</label>
 
     <div class="poster" @click="addFile">
       <input
@@ -19,9 +17,7 @@
       <!-- Edit icon -->
       <img src="/images/edit.svg" class="poster__edit" />
     </div>
-    <p class="poster__remove" @click="removePoster">
-      Remove poster
-    </p>
+    <p class="poster__remove" @click="removePoster">Remove poster</p>
   </div>
 </template>
 
@@ -42,10 +38,14 @@ export default {
     return {
       file: null,
       filePreview: null,
-      hasImage: this.movieImage ? true : false,
     }
   },
   computed: {
+    hasImage() {
+      return this.filePreview || this.movieImage || this.moviePoster
+        ? true
+        : false
+    },
     image() {
       return this.movieImage
         ? process.env.POSTER_STORAGE_URL + this.movieImage
@@ -79,18 +79,16 @@ export default {
       const reader = new FileReader()
       reader.onload = (e) => {
         this.filePreview = e.target.result
-        this.hasImage = true
       }
 
       reader.readAsDataURL(this.file)
     },
     removePoster: function () {
       this.file = null
-      this.hasImage = false
+      this.filePreview = null
       this.$emit('updateFile', null)
     },
     resetFilePreview: function () {
-      this.hasImage = true
       this.filePreview = null
       this.$emit('updateFile', null)
     },
@@ -99,46 +97,5 @@ export default {
 </script>
 
 <style scope lang="scss">
-.poster {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-
-  &__wrapper {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  &__label {
-    width: 100%;
-  }
-
-  &__edit {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 40px;
-    height: 40px;
-  }
-
-  &__file {
-    position: absolute;
-    visibility: hidden;
-  }
-
-  &__preview {
-    display: block;
-    width: 150px;
-    height: auto;
-  }
-
-  &__remove {
-    display: inline-block;
-    flex: 1;
-    align-self: flex-end;
-    margin: 0;
-    padding-left: 10px;
-    cursor: pointer;
-  }
-}
+@import '~assets/scss/components/EditPoster.scss';
 </style>

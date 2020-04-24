@@ -1,0 +1,56 @@
+@import '~assets/scss/components/settings-menu.scss';
+
+.menu-settings {
+  $m: &;
+
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  width: 250px;
+  padding: 30px 15px;
+
+  &__wrapper {
+    position: relative;
+    background-color: $light-base;
+
+    .picto {
+      transition: transform 0.3s;
+    }
+
+    @include on-event {
+      #{$m} {
+        transform: translateY(100%);
+      }
+
+      .picto {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__label {
+    padding-top: 7px;
+    border-top: 3px solid transparent;
+    transition: border 0.3s linear;
+
+    &.nuxt-link-exact-active {
+      border-color: $second-color;
+    }
+
+    @include on-event {
+      text-decoration: none;
+      border-color: $second-color;
+    }
+  }
+
+  &__label,
+  .btn {
+    font-size: 18px;
+  }
+}

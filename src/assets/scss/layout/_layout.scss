@@ -1,0 +1,18 @@
+.layout {
+  flex: 1;
+  padding: 20px;
+
+  &--dark {
+    background-color: $third-color;
+  }
+
+  &--light {
+    background-color: $light-base;
+  }
+
+  &--centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,8 +1,10 @@
 export const actions = {
   async updateSettings(context, data) {
-    await this.$axios
+    return await this.$axios
       .$patch('/api/user-options', data)
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        return error.response
+      })
   },
   async updateEmail(context, data) {
     return await this.$axios.$patch('/api/user-email', data).catch((error) => {

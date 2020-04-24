@@ -14,37 +14,14 @@ body {
 }
 
 h1 {
-  display: inline-block;
-  margin: 0 auto;
   color: $text-color;
   font-weight: 300;
   font-size: 24px;
   text-align: center;
   text-transform: uppercase;
 
-  &:not(.default) {
-    padding-top: 7px;
-    border-top: 6px solid $second-color;
-  }
-
   @include mq('laptop') {
     font-size: 29px;
-  }
-
-  @include when-inside('.app.see') {
-    border-color: $see-color;
-  }
-
-  @include when-inside('.app.buy') {
-    border-color: $buy-color;
-  }
-
-  @include when-inside('.app.own') {
-    border-color: $own-color;
-  }
-
-  @include when-inside('.app.seen') {
-    border-color: $seen-color;
   }
 }
 

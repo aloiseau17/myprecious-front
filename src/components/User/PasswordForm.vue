@@ -1,62 +1,50 @@
 <template>
   <div>
-    <div v-if="errors">
-      <ul>
-        <li v-for="(errorLine, key) in errors" :key="key">
-          {{ key }}
-          <ul>
-            <li v-for="(line, index) in errorLine" :key="index">
-              {{ line }}
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-
-    <form class="form" @submit.prevent="updateUserSettings">
-      <div class="form__group">
-        <label for="old_password">
-          Old password
-        </label>
-        <input id="old_password" v-model="old_password" type="password" />
-      </div>
-
-      <div class="form__group">
-        <label for="new_password">
-          New password
-        </label>
-        <input id="new_password" v-model="password" type="password" />
-      </div>
-
-      <div class="form__group">
-        <label for="password_confirmation">
-          Confirm password
-        </label>
-        <input
-          id="password_confirmation"
-          v-model="password_confirmation"
+    <FormBase
+      :errors="errors"
+      :loading="loading"
+      save-label="Update"
+      no-cancel
+      @submit="updateUserSettings"
+    >
+      <template #content>
+        <TextField
+          v-model="old_password"
+          name="old_password"
+          label="Old password"
           type="password"
+          required
         />
-      </div>
 
-      <div class="form__footer">
-        <button
-          :disable="loading"
-          :class="{ loading: loading }"
-          class="btn"
-          type="submit"
-        >
-          Update
-          <div v-if="loading" class="lds-dual-ring" />
-        </button>
-      </div>
-    </form>
+        <TextField
+          v-model="password"
+          name="new_password"
+          label="New password"
+          type="password"
+          required
+        />
+
+        <TextField
+          v-model="password_confirmation"
+          name="password_confirmation"
+          label="Confirm password"
+          type="password"
+          required
+        />
+      </template>
+    </FormBase>
   </div>
 </template>
 
 <script>
+import { FormBase, TextField } from '~/components/UI/Form'
+
 export default {
   name: 'PasswordForm',
+  components: {
+    FormBase,
+    TextField,
+  },
   data() {
     return {
       old_password: null,

@@ -1,0 +1,73 @@
+.movie {
+  @extend %reset-link;
+
+  position: relative;
+  display: block;
+  margin-bottom: 10px;
+  padding: 20% 20px 0;
+
+  @include mq('laptop') {
+    padding-right: 30px;
+    padding-left: 30px;
+    transition: transform 0.3s;
+
+    @include on-event {
+      transform: scale(1.05);
+    }
+  }
+
+  &__title {
+    color: $second-color;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
+  &__content {
+    padding-left: 8px;
+    border-left: 3px solid $second-color;
+  }
+
+  &__image {
+    position: relative;
+    text-align: center;
+  }
+
+  &__poster {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  &__picto {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    &__item {
+      margin-right: 10px;
+    }
+  }
+}
+
+.rewatch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
+
+.rating {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  &.fantastic {
+    transform: translate(60%, 3px) rotate(25deg);
+  }
+  &.bad {
+    transform: translate(45%, 13px) rotate(-5deg);
+  }
+}

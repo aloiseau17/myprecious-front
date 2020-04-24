@@ -28,9 +28,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.picto {
-  &.active.own &__background {
-    fill: $own-color;
-  }
-}
+@import '~assets/scss/components/PictoOwn.scss';
 </style>

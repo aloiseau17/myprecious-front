@@ -63,10 +63,11 @@
 /// Box-shadow with direction
 /// @param {String} $direction
 /// @param {Bool} $inside
-@mixin box-shadow($direction: 'left', $inside: false) {
+@mixin box-shadow($direction: 'left', $inside: false, $small: false) {
   // Default left
   $top: 0;
   $left: -8px;
+  $spread: 0;
 
   @if $direction == top {
     $top: 0;
@@ -79,14 +80,16 @@
     $left: 8px;
   }
 
-  $blur: 10px;
+  $blur: 11px;
   $color: rgba($dark-base, 0.3);
 
+  @if $small or $inside {
+    $spread: -9px;
+  }
+
   @if $inside {
-    $spread: -10px;
     box-shadow: inset $left $top $blur $spread $color;
   } @else {
-    $spread: 0;
     box-shadow: $left $top $blur $spread $color;
   }
 }

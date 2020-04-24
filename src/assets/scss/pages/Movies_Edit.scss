@@ -1,0 +1,12 @@
+.poster__preview {
+  @include mq('laptop') {
+    width: 200px;
+  }
+}
+
+.poster__wrapper,
+.poster__remove {
+  @include mq('laptop') {
+    display: block;
+  }
+}

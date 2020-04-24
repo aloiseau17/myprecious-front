@@ -1,0 +1,7 @@
+.picto {
+  fill: $third-color;
+
+  &__background {
+    transition: fill 0.3s linear;
+  }
+}

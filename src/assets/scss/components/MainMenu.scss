@@ -1,0 +1,180 @@
+html {
+  &.menu-opened {
+    overflow: hidden;
+  }
+}
+
+.main-menu {
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  height: $menu_height;
+
+  @include box-shadow('bottom', false);
+
+  @include mq('laptop', 'bottom') {
+    padding-left: 60px; // burger space
+    border-top: 6px solid $main-color;
+    transition: border-color 0.3s;
+
+    &.movies-to-buy {
+      border-color: $buy-color;
+    }
+
+    &.movies-own {
+      border-color: $own-color;
+    }
+
+    &.movies-to-see {
+      border-color: $see-color;
+    }
+
+    &.movies {
+      border-color: $seen-color;
+    }
+  }
+
+  @include mq('laptop') {
+    height: $menu_height_md;
+    background-color: $light-base;
+  }
+
+  &__pages {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @include mq('laptop') {
+      justify-content: flex-end;
+      background: $light-base;
+    }
+  }
+
+  &__item {
+    @include box-shadow('left', false, true);
+
+    flex: 1;
+
+    a {
+      @extend %reset-link;
+    }
+
+    @include mq('laptop') {
+      flex: 0 0 auto;
+      width: auto;
+      padding: 0 15px;
+      box-shadow: none;
+
+      @include on-event {
+        $picto_selector: '.picto__background';
+        .buy {
+          #{$picto_selector} {
+            fill: $buy-color;
+          }
+        }
+        .own {
+          #{$picto_selector} {
+            fill: $own-color;
+          }
+        }
+        .see {
+          #{$picto_selector} {
+            fill: $see-color;
+          }
+        }
+        .seen {
+          #{$picto_selector} {
+            fill: $seen-color;
+          }
+        }
+      }
+    }
+
+    &__link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: $menu_height;
+
+      @include mq('laptop') {
+        height: $menu_height_md;
+
+        &.highlight {
+          padding: 0 30px;
+          @include box-shadow('right', true);
+        }
+      }
+    }
+
+    &__label {
+      display: none;
+
+      @include mq('laptop') {
+        display: inline-block;
+        font-weight: 300;
+        font-size: 16px;
+        text-transform: uppercase;
+        vertical-align: middle;
+      }
+    }
+
+    &.add-button {
+      @include mq('laptop') {
+        transition: background-color 0.3s;
+
+        @include on-event {
+          background-color: $third-color;
+
+          a,
+          span {
+            color: $light-base;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .logo {
+    height: 100%;
+    min-height: 40px;
+
+    &__wrapper {
+      @include mq('laptop') {
+        display: block;
+        padding: 10px 20px;
+      }
+    }
+  }
+
+  .picto {
+    margin-right: 5px;
+    vertical-align: middle;
+
+    &__background {
+      transition: fill 0.3s linear;
+      fill: $third-color;
+
+      @include when-inside('.nuxt-link-exact-active .buy') {
+        fill: $buy-color;
+      }
+
+      @include when-inside('.nuxt-link-exact-active .own') {
+        fill: $own-color;
+      }
+
+      @include when-inside('.nuxt-link-exact-active .see') {
+        fill: $see-color;
+      }
+
+      @include when-inside('.nuxt-link-exact-active .seen') {
+        fill: $seen-color;
+      }
+    }
+  }
+}

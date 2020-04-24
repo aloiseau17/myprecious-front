@@ -1,0 +1,5 @@
+.picto {
+  &.active.see &__background {
+    fill: $see-color;
+  }
+}

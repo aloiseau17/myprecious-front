@@ -21,16 +21,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.no-movie {
-  text-align: center;
-
-  @include mq('laptop') {
-    padding: 10vh 0;
-  }
-
-  &__btn {
-    margin-top: 35px;
-    text-align: center;
-  }
-}
+@import '~assets/scss/components/NoMovie.scss';
 </style>

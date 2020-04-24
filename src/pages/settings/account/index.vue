@@ -6,11 +6,7 @@
       </nuxt-link>
     </div>
 
-    <div class="content__title-wrapper">
-      <h1 class="content__title">
-        My account
-      </h1>
-    </div>
+    <the-title title="My account" />
 
     <div class="settings__block">
       <email-form />
@@ -25,11 +21,14 @@
 <script>
 import EmailForm from '~/components/User/EmailForm'
 import PasswordForm from '~/components/User/PasswordForm'
+import TheTitle from '~/components/UI/TheTitle'
+
 export default {
   layout: 'form',
   components: {
     'email-form': EmailForm,
     'password-form': PasswordForm,
+    'the-title': TheTitle,
   },
   computed: {
     lastPage() {
@@ -40,9 +39,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.settings {
-  &__block {
-    margin-bottom: 35px;
-  }
-}
+@import '~assets/scss/pages/Settings_Account.scss';
 </style>

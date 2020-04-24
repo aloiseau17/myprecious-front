@@ -34,11 +34,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.picto {
-  fill: $third-color;
-
-  &__background {
-    transition: fill 0.3s linear;
-  }
-}
+@import '~assets/scss/components/Picto.scss';
 </style>

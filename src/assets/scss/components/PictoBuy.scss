@@ -1,0 +1,5 @@
+.picto {
+  &.active.buy &__background {
+    fill: $buy-color;
+  }
+}

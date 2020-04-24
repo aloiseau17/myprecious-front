@@ -1,0 +1,7 @@
+small {
+  font-size: 11px;
+
+  @include mq('tablet') {
+    font-size: 14px;
+  }
+}

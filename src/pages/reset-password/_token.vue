@@ -1,73 +1,50 @@
 <template>
   <div class="content__inner">
-    <div class="content__title">
-      <h1>Reset password</h1>
-    </div>
+    <TheTitle title="Reset password" />
 
-    <form
-      :class="{ 'form--error': $v.$error }"
-      class="form"
-      @submit.prevent="reset"
+    <FormBase
+      :errors="error"
+      :loading="isloading"
+      save-label="Reset password"
+      @submit="reset"
+      @cancel="$router.push({ name: 'login' })"
     >
-      <div v-if="error" class="errors">
-        {{ error }}
-      </div>
+      <template #content>
+        <input id="token" v-model="token" name="token" type="hidden" />
 
-      <input id="token" v-model="token" name="token" type="hidden" />
-
-      <div class="form__group">
-        <label for="email">Mail</label>
-        <input
-          id="email"
-          v-model.trim="email"
+        <TextField
+          v-model="email"
           name="email"
-          type="text"
-          placehold="you@email.com"
-          @blur="$v.email.$touch()"
+          label="Mail"
+          type="email"
+          required
         />
-        <div v-if="$v.email.$dirty && !$v.email.required" class="error">
-          Field is required
-        </div>
-      </div>
 
-      <div class="form__group">
-        <label for="password">New password</label>
-        <input
-          id="password"
-          v-model.trim="password"
+        <TextField
+          v-model="password"
           name="password"
-          type="passwor"
-          @blur="$v.password.$touch()"
+          label="New password"
+          type="password"
+          required
         />
-        <div v-if="$v.password.$dirty && !$v.password.required" class="error">
-          Field is required
-        </div>
-      </div>
-
-      <div class="form__footer">
-        <button
-          :disable="isloading"
-          :class="{ loading: isloading }"
-          class="btn"
-          type="submit"
-        >
-          Reset password
-          <div v-if="isloading" class="lds-dual-ring" />
-        </button>
-        <nuxt-link to="/login" class="form__cancel">
-          cancel
-        </nuxt-link>
-      </div>
-    </form>
+      </template>
+    </FormBase>
   </div>
 </template>
 
 <script>
+import { FormBase, TextField } from '~/components/UI/Form'
 import { required } from 'vuelidate/lib/validators'
+import TheTitle from '~/components/UI/TheTitle'
 
 export default {
   auth: false,
-  layout: 'form',
+  components: {
+    TheTitle,
+    FormBase,
+    TextField,
+  },
+  layout: 'dark-centered',
   data() {
     return {
       email: null,
@@ -104,13 +81,18 @@ export default {
       await this.$axios
         .$post('/api/password/reset', data)
         .then(() => {
-          this.isloading = false
           this.$router.push({
             path: '/login',
           })
         })
         .catch((error) => {
-          console.log(error.response.data)
+          if (error.response.data && error.response.data.message) {
+            this.error = [error.response.data.message]
+          }
+          console.og(error.response.data)
+        })
+        .finally(() => {
+          this.isloading = false
         })
     },
   },

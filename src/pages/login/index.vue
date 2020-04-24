@@ -1,58 +1,34 @@
 <template>
   <div class="content">
-    <div class="title__wrapper">
-      <h1>Login</h1>
-    </div>
+    <TheTitle title="Login" />
 
-    <form
-      :class="{ 'form--error': $v.$error }"
-      class="form"
-      @submit.prevent="login"
+    <FormBase
+      :errors="error"
+      :loading="loading"
+      save-label="Login"
+      no-cancel
+      @submit="login"
     >
-      <div v-if="error" class="errors">
-        {{ error }}
-      </div>
-
-      <div class="form__group">
-        <input
-          id="email"
-          v-model.trim="username"
+      <template #content>
+        <TextField
+          v-model="username"
           name="email"
-          type="text"
           placeholder="Email"
-          @blur="$v.username.$touch()"
+          type="email"
+          autocomplete="username"
+          required
         />
-        <div v-if="$v.username.$dirty && !$v.username.required" class="error">
-          Field is required
-        </div>
-      </div>
 
-      <div class="form__group">
-        <input
-          id="password"
+        <TextField
           v-model="password"
           name="password"
-          type="password"
           placeholder="Password"
-          @blur="$v.password.$touch()"
+          type="password"
+          autocomplete="current-password"
+          required
         />
-        <div v-if="$v.password.$dirty && !$v.password.required" class="error">
-          Field is required
-        </div>
-      </div>
-
-      <div class="form__footer">
-        <button
-          :disable="isloading"
-          :class="{ loading: isloading }"
-          class="btn"
-          type="submit"
-        >
-          Login
-          <div v-if="isloading" class="lds-dual-ring" />
-        </button>
-      </div>
-    </form>
+      </template>
+    </FormBase>
 
     <small>
       <nuxt-link to="/lost-password">
@@ -64,15 +40,22 @@
 
 <script>
 import { required } from 'vuelidate/lib/validators'
+import TheTitle from '~/components/UI/TheTitle'
+import { FormBase, TextField } from '~/components/UI/Form'
 
 export default {
-  layout: 'login',
+  layout: 'dark-centered',
+  components: {
+    TheTitle,
+    FormBase,
+    TextField,
+  },
   data() {
     return {
       username: null,
       password: null,
       error: null,
-      isloading: false,
+      loading: false,
     }
   },
   validations: {
@@ -91,7 +74,7 @@ export default {
 
       if (this.$v.$invalid) return
 
-      this.isloading = true
+      this.loading = true
 
       return this.$auth
         .loginWith('myprecious', {
@@ -101,41 +84,14 @@ export default {
           },
         })
         .catch((e) => {
-          this.isloading = false
-          this.error = e.response.data
+          this.loading = false
+          this.error = [e.response.data]
         })
     },
   },
 }
 </script>
 
-<style scoped lang="scss">
-.content {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  color: red;
-
-  @include mq('tablet') {
-    width: 300px;
-    margin: 0 auto;
-  }
-}
-
-form {
-  flex: 1 0 auto;
-  margin-bottom: 20px;
-
-  @include mq('tablet') {
-    flex: none;
-  }
-}
-
-small {
-  font-size: 11px;
-
-  @include mq('tablet') {
-    font-size: 14px;
-  }
-}
+<style lang="scss">
+@import '~assets/scss/pages/login.scss';
 </style>

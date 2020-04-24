@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="content__title">
-      <h1>Movies to see</h1>
-    </div>
+    <TheTitle title="Movies to see" />
 
     <div v-if="movies.length">
       <ul class="content__list">
@@ -26,9 +24,10 @@ import NoMovie from '~/components/Movies/NoMovie'
 import Filters from '~/components/Movies/Filters'
 import { mapState } from 'vuex'
 import ManageMovieList from '~/mixins/manageMovieList'
+import TheTitle from '~/components/UI/TheTitle'
 
 export default {
-  components: { MovieItem, Filters, NoMovie },
+  components: { MovieItem, Filters, NoMovie, TheTitle },
   mixins: [ManageMovieList],
   async asyncData({ store, route }) {
     // get previous page data

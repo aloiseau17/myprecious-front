@@ -51,14 +51,13 @@ form {
 
   .btn-select {
     @extend %reset-button;
-    width: 45%;
 
+    width: 45%;
     padding: 14px 20px;
     color: $main-color;
     font-weight: 600;
     font-size: 18px;
     background-color: $light-base;
-
     cursor: pointer;
     transition: color 0.3s, background 0.3s;
 
@@ -81,24 +80,30 @@ form {
 }
 
 .form {
+  &__errors {
+    width: 100%;
+    padding-left: 0;
+    text-align: center;
+    list-style: none;
+  }
+
   &__column {
     @include mq('tablet') {
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       justify-content: center;
     }
-  }
 
-  &__left {
-    @include mq('tablet') {
-      margin-right: 90px;
+    &__item:not(:last-child) {
+      @include mq('tablet') {
+        margin-right: 90px;
+      }
     }
-  }
-
-  &__left,
-  &__right {
-    @include mq('tablet') {
-      width: 30vw;
+    &__fix {
+      @include mq('tablet') {
+        width: 30vw;
+      }
     }
   }
 
@@ -111,6 +116,7 @@ form {
   }
 
   &__footer {
+    width: 100%;
     padding-top: 20px;
     text-align: center;
   }
@@ -136,21 +142,19 @@ form {
       cursor: pointer;
 
       @include mq('laptop') {
-        &:hover:before {
+        &:hover::before {
           background-color: rgba($main-color, 0.3);
         }
       }
 
-      &:before {
+      &::before {
         display: inline-block;
         width: 8px;
-
         height: 8px;
         padding: 3px;
         vertical-align: middle;
         background-color: transparent;
         background-clip: content-box;
-
         border: 4px solid $main-color;
         border-radius: 50%;
         content: '';
@@ -163,7 +167,7 @@ form {
       cursor: pointer;
       opacity: 0;
 
-      &:checked ~ label:before {
+      &:checked ~ label::before {
         background-color: $main-color;
       }
     }

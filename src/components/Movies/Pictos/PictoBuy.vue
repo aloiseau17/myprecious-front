@@ -34,9 +34,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.picto {
-  &.active.buy &__background {
-    fill: $buy-color;
-  }
-}
+@import '~assets/scss/components/PictoBuy.scss';
 </style>

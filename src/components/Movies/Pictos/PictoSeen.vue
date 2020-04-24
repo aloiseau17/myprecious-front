@@ -28,9 +28,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.picto {
-  &.active.seen &__background {
-    fill: $seen-color;
-  }
-}
+@import '~assets/scss/components/PictoSeen.scss';
 </style>

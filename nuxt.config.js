@@ -35,7 +35,7 @@ module.exports = {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: false,
 
   /*
    ** Global CSS
@@ -51,6 +51,7 @@ module.exports = {
     '~/plugins/theMovieDatabase/index',
     '~/plugins/Axios',
     { src: '~/plugins/Vuelidate', ssr: false },
+    { src: '~/plugins/Mq.js', ssr: false },
   ],
 
   /*
@@ -126,6 +127,10 @@ module.exports = {
    ** Build configuration
    */
   build: {
+    extractCSS: process.env.NODE_ENV !== 'development',
+    splitChunks: {
+      layouts: true,
+    },
     /*
      ** You can extend webpack config here
      */
@@ -139,6 +144,27 @@ module.exports = {
           exclude: [path.resolve(__dirname, 'www'), /(node_modules)/],
         })
       }
+
+      // vue-svg-loader
+      const svgRule = config.module.rules.find((rule) => rule.test.test('.svg'))
+
+      svgRule.test = /\.(png|jpe?g|gif|webp)$/
+
+      config.module.rules.push({
+        test: /\.svg$/,
+        oneOf: [
+          {
+            resourceQuery: /inline/,
+            use: ['babel-loader', 'vue-svg-loader'],
+          },
+          {
+            loader: 'file-loader',
+            query: {
+              name: 'assets/[name].[hash:8].[ext]',
+            },
+          },
+        ],
+      })
     },
   },
 

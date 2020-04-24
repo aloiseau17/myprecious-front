@@ -1,0 +1,27 @@
+/// -----------------------------------------------------------------------------
+// Shared style between SettingsMenu and SettingsMenuMobile
+// -----------------------------------------------------------------------------
+
+.menu-settings {
+  $m: &;
+
+  position: absolute;
+  background-color: $third-color;
+  transition: transform 0.3s ease-in-out;
+
+  &__pages {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    text-align: center;
+  }
+
+  &__label {
+    margin: 0;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+}

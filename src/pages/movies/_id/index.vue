@@ -6,9 +6,7 @@
       </nuxt-link>
     </div>
 
-    <div class="content__title">
-      <h1>Movie informations</h1>
-    </div>
+    <TheTitle title="Movie informations" />
 
     <div class="movie">
       <div class="movie__image__wrapper">
@@ -80,10 +78,11 @@
 
 <script>
 import Picto from '~/components/Movies/Picto'
+import TheTitle from '~/components/UI/TheTitle'
 
 export default {
   layout: 'form',
-  components: { Picto },
+  components: { Picto, TheTitle },
   async asyncData({ route, $axios }) {
     let movie = await $axios
       .$get('/api/movies/' + route.params.id)
@@ -115,126 +114,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.movie {
-  @include mq('tablet') {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  &__title {
-    color: $light-base;
-    font-weight: 600;
-    font-size: 22px;
-    text-transform: uppercase;
-  }
-
-  &__image {
-    position: relative;
-    display: inline-block;
-    max-width: 150px;
-    margin: 0 auto;
-
-    &__wrapper {
-      text-align: center;
-
-      @include mq('tablet') {
-        margin-right: 90px;
-      }
-    }
-
-    .picto {
-      width: 70px;
-      height: 50px;
-
-      &__wrapper {
-        @include mq('laptop', 'bottom') {
-          position: absolute;
-          top: 0;
-          left: 0;
-          display: block;
-          width: 100%;
-          height: 100%;
-          transform: translateY(10px);
-        }
-      }
-    }
-  }
-
-  &__poster {
-    display: block;
-    max-width: 100%;
-    height: auto;
-  }
-
-  &__picto {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 20px 0;
-    padding: 0;
-    list-style: none;
-
-    @include mq('laptop') {
-      display: block;
-    }
-
-    &__item {
-      margin-right: 10px;
-
-      @include mq('laptop') {
-        margin-bottom: 8px;
-      }
-    }
-
-    .picto {
-      margin-right: 5px;
-
-      @include mq('laptop') {
-        vertical-align: bottom;
-      }
-    }
-  }
-
-  &__infos {
-    padding: 0;
-    font-weight: 300;
-    list-style: none;
-
-    strong {
-      font-weight: 600;
-    }
-
-    &__item {
-      margin-bottom: 5px;
-    }
-  }
-}
-
-.rewatch {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-}
-
-.rating {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-
-  &.fantastic {
-    transform: translate(60%, 3px) rotate(25deg);
-  }
-  &.bad {
-    transform: translate(45%, 13px) rotate(-5deg);
-  }
-}
-
-.form__footer {
-  @include mq('laptop') {
-    text-align: left;
-  }
-}
+@import '~assets/scss/pages/Movies_Id.scss';
 </style>

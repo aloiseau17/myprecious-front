@@ -1,0 +1,27 @@
+.the-title {
+  display: inline-block;
+  margin: 50px auto 35px;
+  padding-top: 7px;
+  text-align: center;
+  border-top: 6px solid $second-color;
+
+  @include when-inside('.app.see') {
+    border-color: $see-color;
+  }
+
+  @include when-inside('.app.buy') {
+    border-color: $buy-color;
+  }
+
+  @include when-inside('.app.own') {
+    border-color: $own-color;
+  }
+
+  @include when-inside('.app.seen') {
+    border-color: $seen-color;
+  }
+
+  &__wrapper {
+    text-align: center;
+  }
+}

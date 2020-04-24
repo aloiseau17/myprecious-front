@@ -1,235 +1,133 @@
 <template>
   <div>
-    <div class="content__title-wrapper">
-      <h1 class="content__title">
-        Add movie
-      </h1>
-    </div>
+    <TheTitle title="Add movie" />
 
-    <ul v-if="errors">
-      <li v-for="(error, key) in errors" :key="key">{{ key }}: {{ error }}</li>
-    </ul>
+    <FormBase
+      :errors="errors"
+      :loading="loading"
+      save-label="Add movie"
+      column
+      @submit="addMovie"
+      @cancel="$router.back()"
+    >
+      <template #content>
+        <FormColumn auto-width>
+          <EditPoster :movie-poster="poster_link" @updateFile="newFile" />
+        </FormColumn>
 
-    <form class="form form__column" @submit.prevent="addMovie">
-      <div class="form__left">
-        <fieldset>
-          <legend>Movie</legend>
-
-          <div class="form__group">
-            <label for="title">Title</label>
-            <el-autocomplete
-              id="title"
+        <FormColumn>
+          <FieldsetBase legend="Movie">
+            <AutocompleteField
               v-model="title"
               :fetch-suggestions="autocompleteTitle"
-              autosize
-              autocomplete
-              clearable
-              size="max"
-              class="inline-input"
+              :select="getMovie"
+              required
+              name="title"
+              label="Title"
               placeholder="The lord of the ring"
-              @select="getMovie"
             >
               <template slot-scope="{ item }">
                 <div class="value">{{ item.title }} (id: {{ item.id }})</div>
               </template>
-            </el-autocomplete>
-          </div>
+            </AutocompleteField>
 
-          <div class="form__group">
-            <label for="director">
-              Director
-            </label>
-            <input
-              id="director"
+            <TextField
               v-model="director"
               name="director"
-              type="text"
+              label="Director"
               placeholder="Peter Jackson"
             />
-          </div>
 
-          <div class="form__group">
-            <label for="types">
-              Types
-            </label>
-            <input
-              id="types"
+            <TextField
               v-model="types"
               name="types"
-              type="text"
-              placeholder="Fantasy"
+              label="Types"
+              placeholder="Fantasy;Comedy"
             />
-          </div>
 
-          <div class="form__group">
-            <label for="actor">
-              Main actor
-            </label>
-            <input
-              id="actor"
+            <TextField
               v-model="actor"
               name="actor"
-              type="text"
+              label="Main actor"
               placeholder="Gollum"
             />
-          </div>
 
-          <div class="form__group">
-            <label for="duration">
-              Duration (min)
-            </label>
-            <input
-              id="duration"
+            <TextField
               v-model="duration"
               name="duration"
-              type="text"
+              label="Duration (min)"
               placeholder="162"
             />
-          </div>
+          </FieldsetBase>
+        </FormColumn>
 
-          <edit-poster :movie-poster="poster_link" @updateFile="newFile" />
-        </fieldset>
-      </div>
-
-      <div class="form__right">
-        <fieldset>
-          <legend>Status</legend>
-
-          <div class="form__group btn-select__wrapper">
-            <button
-              :class="{ active: possessionState === 'own' }"
-              class="btn-select"
-              type="button"
-              @click="possessionSelect('own')"
-            >
-              Owned
-            </button>
-            <button
-              :class="{ active: possessionState === 'to_own' }"
-              class="btn-select"
-              type="button"
-              @click="possessionSelect('to_own')"
-            >
-              To Own
-            </button>
-            <input
-              id="own"
+        <FormColumn>
+          <FieldsetBase legend="Status">
+            <RadioButtonField
               v-model="possessionState"
-              class="btn-select__input"
               name="possession_state"
-              value="own"
-              type="radio"
+              :items="[
+                { label: 'Owned', value: 'own' },
+                { label: 'To Own', value: 'to_own' },
+              ]"
+              @reset="possessionState = 'empty'"
             />
-            <input
-              id="to_own"
-              v-model="possessionState"
-              class="btn-select__input"
-              name="possession_state"
-              value="to_own"
-              type="radio"
-            />
-          </div>
 
-          <div class="form__group__radio">
-            <input
-              id="seen"
+            <RadioField
               v-model="seen"
-              :value="true"
-              name="see"
-              type="radio"
+              name="seen"
+              :items="[
+                { label: 'Seen', value: true },
+                { label: 'To see', value: false },
+              ]"
             />
-            <label for="seen">
-              Seen
-            </label>
-          </div>
-          <div class="form__group__radio">
-            <input
-              id="to_see"
-              v-model="seen"
-              :value="false"
-              name="see"
-              type="radio"
-            />
-            <label for="to_see">
-              To see
-            </label>
-          </div>
-        </fieldset>
+          </FieldsetBase>
 
-        <fieldset>
-          <legend>Evaluation</legend>
-          <div class="form__group__radio">
-            <input
-              id="fantastic"
+          <FieldsetBase legend="Evaluation">
+            <RadioField
               v-model="rating"
               name="rating"
-              value="fantastic"
-              type="radio"
+              :items="[
+                { label: 'Fantastic', value: 'fantastic' },
+                { label: 'Ok', value: 'empty' },
+                { label: 'Bad', value: 'bad' },
+              ]"
             />
-            <label for="fantastic">
-              Fantastic
-            </label>
-          </div>
-
-          <div class="form__group__radio">
-            <input
-              id="rating-ok"
-              v-model="rating"
-              name="rating"
-              value="empty"
-              type="radio"
-            />
-            <label for="rating-ok">
-              Ok
-            </label>
-          </div>
-
-          <div class="form__group__radio">
-            <input
-              id="bad"
-              v-model="rating"
-              name="rating"
-              value="bad"
-              type="radio"
-            />
-            <label for="bad">
-              Bad
-            </label>
-          </div>
-        </fieldset>
-
-        <div class="form__footer">
-          <button
-            :disable="loading"
-            :class="{ loading: loading }"
-            class="btn"
-            type="submit"
-          >
-            Add movie
-            <div v-if="loading" class="lds-dual-ring" />
-          </button>
-          <a class="form__cancel" @click.prevent="$router.back()">
-            cancel
-          </a>
-        </div>
-      </div>
-    </form>
+          </FieldsetBase>
+        </FormColumn>
+      </template>
+    </FormBase>
   </div>
 </template>
 
 <script>
 import EditPoster from '~/components/Movies/EditPoster'
-import { Autocomplete } from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
 import GetMoviesData from '~/mixins/getMoviesData'
+import TheTitle from '~/components/UI/TheTitle'
+import {
+  AutocompleteField,
+  FieldsetBase,
+  FormBase,
+  FormColumn,
+  RadioButtonField,
+  RadioField,
+  TextField,
+} from '~/components/UI/Form'
 
 export default {
-  layout: 'form',
   components: {
-    'el-autocomplete': Autocomplete,
-    'edit-poster': EditPoster,
+    EditPoster,
+    TheTitle,
+    TextField,
+    FieldsetBase,
+    AutocompleteField,
+    RadioField,
+    RadioButtonField,
+    FormBase,
+    FormColumn,
   },
   mixins: [GetMoviesData],
+  layout: 'form',
   data() {
     return {
       title: '',
@@ -291,11 +189,7 @@ export default {
     },
     newFile(file) {
       this.file = file
-    },
-    possessionSelect(value) {
-      this.possessionState === value
-        ? (this.possessionState = 'empty')
-        : (this.possessionState = value)
+      this.poster_link = null
     },
   },
 }

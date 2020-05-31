@@ -24,12 +24,12 @@ import PasswordForm from '~/components/User/PasswordForm'
 import TheTitle from '~/components/UI/TheTitle'
 
 export default {
-  layout: 'form',
   components: {
     'email-form': EmailForm,
     'password-form': PasswordForm,
     'the-title': TheTitle,
   },
+  layout: 'form',
   computed: {
     lastPage() {
       return this.$store.getters['navigation/getSavedPage']

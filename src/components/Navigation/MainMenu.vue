@@ -108,17 +108,17 @@ export default {
       ],
     }
   },
-  methods: {
-    toggleMenu() {
-      if (window.innerWidth < 992) this.opened = !this.opened
-    },
-  },
   head() {
     return {
       htmlAttrs: {
         class: this.opened ? ['menu-opened'] : [],
       },
     }
+  },
+  methods: {
+    toggleMenu() {
+      if (window.innerWidth < 992) this.opened = !this.opened
+    },
   },
 }
 </script>

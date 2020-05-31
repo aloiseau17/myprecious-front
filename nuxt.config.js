@@ -8,7 +8,7 @@ require('dotenv').config({
 }) // make .env available in nuxt-config.js
 
 module.exports = {
-  mode: 'spa',
+  ssr: false,
   srcDir: 'src',
   buildDir: 'www',
 

@@ -19,9 +19,7 @@
       </div>
 
       <p v-if="statusCode === 404">
-        <nuxt-link class="btn" to="/">
-          Homepage
-        </nuxt-link>
+        <nuxt-link class="btn" to="/">Homepage</nuxt-link>
       </p>
     </div>
   </div>
@@ -29,20 +27,12 @@
 
 <script>
 export default {
-  layout: 'form',
   name: 'NuxtError',
+  layout: 'form',
   props: {
     error: {
       type: Object,
       default: null,
-    },
-  },
-  computed: {
-    statusCode() {
-      return (this.error && this.error.statusCode) || 500
-    },
-    message() {
-      return this.error.message || `<%= messages.client_error %>`
     },
   },
   head() {
@@ -56,6 +46,14 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    statusCode() {
+      return (this.error && this.error.statusCode) || 500
+    },
+    message() {
+      return this.error.message || `<%= messages.client_error %>`
+    },
   },
 }
 </script>

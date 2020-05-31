@@ -13,9 +13,7 @@
     <p>Manage your movies as fantastic or bad.</p>
     <p>You can save movie you want to buy and them who you already own.</p>
     <div class="home__btn">
-      <nuxt-link class="btn" to="/movies/add">
-        Add movie
-      </nuxt-link>
+      <nuxt-link class="btn" to="/movies/add">Add movie</nuxt-link>
     </div>
   </section>
 </template>

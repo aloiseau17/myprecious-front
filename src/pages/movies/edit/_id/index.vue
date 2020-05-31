@@ -118,7 +118,6 @@ import {
 } from '~/components/UI/Form'
 
 export default {
-  layout: 'form',
   components: {
     EditPoster,
     TheTitle,
@@ -131,6 +130,7 @@ export default {
     FormColumn,
   },
   mixins: [GetMoviesData],
+  layout: 'form',
   async asyncData({ route, $axios }) {
     let movie = await $axios
       .$get('/api/movies/' + route.params.id)

@@ -9,9 +9,7 @@
     </ul>
 
     <!-- No content -->
-    <p v-if="!movies.length">
-      No movies found.
-    </p>
+    <p v-if="!movies.length">No movies found.</p>
 
     <!-- Filters -->
     <Filters @filter-movies="filterMovies" />

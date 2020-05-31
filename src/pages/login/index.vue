@@ -31,9 +31,7 @@
     </FormBase>
 
     <small>
-      <nuxt-link to="/lost-password">
-        Lost password
-      </nuxt-link>
+      <nuxt-link to="/lost-password">Lost password</nuxt-link>
     </small>
   </div>
 </template>
@@ -44,12 +42,12 @@ import TheTitle from '~/components/UI/TheTitle'
 import { FormBase, TextField } from '~/components/UI/Form'
 
 export default {
-  layout: 'dark-centered',
   components: {
     TheTitle,
     FormBase,
     TextField,
   },
+  layout: 'dark-centered',
   data() {
     return {
       username: null,

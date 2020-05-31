@@ -2,9 +2,7 @@
   <div class="content__inner">
     <TheTitle title="Lost password" />
 
-    <p v-if="sent">
-      We have e-mailed your password reset link!
-    </p>
+    <p v-if="sent">We have e-mailed your password reset link!</p>
 
     <FormBase
       :errors="error"

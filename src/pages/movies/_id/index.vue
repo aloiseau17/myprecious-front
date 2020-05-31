@@ -81,8 +81,8 @@ import Picto from '~/components/Movies/Picto'
 import TheTitle from '~/components/UI/TheTitle'
 
 export default {
-  layout: 'form',
   components: { Picto, TheTitle },
+  layout: 'form',
   async asyncData({ route, $axios }) {
     let movie = await $axios
       .$get('/api/movies/' + route.params.id)

@@ -1,6 +1,6 @@
 export const state = () => ({
   previousQuery: null,
-  previousPath: '/movies',
+  previousPath: '/',
 })
 
 export const mutations = {
@@ -13,6 +13,12 @@ export const mutations = {
 export const actions = {
   savePage({ commit }, data) {
     commit('setPreviousRouteData', data)
+  },
+  resetPage({ commit }) {
+    commit('setPreviousRouteData', {
+      query: null,
+      previousPath: '/',
+    })
   },
 }
 

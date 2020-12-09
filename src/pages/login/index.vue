@@ -42,6 +42,7 @@ import TheTitle from '~/components/UI/TheTitle'
 import { FormBase, TextField } from '~/components/UI/Form'
 
 export default {
+  auth: 'guest',
   components: {
     TheTitle,
     FormBase,
@@ -74,12 +75,22 @@ export default {
 
       this.loading = true
 
-      return this.$auth
+      this.$auth
         .loginWith('myprecious', {
           data: {
             username: this.username,
             password: this.password,
           },
+        })
+        .then(() => {
+          // Then check callback rediect
+          if (this.$auth.$state.redirect) {
+            // If rediect to login page from page that is required authentication (auth midleware), go that page
+            this.$router.push(this.$auth.$state.redirect)
+          } else {
+            // Otherwise, go to home page
+            this.$router.push({ path: '/movies' })
+          }
         })
         .catch((e) => {
           this.loading = false

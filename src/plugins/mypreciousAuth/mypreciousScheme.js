@@ -25,8 +25,8 @@ export default class MyLocalScheme {
 
   async mounted() {
     // Logout on error
-    this.$auth.onError(() => {
-      this._logoutLocally()
+    this.$auth.onError((e) => {
+      this.reset()
     })
 
     if (this.options.tokenRequired) {
@@ -82,7 +82,7 @@ export default class MyLocalScheme {
     }
 
     // Ditch any leftover local tokens before attempting to log in
-    await this._logoutLocally()
+    await this.$auth.reset()
 
     const result = await this.$auth.request(
       endpoint,
@@ -123,16 +123,19 @@ export default class MyLocalScheme {
         .catch(() => {})
     }
 
-    // But logout locally regardless
-    return this._logoutLocally()
+    return this.$auth.reset()
   }
 
-  async _logoutLocally() {
+  async reset() {
     if (this.options.tokenRequired) {
       this._clearToken()
     }
 
-    return this.$auth.reset()
+    this.$auth.setUser(false)
+    this.$auth.setToken(this.name, false)
+    this.$auth.setRefreshToken(this.name, false)
+
+    return Promise.resolve()
   }
 
   async refresh() {

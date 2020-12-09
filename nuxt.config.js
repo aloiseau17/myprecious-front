@@ -91,9 +91,9 @@ module.exports = {
     cookie: false,
     redirect: {
       login: '/login',
-      logout: '/',
+      logout: '/login',
       callback: '/login',
-      home: '/movies',
+      home: false, // fix ref: https://github.com/nuxt-community/auth-module/issues/731#issuecomment-723360927
     },
     defaultStrategy: 'myprecious',
     strategies: {

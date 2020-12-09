@@ -38,7 +38,7 @@ import { required } from 'vuelidate/lib/validators'
 import TheTitle from '~/components/UI/TheTitle'
 
 export default {
-  auth: false,
+  auth: 'guest',
   components: {
     TheTitle,
     FormBase,

@@ -56,8 +56,9 @@ export default {
     }
   },
   methods: {
-    logout() {
-      this.$auth.logout()
+    async logout() {
+      await this.$store.dispatch('navigation/resetPage')
+      await this.$auth.logout()
     },
   },
 }

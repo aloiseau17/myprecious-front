@@ -22,8 +22,8 @@
     "element-ui": "2.13.0",
     "node-sass": "^4.13.1",
     "normalize.css": "^8.0.1",
-    "nuxt": "^2.12.2",
-    "sass-loader": "^8.0.2",
+    "nuxt": "^3.0.0",
+    "sass-loader": "^13.2.0",
     "vuelidate": "^0.7.5"
   },
   "devDependencies": {

@@ -1,8 +1,6 @@
 <template>
   <div class="form__group poster__wrapper">
-    <label class="poster__label">
-      Poster
-    </label>
+    <label class="poster__label">Poster</label>
 
     <div class="poster" @click="addFile">
       <input
@@ -19,9 +17,7 @@
       <!-- Edit icon -->
       <img src="/images/edit.svg" class="poster__edit" />
     </div>
-    <p class="poster__remove" @click="removePoster">
-      Remove poster
-    </p>
+    <p class="poster__remove" @click="removePoster">Remove poster</p>
   </div>
 </template>
 

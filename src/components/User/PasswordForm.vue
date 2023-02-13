@@ -15,23 +15,17 @@
 
     <form class="form" @submit.prevent="updateUserSettings">
       <div class="form__group">
-        <label for="old_password">
-          Old password
-        </label>
+        <label for="old_password">Old password</label>
         <input id="old_password" v-model="old_password" type="password" />
       </div>
 
       <div class="form__group">
-        <label for="new_password">
-          New password
-        </label>
+        <label for="new_password">New password</label>
         <input id="new_password" v-model="password" type="password" />
       </div>
 
       <div class="form__group">
-        <label for="password_confirmation">
-          Confirm password
-        </label>
+        <label for="password_confirmation">Confirm password</label>
         <input
           id="password_confirmation"
           v-model="password_confirmation"

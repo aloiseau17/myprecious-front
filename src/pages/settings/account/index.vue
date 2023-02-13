@@ -7,9 +7,7 @@
     </div>
 
     <div class="content__title-wrapper">
-      <h1 class="content__title">
-        My account
-      </h1>
+      <h1 class="content__title">My account</h1>
     </div>
 
     <div class="settings__block">

@@ -54,9 +54,7 @@
           Reset password
           <div v-if="isloading" class="lds-dual-ring" />
         </button>
-        <nuxt-link to="/login" class="form__cancel">
-          cancel
-        </nuxt-link>
+        <nuxt-link to="/login" class="form__cancel">cancel</nuxt-link>
       </div>
     </form>
   </div>

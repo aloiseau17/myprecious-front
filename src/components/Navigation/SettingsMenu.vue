@@ -20,7 +20,7 @@
         width="20"
         height="10"
         viewBox="0 0 46.7 26.5"
-        style="enable-background: new 0 0 46.7 26.5;"
+        style="enable-background: new 0 0 46.7 26.5"
         xml:space="preserve"
       >
         <polygon class="picto__background" points="0,0 46.7,0 23.3,26.5 " />
@@ -38,14 +38,10 @@
         />
       </li>
       <li class="menu-burger__item" @click="opened = false">
-        <nuxt-link to="/settings">
-          Settings
-        </nuxt-link>
+        <nuxt-link to="/settings">Settings</nuxt-link>
       </li>
       <li class="menu-burger__item" @click="opened = false">
-        <nuxt-link to="/settings/account">
-          My account
-        </nuxt-link>
+        <nuxt-link to="/settings/account">My account</nuxt-link>
       </li>
       <li class="menu-burger__item" @click="opened = false">
         <nuxt-link class="btn" event="" to="/" @click.native="logout">

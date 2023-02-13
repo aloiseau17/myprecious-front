@@ -55,9 +55,7 @@
     </form>
 
     <small>
-      <nuxt-link to="/lost-password">
-        Lost password
-      </nuxt-link>
+      <nuxt-link to="/lost-password">Lost password</nuxt-link>
     </small>
   </div>
 </template>

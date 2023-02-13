@@ -15,9 +15,7 @@
 
     <form class="form" @submit.prevent="updateUserSettings">
       <div class="form__group">
-        <label for="email">
-          Email
-        </label>
+        <label for="email">Email</label>
         <input v-model="email" type="email" />
       </div>
 

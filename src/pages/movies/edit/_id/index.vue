@@ -43,9 +43,7 @@
             </div>
 
             <div class="form__group">
-              <label for="director">
-                Director
-              </label>
+              <label for="director">Director</label>
               <input
                 id="director"
                 v-model="director"
@@ -56,9 +54,7 @@
             </div>
 
             <div class="form__group">
-              <label for="types">
-                Types
-              </label>
+              <label for="types">Types</label>
               <input
                 id="types"
                 v-model="types"
@@ -69,9 +65,7 @@
             </div>
 
             <div class="form__group">
-              <label for="actor">
-                Main actor
-              </label>
+              <label for="actor">Main actor</label>
               <input
                 id="actor"
                 v-model="actor"
@@ -82,9 +76,7 @@
             </div>
 
             <div class="form__group">
-              <label for="duration">
-                Duration (min)
-              </label>
+              <label for="duration">Duration (min)</label>
               <input
                 id="duration"
                 v-model="duration"
@@ -145,9 +137,7 @@
                 name="see"
                 type="radio"
               />
-              <label for="seen">
-                Seen
-              </label>
+              <label for="seen">Seen</label>
             </div>
             <div class="form__group__radio">
               <input
@@ -157,9 +147,7 @@
                 name="see"
                 type="radio"
               />
-              <label for="to_see">
-                To see
-              </label>
+              <label for="to_see">To see</label>
             </div>
           </fieldset>
 
@@ -173,9 +161,7 @@
                 value="fantastic"
                 type="radio"
               />
-              <label for="fantastic">
-                Fantastic
-              </label>
+              <label for="fantastic">Fantastic</label>
             </div>
 
             <div class="form__group__radio">
@@ -186,9 +172,7 @@
                 value="empty"
                 type="radio"
               />
-              <label for="rating-ok">
-                Ok
-              </label>
+              <label for="rating-ok">Ok</label>
             </div>
 
             <div class="form__group__radio">
@@ -199,9 +183,7 @@
                 value="bad"
                 type="radio"
               />
-              <label for="bad">
-                Bad
-              </label>
+              <label for="bad">Bad</label>
             </div>
           </fieldset>
         </div>
@@ -215,9 +197,7 @@
             cancel
           </nuxt-link>
         </div>
-        <div v-else>
-          loading
-        </div>
+        <div v-else>loading</div>
       </div>
     </form>
   </div>

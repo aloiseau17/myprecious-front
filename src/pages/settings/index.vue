@@ -7,34 +7,22 @@
     </div>
 
     <div class="content__title-wrapper">
-      <h1 class="content__title">
-        Manage settings
-      </h1>
+      <h1 class="content__title">Manage settings</h1>
     </div>
 
     <form class="form" @submit.prevent="updateUserSettings">
       <div class="form__group">
         <label for="order">List order</label>
         <select v-model="orderSelected" :value="order" name="order">
-          <option value="created_at__desc">
-            Most recent first
-          </option>
-          <option value="created_at__asc">
-            Older first
-          </option>
-          <option value="title__asc">
-            Alphabetical order
-          </option>
-          <option value="title__desc">
-            Alphabetical order (reverse)
-          </option>
+          <option value="created_at__desc">Most recent first</option>
+          <option value="created_at__asc">Older first</option>
+          <option value="title__asc">Alphabetical order</option>
+          <option value="title__desc">Alphabetical order (reverse)</option>
         </select>
       </div>
 
       <div class="form__footer">
-        <button class="btn" type="submit">
-          Update
-        </button>
+        <button class="btn" type="submit">Update</button>
         <nuxt-link :to="lastPage" class="form__cancel back-btn">
           cancel
         </nuxt-link>

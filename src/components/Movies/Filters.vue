@@ -40,9 +40,7 @@
               value="fantastic"
               type="radio"
             />
-            <label for="fantastic">
-              Fantastic
-            </label>
+            <label for="fantastic">Fantastic</label>
           </div>
 
           <div class="form__group__radio">
@@ -53,9 +51,7 @@
               value="bad"
               type="radio"
             />
-            <label for="bad">
-              Bad
-            </label>
+            <label for="bad">Bad</label>
           </div>
 
           <div class="form__group__radio">
@@ -66,16 +62,12 @@
               type="radio"
               @change="filters.rating = null"
             />
-            <label for="empty">
-              All
-            </label>
+            <label for="empty">All</label>
           </div>
         </fieldset>
 
         <fieldset>
-          <legend>
-            By type
-          </legend>
+          <legend>By type</legend>
           <input
             id="types"
             v-model="filters.types"
@@ -86,9 +78,7 @@
         </fieldset>
 
         <fieldset>
-          <legend>
-            By director
-          </legend>
+          <legend>By director</legend>
           <input
             id="director"
             v-model="filters.director"
@@ -99,9 +89,7 @@
         </fieldset>
 
         <fieldset>
-          <legend>
-            Movie begining with...
-          </legend>
+          <legend>Movie begining with...</legend>
           <input
             id="firstLetter"
             v-model="filters.first_letter"
@@ -113,9 +101,7 @@
 
         <div class="form__footer">
           <input class="btn" type="submit" value="Filter" />
-          <a class="form__cancel" @click.prevent="open = false">
-            cancel
-          </a>
+          <a class="form__cancel" @click.prevent="open = false">cancel</a>
         </div>
       </form>
     </div>

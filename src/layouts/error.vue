@@ -19,9 +19,7 @@
       </div>
 
       <p v-if="statusCode === 404">
-        <nuxt-link class="btn" to="/">
-          Homepage
-        </nuxt-link>
+        <nuxt-link class="btn" to="/">Homepage</nuxt-link>
       </p>
     </div>
   </div>

@@ -155,9 +155,11 @@ export const getters = {
   getFirstRewatch(state) {
     return state.firstRewatch
   },
-  getMovies: (state) => (withRewatch = false) => {
-    return withRewatch && state.firstRewatch
-      ? [state.firstRewatch, ...state.movies]
-      : state.movies
-  },
+  getMovies:
+    (state) =>
+    (withRewatch = false) => {
+      return withRewatch && state.firstRewatch
+        ? [state.firstRewatch, ...state.movies]
+        : state.movies
+    },
 }

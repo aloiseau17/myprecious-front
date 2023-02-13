@@ -4,9 +4,7 @@
       <h1>Lost password</h1>
     </div>
 
-    <p v-if="sent">
-      We have e-mailed your password reset link!
-    </p>
+    <p v-if="sent">We have e-mailed your password reset link!</p>
 
     <form
       :class="{ 'form--error': $v.$error }"
@@ -43,9 +41,7 @@
           Reset password
           <div v-if="isloading" class="lds-dual-ring" />
         </button>
-        <nuxt-link to="/login" class="form__cancel">
-          cancel
-        </nuxt-link>
+        <nuxt-link to="/login" class="form__cancel">cancel</nuxt-link>
       </div>
     </form>
   </div>

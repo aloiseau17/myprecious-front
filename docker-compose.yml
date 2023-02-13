@@ -1,0 +1,11 @@
+# For more information: https://laravel.com/docs/sail
+version: '3'
+services:
+  myprecious-front:
+    build: .
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./src:/app/src
+    stdin_open: true
+    tty: true

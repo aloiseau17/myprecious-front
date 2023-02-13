@@ -151,4 +151,8 @@ module.exports = {
     TMDB_KEY: process.env.TMDB_KEY,
     TMDB_IMAGE_PATH: process.env.TMDB_IMAGE_PATH,
   },
+
+  server: {
+    host: '0.0.0.0',
+  },
 }

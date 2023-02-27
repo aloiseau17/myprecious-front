@@ -7,5 +7,6 @@ services:
       - '3000:3000'
     volumes:
       - ./src:/app/src
+      - ./.env.dev:/app/.env.dev
     stdin_open: true
     tty: true
